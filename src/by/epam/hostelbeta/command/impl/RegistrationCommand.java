@@ -36,6 +36,7 @@ public class RegistrationCommand implements ICommand {
 				HttpSession session = request.getSession();
 				session.setAttribute("login", user.getLogin());
 				session.setAttribute("role", "client");
+				session.setAttribute("page", "home");
 				page = ConfigurationManager.getProperty(HOME_PAGE);
 			}else{
 				request.setAttribute("errorRegistrationMessage", "Login exists");

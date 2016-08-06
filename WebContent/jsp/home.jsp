@@ -35,10 +35,9 @@
 								<figure class='left marg_right1'>
 								<img src='images/hostels/1.png' alt='' width='300' height='150'></figure>
 								<p class='pad_bot2'>
-									<strong>Россия, Санкт-Петербург, Милениум</strong>
+									<strong>${hostel.country}, ${hostel.city}, ${hostel.name}</strong>
 								</p>
-								<p class='pad_bot2'>Еда, старый город и культура сделают вашу
-									поездку сюда незабываемой!</p>
+								<p class='pad_bot2'>${hostel.description}</p>
 								<a href="" class="right"><fmt:message key="label.book" /></a>
 							</div>
 						</div>

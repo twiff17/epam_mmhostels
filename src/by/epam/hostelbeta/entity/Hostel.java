@@ -1,120 +1,152 @@
 package by.epam.hostelbeta.entity;
 
 public class Hostel {
-	private long id;
-	private String title;
-	private String city;
+	private long hostelId;
+	private String name;
 	private String country;
+	private String city;
+	private String address;
+	private String currency;
+	private int standartPrice;
+	private String phone;
 	private String description;
-	private String price;
 	
-	public Hostel() {
-		super();
+	public long getHostelId() {
+		return hostelId;
 	}
-
-	public long getId() {
-		return id;
+	public void setHostelId(long hostelId) {
+		this.hostelId = hostelId;
 	}
-
-	public void setId(long id) {
-		this.id = id;
+	public String getName() {
+		return name;
 	}
-
-	public String getTitle() {
-		return title;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
 	public String getCountry() {
 		return country;
 	}
-
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+	public int getStandartPrice() {
+		return standartPrice;
+	}
+	public void setStandartPrice(int standartPrice) {
+		this.standartPrice = standartPrice;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((price == null) ? 0 : price.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + (int) (hostelId ^ (hostelId >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result + standartPrice;
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Hostel other = (Hostel) obj;
+		if (address == null) {
+			if (other.address != null) {
+				return false;
+			}
+		} else if (!address.equals(other.address)) {
+			return false;
+		}
 		if (city == null) {
-			if (other.city != null)
+			if (other.city != null) {
 				return false;
-		} else if (!city.equals(other.city))
+			}
+		} else if (!city.equals(other.city)) {
 			return false;
+		}
 		if (country == null) {
-			if (other.country != null)
+			if (other.country != null) {
 				return false;
-		} else if (!country.equals(other.country))
+			}
+		} else if (!country.equals(other.country)) {
 			return false;
+		}
+		if (currency == null) {
+			if (other.currency != null) {
+				return false;
+			}
+		} else if (!currency.equals(other.currency)) {
+			return false;
+		}
 		if (description == null) {
-			if (other.description != null)
+			if (other.description != null) {
 				return false;
-		} else if (!description.equals(other.description))
+			}
+		} else if (!description.equals(other.description)) {
 			return false;
-		if (id != other.id)
+		}
+		if (hostelId != other.hostelId) {
 			return false;
-		if (price == null) {
-			if (other.price != null)
+		}
+		if (name == null) {
+			if (other.name != null) {
 				return false;
-		} else if (!price.equals(other.price))
+			}
+		} else if (!name.equals(other.name)) {
 			return false;
-		if (title == null) {
-			if (other.title != null)
+		}
+		if (phone == null) {
+			if (other.phone != null) {
 				return false;
-		} else if (!title.equals(other.title))
+			}
+		} else if (!phone.equals(other.phone)) {
 			return false;
+		}
+		if (standartPrice != other.standartPrice) {
+			return false;
+		}
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Hostel [id=" + id + ", title=" + title + ", city=" + city + ", country=" + country + ", description="
-				+ description + ", price=" + price + "]";
 	}
 }
