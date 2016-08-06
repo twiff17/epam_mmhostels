@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="pagecontent"/>
@@ -14,24 +15,46 @@
 			<a href="Controller?command=change_locale&locale=Default">RU</a>
 			<a href="Controller?command=change_locale&locale=en_US">EN</a>
 			</div>
-			<nav>
-				<ul id="top_nav">
-					<li>
-						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="login">
-							<input class="lk" type="submit" value="<fmt:message key="menu.login" />" />
-						</form>
-					</li>
-					<li>
-						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="registration">
-							<input class="lk" type="submit" value="<fmt:message key="menu.registration" />" />
-						</form>
-					</li>
-				</ul>
-			</nav>
+			<c:choose>
+				<c:when test="${empty role}">
+					<nav>
+						<ul id="top_nav">
+							<li>
+								<form method="post" action="Controller">
+									<input type="hidden" name="command" value="get_page" />
+									<input type="hidden" name="page" value="login">
+									<input class="lk" type="submit" value="<fmt:message key="menu.login" />" />
+								</form>
+							</li>
+							<li>
+								<form method="post" action="Controller">
+									<input type="hidden" name="command" value="get_page" />
+									<input type="hidden" name="page" value="registration">
+									<input class="lk" type="submit" value="<fmt:message key="menu.registration" />" />
+								</form>
+							</li>
+						</ul>
+					</nav>
+				</c:when>
+				<c:otherwise>
+					<div class="user_data">
+						<fmt:message key="label.login" />: ${login} <br>
+						<fmt:message key="label.role" />: ${role} <br>
+					</div>
+					<nav>
+						<ul id="top_nav">
+							
+							<li>
+								<form method="post" action="Controller">
+									<input type="hidden" name="command" value="logout" />
+									<input type="hidden" name="page" value="home">
+									<input class="lk" type="submit" value="<fmt:message key="menu.logout" />" />
+								</form>
+							</li>
+						</ul>
+					</nav>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<nav>

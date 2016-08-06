@@ -6,11 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.util.ConfigurationManager;
 
-public class GetPageCommand implements ICommand{
+public class LogoutCommand implements ICommand{
+	private static final String HOME_PAGE = "path.page.home";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		request.getSession().setAttribute("page", request.getParameter("page"));
-		return ConfigurationManager.getProperty("path.page." + request.getParameter("page"));
+		request.getSession().invalidate();
+		return ConfigurationManager.getProperty(HOME_PAGE);
 	}
+
 }

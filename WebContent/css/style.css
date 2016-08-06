@@ -248,3 +248,9 @@ footer a {color:#439deb}
     top: 38px;
     right: -98px;
 }
+.user_data{
+	position: absolute;
+    top: 25px;
+    right: 125px;
+    color: #660033;
+}

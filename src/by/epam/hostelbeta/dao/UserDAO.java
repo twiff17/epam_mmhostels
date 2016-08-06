@@ -12,13 +12,13 @@ import by.epam.hostelbeta.entity.User;
 
 public class UserDAO extends AbstractDAO {
 	private static final String SELECT_ALL_USERS = "SELECT UserId, Login, Password FROM user";
-	private static final String SELECT_USER_BY_LOGIN_PASSWORD = "SELECT UserId, Login, Password FROM `user` WHERE Login = ? AND Password = ?";
+	private static final String SELECT_USER_BY_LOGIN_PASSWORD = "SELECT UserId, Login, Role FROM `user` WHERE Login = ? AND Password = ?";
 	private static final String INSERT_USER = "INSERT INTO `user`(Login, Password, Fullname, Passport, Email, Phone) VALUES(?, ?, ?, ?, ?, ?)";
 	private static final String SELECT_USER_BY_LOGIN = "SELECT UserId FROM `user` WHERE Login = ?";
 
 	private static final String USER_ID = "UserId";
 	private static final String LOGIN = "Login";
-	private static final String PASSWORD = "Password";
+	private static final String ROLE = "Role";
 
 	public List<User> findAll() throws DAOException {
 		List<User> users = new ArrayList<User>();
@@ -89,6 +89,11 @@ public class UserDAO extends AbstractDAO {
 	private void fillUser(ResultSet rs, User user) throws SQLException {
 		user.setUserId(rs.getLong(USER_ID));
 		user.setLogin(rs.getString(LOGIN));
-		user.setPassword(rs.getString(PASSWORD));
+		boolean role = rs.getBoolean(ROLE);
+		if(!role){
+			user.setRole("client");
+		}else{
+			user.setRole("admin");
+		}
 	}
 }

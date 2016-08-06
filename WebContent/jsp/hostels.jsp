@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <title>Хостелы</title>
+    <title><fmt:message key="label.hostels" /></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="images/ficon.gif" type="image/gif">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -28,7 +28,7 @@
             <section id="content">
                 <%@include file="search.jsp" %> 
                 <article class="col2">
-                    <h2> Наши хостелы </h2>
+                    <h2> <fmt:message key="label.our_hostels" /> </h2>
                     <c:forEach var="hostel" items="${hostelsList}">
 	                    <div class='pad'>
 	                            <div class='wrapper under'>

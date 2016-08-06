@@ -17,5 +17,7 @@
 	Status code: ${pageContext.errorData.statusCode}
 	<br/>
 	Exception: ${pageContext.errorData.throwable}
+	<br/>
+	Error: ${errorStackTrace}
 </body>
 </html>

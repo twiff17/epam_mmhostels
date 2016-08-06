@@ -7,7 +7,7 @@
 
 <html>
 <head>
-	<title>Кабинет</title>
+	<title><fmt:message key="menu.cabinet" /></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="shortcut icon" href="images/ficon.gif" type="image/gif">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -27,7 +27,7 @@
             <section id="content">
                 <%@include file="search.jsp" %> 
                 <article class="col2">
-                    <h2> Ваши заказы </h2>
+                    <h2> <fmt:message key="label.your_orders" /> </h2>
                     <div class='pad'>
                             <div class='wrapper under'>
                                 <figure class='left marg_right1'><img src='images/hostels/1.png' alt='' width='300' height='150'></figure>
@@ -35,13 +35,13 @@
                                     <strong>Россия, Санкт-Петербург, Милениум</strong> 
                                 </p>
                                 <p class='pad_bot2'>
-                                        <b>Номер:</b><br/> <i>Стандарт</i> <br/>
-                                        <b>Цена:</b><br/> <i>200 USD</i> <br/>
-                                        <b>Дата заселения:</b><i> 15-06-2016 </i> <br/>
-                                        <b>Дата выселения:</b><i> 17-06-2016 </i><br/>
-                                        <b>Статус:</b><i> В обработке </i>
+                                        <b><fmt:message key="label.room_type" />:</b><br/> <i>Стандарт</i> <br/>
+                                        <b><fmt:message key="label.price" />:</b><br/> <i>200 USD</i> <br/>
+                                        <b><fmt:message key="label.in_date" />:</b><i> 15-06-2016 </i> <br/>
+                                        <b><fmt:message key="label.out_date" />:</b><i> 17-06-2016 </i><br/>
+                                        <b><fmt:message key="label.status" />:</b><i> В обработке </i>
                                 </p>
-                                <a href="" class="right">Отменить заказ</a>
+                                <a href="" class="right"><fmt:message key="label.cancel_order" /></a>
                             </div>
                     </div>
                 </article>

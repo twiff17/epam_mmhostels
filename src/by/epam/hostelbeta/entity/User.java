@@ -4,7 +4,7 @@ public class User {
 	private long userId;
 	private String login;
 	private String password;
-	private boolean role;
+	private String role;
 	private String fullname;
 	private String passport;
 	private String email;
@@ -35,11 +35,11 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(boolean role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
@@ -94,7 +94,7 @@ public class User {
 		result = prime * result + ((passport == null) ? 0 : passport.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + (role ? 1231 : 1237);
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
 	}
@@ -111,16 +111,6 @@ public class User {
 			return false;
 		}
 		User other = (User) obj;
-		if (login == null) {
-			if (other.login != null) {
-				return false;
-			}
-		} else if (!login.equals(other.login)) {
-			return false;
-		}
-		if (userId != other.userId) {
-			return false;
-		}
 		if (ban != other.ban) {
 			return false;
 		}
@@ -136,6 +126,13 @@ public class User {
 				return false;
 			}
 		} else if (!fullname.equals(other.fullname)) {
+			return false;
+		}
+		if (login == null) {
+			if (other.login != null) {
+				return false;
+			}
+		} else if (!login.equals(other.login)) {
 			return false;
 		}
 		if (passport == null) {
@@ -159,7 +156,14 @@ public class User {
 		} else if (!phone.equals(other.phone)) {
 			return false;
 		}
-		if (role != other.role) {
+		if (role == null) {
+			if (other.role != null) {
+				return false;
+			}
+		} else if (!role.equals(other.role)) {
+			return false;
+		}
+		if (userId != other.userId) {
 			return false;
 		}
 		return true;

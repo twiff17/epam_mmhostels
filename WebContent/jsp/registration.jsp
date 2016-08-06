@@ -7,7 +7,7 @@
 
 <html>
 <head>
-	<title><fmt:message key="title.registration"></fmt:message></title>
+	<title><fmt:message key="menu.registration"></fmt:message></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="shortcut icon" href="images/ficon.gif" type="image/gif">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -27,7 +27,7 @@
             <section id="content">
                 <%@include file="search.jsp" %>
                 <article class="col2 pad_left1" style="margin-top: 20px;">
-                    <h2><fmt:message key="title.registration" /></h2>
+                    <h2><fmt:message key="menu.registration" /></h2>
                     <form method="post" action="Controller" class="form" id="registrationForm">
                         <input type="hidden" name="command" value="registration">
                         <div>
