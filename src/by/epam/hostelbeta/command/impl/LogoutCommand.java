@@ -12,6 +12,7 @@ public class LogoutCommand implements ICommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().invalidate();
+		request.getSession().setAttribute("page", "home");
 		return ConfigurationManager.getProperty(HOME_PAGE);
 	}
 

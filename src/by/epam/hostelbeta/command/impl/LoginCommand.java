@@ -16,6 +16,7 @@ public class LoginCommand implements ICommand {
 	private static final String LOGIN_PAGE = "path.page.login";
 	private static final String ERROR_PAGE = "path.page.error";
 	private static final String ATTR_ROLE = "role";
+	private static final String ATTR_PAGE = "page";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -27,6 +28,7 @@ public class LoginCommand implements ICommand {
 			if (user != null) {
 				request.getSession().setAttribute(PARAM_LOGIN, user.getLogin());
 				request.getSession().setAttribute(ATTR_ROLE, user.getRole());
+				request.getSession().setAttribute(ATTR_PAGE, "home");
 				page = ConfigurationManager.getProperty(HOME_PAGE);
 			} else {
 				request.setAttribute("errorLoginPassMessage", "Incorrect login and password");

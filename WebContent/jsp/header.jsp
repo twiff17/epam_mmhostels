@@ -19,20 +19,46 @@
 				<c:when test="${empty role}">
 					<nav>
 						<ul id="top_nav">
-							<li>
-								<form method="post" action="Controller">
-									<input type="hidden" name="command" value="get_page" />
-									<input type="hidden" name="page" value="login">
-									<input class="lk" type="submit" value="<fmt:message key="menu.login" />" />
-								</form>
-							</li>
-							<li>
-								<form method="post" action="Controller">
-									<input type="hidden" name="command" value="get_page" />
-									<input type="hidden" name="page" value="registration">
-									<input class="lk" type="submit" value="<fmt:message key="menu.registration" />" />
-								</form>
-							</li>
+							<c:choose>
+								<c:when test="${page eq 'login'}">
+									<li>
+										<form method="post" action="Controller">
+											<input type="hidden" name="command" value="get_page" />
+											<input type="hidden" name="page" value="login">
+											<input class="lk active" type="submit" value="<fmt:message key="menu.login" />" />
+										</form>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li>
+										<form method="post" action="Controller">
+											<input type="hidden" name="command" value="get_page" />
+											<input type="hidden" name="page" value="login">
+											<input class="lk" type="submit" value="<fmt:message key="menu.login" />" />
+										</form>
+									</li>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${page eq 'registration'}">
+									<li>
+										<form method="post" action="Controller">
+											<input type="hidden" name="command" value="get_page" />
+											<input type="hidden" name="page" value="registration">
+											<input class="lk active" type="submit" value="<fmt:message key="menu.registration" />" />
+										</form>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li>
+										<form method="post" action="Controller">
+											<input type="hidden" name="command" value="get_page" />
+											<input type="hidden" name="page" value="registration">
+											<input class="lk" type="submit" value="<fmt:message key="menu.registration" />" />
+										</form>
+									</li>
+								</c:otherwise>
+							</c:choose>
 						</ul>
 					</nav>
 				</c:when>
@@ -59,34 +85,86 @@
 	</div>
 	<nav>
 		<ul id="menu">
-			<li>
-				<form method="post" action="Controller">
-					<input type="hidden" name="command" value="get_page" />
-					<input type="hidden" name="page" value="home">
-					<input class="menu_lk" type="submit" value="<fmt:message key="menu.main" />" />
-				</form>
-			</li>
-			<li>
-				<form method="post" action="Controller">
-					<input type="hidden" name="command" value="get_page" />
-					<input type="hidden" name="page" value="hostels">
-					<input class="menu_lk" type="submit" value="<fmt:message key="menu.hostels" />" />
-				</form>
-			</li>
-			<li>
-				<form method="post" action="Controller">
-					<input type="hidden" name="command" value="get_page" />
-					<input type="hidden" name="page" value="cabinet">
-					<input class="menu_lk" type="submit" value="<fmt:message key="menu.cabinet" />" />
-				</form>
-			</li>
-			<li class="end">
-				<form method="post" action="Controller">
-					<input type="hidden" name="command" value="get_page" />
-					<input type="hidden" name="page" value="about">
-					<input class="menu_lk" type="submit" value="<fmt:message key="menu.about" />" />
-				</form>
-			</li>
+			<c:choose>
+				<c:when test="${page eq 'home' or empty page}">
+					<li>
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="home">
+							<input class="menu_lk active" type="submit" value="<fmt:message key="menu.main" />" />
+						</form>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li>
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="home">
+							<input class="menu_lk" type="submit" value="<fmt:message key="menu.main" />" />
+						</form>
+					</li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${page eq 'hostels'}">
+					<li>
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="hostels">
+							<input class="menu_lk active" type="submit" value="<fmt:message key="menu.hostels" />" />
+						</form>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li>
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="hostels">
+							<input class="menu_lk" type="submit" value="<fmt:message key="menu.hostels" />" />
+						</form>
+					</li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${page eq 'cabinet'}">
+					<li>
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="cabinet">
+							<input class="menu_lk active" type="submit" value="<fmt:message key="menu.cabinet" />" />
+						</form>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li>
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="cabinet">
+							<input class="menu_lk" type="submit" value="<fmt:message key="menu.cabinet" />" />
+						</form>
+					</li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${page eq 'about'}">
+					<li class="end">
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="about">
+							<input class="menu_lk active" type="submit" value="<fmt:message key="menu.about" />" />
+						</form>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li class="end">
+						<form method="post" action="Controller">
+							<input type="hidden" name="command" value="get_page" />
+							<input type="hidden" name="page" value="about">
+							<input class="menu_lk" type="submit" value="<fmt:message key="menu.about" />" />
+						</form>
+					</li>
+				</c:otherwise>
+			</c:choose>
 		</ul>
 	</nav>
 	<div class="slider">
