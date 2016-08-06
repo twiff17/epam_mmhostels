@@ -243,3 +243,8 @@ footer a {color:#439deb}
 	background:#660033;
 	color: #fff;
 }
+.lang_menu{
+	position: absolute;
+    top: 38px;
+    right: -98px;
+}

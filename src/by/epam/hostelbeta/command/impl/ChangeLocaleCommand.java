@@ -2,16 +2,17 @@ package by.epam.hostelbeta.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.util.ConfigurationManager;
 
-public class GetPageCommand implements ICommand{
-
+public class ChangeLocaleCommand implements ICommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		request.getSession().setAttribute("page", request.getParameter("page"));
-		return ConfigurationManager.getProperty("path.page." + request.getParameter("page"));
+		String locale = request.getParameter("locale");
+		HttpSession session = request.getSession();
+		session.setAttribute("locale", locale);
+		return ConfigurationManager.getProperty("path.page." + session.getAttribute("page"));
 	}
-
 }

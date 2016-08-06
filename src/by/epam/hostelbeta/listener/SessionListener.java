@@ -13,7 +13,7 @@ public class SessionListener implements HttpSessionListener {
 
     public void sessionCreated(HttpSessionEvent ev)  { 
          HttpSession session = ev.getSession();
-         session.setAttribute("locale", "en_US");
+         session.setAttribute("locale", "Default");
     }
 
     public void sessionDestroyed(HttpSessionEvent arg0)  { 

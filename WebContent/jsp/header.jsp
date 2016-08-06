@@ -10,6 +10,10 @@
 			<a href="home.html" id="logo"><img src="images/logo.png"></a>
 		</h1>
 		<div class="right">
+			<div class="lang_menu">
+			<a href="Controller?command=change_locale&locale=Default">RU</a>
+			<a href="Controller?command=change_locale&locale=en_US">EN</a>
+			</div>
 			<nav>
 				<ul id="top_nav">
 					<li>
