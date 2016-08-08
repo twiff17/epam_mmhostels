@@ -5,15 +5,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.util.ConfigurationManager;
+import by.epam.hostelbeta.util.Parameters;
 
 public class LogoutCommand implements ICommand{
-	private static final String HOME_PAGE = "path.page.home";
-
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().invalidate();
-		request.getSession().setAttribute("page", "home");
-		return ConfigurationManager.getProperty(HOME_PAGE);
+		request.getSession().setAttribute(Parameters.PAGE, Parameters.HOME);
+		return ConfigurationManager.getProperty(Parameters.HOME_PATH);
 	}
 
 }

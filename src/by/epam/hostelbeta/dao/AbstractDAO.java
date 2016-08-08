@@ -28,7 +28,7 @@ public abstract class AbstractDAO {
 				st.close();
 			}
 		} catch (SQLException e) {
-			LOGGER.error("Error closing statement!");
+			LOGGER.error("Error closing statement!", e);
 		}
 	}
 }

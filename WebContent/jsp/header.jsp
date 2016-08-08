@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="customtags" prefix="ctg"  %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="pagecontent"/>
 <header>
 	<div class="wrapper">
 		<h1>
-			<a href="home.html" id="logo"><img src="images/logo.png"></a>
+			<img src="images/logo.png">
 		</h1>
 		<div class="right">
 			<div class="lang_menu">
@@ -64,8 +65,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="user_data">
-						<fmt:message key="label.login" />: ${login} <br>
-						<fmt:message key="label.role" />: ${role} <br>
+						<ctg:user-data/>
 					</div>
 					<nav>
 						<ul id="top_nav">

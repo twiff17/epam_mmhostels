@@ -9,7 +9,7 @@ import java.util.List;
 import by.epam.hostelbeta.entity.Hostel;
 
 public class HostelDAO extends AbstractDAO {
-	private static final String SELECT_ALL_HOSTELS = "SELECT * FROM `hostel`";
+	private static final String SELECT_ALL_HOSTELS = "SELECT SQL_CALC_FOUND_ROWS * FROM `hostel` LIMIT ";
 	
 //	private static final String HOSTEL_ID = "HostelId";
 	private static final String NAME = "Name";
@@ -21,21 +21,31 @@ public class HostelDAO extends AbstractDAO {
 //	private static final String PHONE = "Phone";
 	private static final String DESCRIPTION = "Description";
 	
-	public List<Hostel> findAllHostels() throws DAOException{
+	private int noOfRecords;
+	
+	public List<Hostel> findAllHostels(int offset, 
+            int noOfRecords) throws DAOException{
 		ArrayList<Hostel> hostels = new ArrayList<Hostel>();
 		try(Statement st = connection.createStatement()){
-			ResultSet rs = st.executeQuery(SELECT_ALL_HOSTELS);
+			ResultSet rs = st.executeQuery(SELECT_ALL_HOSTELS + offset + ", " + noOfRecords);
 			while(rs.next()){
 				Hostel hostel = new Hostel();
 				fillHostel(rs, hostel);
 				hostels.add(hostel);
 			}
+			rs = st.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                this.noOfRecords = rs.getInt(1);
 		}catch(SQLException e){
 			throw new DAOException(e);
 		}
 		return hostels;
 	}
 	
+	public int getNoOfRecords() {
+		return noOfRecords;
+	}
+
 	private void fillHostel(ResultSet rs, Hostel hostel) throws SQLException{
 		hostel.setCountry(rs.getString(COUNTRY));
 		hostel.setCity(rs.getString(CITY));

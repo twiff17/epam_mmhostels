@@ -27,7 +27,7 @@ public class DBConfig {
         	try{
         		bundle = PropertyResourceBundle.getBundle(DB_BOUNDLE_NAME);
         	}catch(MissingResourceException e){
-        		LOGGER.fatal("Missing jdbc properties! Could not init connection to DB");
+        		LOGGER.fatal("Missing jdbc properties! Could not init connection to DB", e);
         		throw new RuntimeException(e);
         	}
         }

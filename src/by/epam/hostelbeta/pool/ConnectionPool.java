@@ -13,88 +13,88 @@ import org.apache.logging.log4j.Logger;
 
 import by.epam.hostelbeta.config.DBConfig;
 
-
 public class ConnectionPool {
 	static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-	
+
 	private static AtomicBoolean isCreated = new AtomicBoolean();
 	private static Lock lock = new ReentrantLock();
-	
+
 	private static ConnectionPool instance;
-	
+
 	private ArrayBlockingQueue<Connection> connections;
 	private static final int POOL_SIZE = 20;
-	
-	private ConnectionPool(){
+
+	private ConnectionPool() {
 		try {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 			connections = new ArrayBlockingQueue<Connection>(POOL_SIZE);
 			Connection connection = null;
-			for(int i = 0; i < POOL_SIZE; i++){
+			for (int i = 0; i < POOL_SIZE; i++) {
 				connection = getConnection();
-				if(connection != null){
+				if (connection != null) {
 					connections.add(connection);
 				}
 			}
 		} catch (SQLException e) {
-			LOGGER.fatal("Error registering Driver jdbc");
+			LOGGER.fatal("Error registering Driver jdbc", e);
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public static ConnectionPool getInstance(){
-		if(!isCreated.get()){ // чтобы каждый раз не лочить
-			try{
+
+	public static ConnectionPool getInstance() {
+		if (!isCreated.get()) {
+			try {
 				lock.lock();
-				if(instance == null){
+				if (instance == null) {
 					instance = new ConnectionPool();
 					isCreated.set(true);
 				}
-			}
-			finally{
+			} finally {
 				lock.unlock();
 			}
 		}
 		return instance;
 	}
-	
-	private Connection getConnection(){
+
+	private Connection getConnection() {
 		Connection connection = null;
 		try {
-			connection = DriverManager.getConnection(DBConfig.getProperty(DBConfig.URL), DBConfig.getProperty(DBConfig.USER), 
-					DBConfig.getProperty(DBConfig.PASSWORD));
+			connection = DriverManager.getConnection(DBConfig.getProperty(DBConfig.URL),
+					DBConfig.getProperty(DBConfig.USER), DBConfig.getProperty(DBConfig.PASSWORD));
 		} catch (SQLException e) {
-			LOGGER.error("Error connection to DB!");
+			LOGGER.error("Error connection to DB!", e);
 		}
 		return connection;
 	}
-	
-	public ConnectionWrapper retrieve(){
+
+	public ConnectionWrapper retrieve() {
 		ConnectionWrapper connection = null;
 		try {
 			connection = new ConnectionWrapper(connections.take());
 			LOGGER.debug("Connectionn is token");
 		} catch (InterruptedException e) {
-			LOGGER.error("Error trying retrieve connection");
+			LOGGER.error("Error trying retrieve connection", e);
 		}
 		return connection;
 	}
-	
-	void putback(Connection connection){
+
+	void putback(Connection connection) {
 		try {
 			connections.put(connection);
 			LOGGER.debug("Connection putback");
 		} catch (InterruptedException e) {
-			LOGGER.error("Error trying putback connection to pool");
+			LOGGER.error("Error trying putback connection to pool", e);
 		}
 	}
-	
-	public void close(){
-		for(Connection connection: connections){
+
+	public void close() {
+		for (Connection connection : connections) {
 			try {
-				connection.close();
+				if (connection != null) {
+					connection.close();
+				}
 			} catch (SQLException e) {
-				LOGGER.error("Error closing connection");
+				LOGGER.error("Error closing connection", e);
 			}
 		}
 	}

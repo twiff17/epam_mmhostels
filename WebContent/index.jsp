@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Index</title>
 </head>
 <body>
 	<jsp:forward page="/jsp/home.jsp"></jsp:forward>

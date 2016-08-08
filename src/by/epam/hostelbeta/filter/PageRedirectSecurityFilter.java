@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.util.ConfigurationManager;
+import by.epam.hostelbeta.util.Parameters;
 
 @WebFilter("/jsp/*")
 public class PageRedirectSecurityFilter implements Filter {
-	private static final String INDEX_PAGE = "path.page.index";
-
 	public PageRedirectSecurityFilter() {
 	}
 
@@ -28,7 +27,7 @@ public class PageRedirectSecurityFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		httpResponse.sendRedirect(httpRequest.getContextPath() + ConfigurationManager.getProperty(INDEX_PAGE));
+		httpResponse.sendRedirect(httpRequest.getContextPath() + ConfigurationManager.getProperty(Parameters.INDEX_PATH));
 		chain.doFilter(request, response);
 	}
 

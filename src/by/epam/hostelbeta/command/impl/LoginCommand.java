@@ -8,35 +8,32 @@ import by.epam.hostelbeta.entity.User;
 import by.epam.hostelbeta.service.LoginService;
 import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
+import by.epam.hostelbeta.util.LocaleManager;
+import by.epam.hostelbeta.util.Parameters;
 
 public class LoginCommand implements ICommand {
-	private static final String PARAM_LOGIN = "login"; // для повышения читабельности
-	private static final String PARAM_PASSWORD = "password";
-	private static final String HOME_PAGE = "path.page.home";
-	private static final String LOGIN_PAGE = "path.page.login";
-	private static final String ERROR_PAGE = "path.page.error";
-	private static final String ATTR_ROLE = "role";
-	private static final String ATTR_PAGE = "page";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;
-		String login = request.getParameter(PARAM_LOGIN);
-		String password = request.getParameter(PARAM_PASSWORD);
+		String login = request.getParameter(Parameters.LOGIN);
+		String password = request.getParameter(Parameters.PASSWORD);
 		try {
 			User user = LoginService.checkLogin(login, password);
 			if (user != null) {
-				request.getSession().setAttribute(PARAM_LOGIN, user.getLogin());
-				request.getSession().setAttribute(ATTR_ROLE, user.getRole());
-				request.getSession().setAttribute(ATTR_PAGE, "home");
-				page = ConfigurationManager.getProperty(HOME_PAGE);
+				request.getSession().setAttribute(Parameters.LOGIN, user.getLogin());
+				request.getSession().setAttribute(Parameters.ROLE, user.getRole());
+				request.getSession().setAttribute(Parameters.PAGE, Parameters.HOME);
+				page = ConfigurationManager.getProperty(Parameters.HOME_PATH);
 			} else {
-				request.setAttribute("errorLoginPassMessage", "Incorrect login and password");
-				page = ConfigurationManager.getProperty(LOGIN_PAGE);
+				LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
+				request.setAttribute(Parameters.ERROR_LOGIN_PASS_MESSAGE,
+						locManager.getResourceBundle().getString(Parameters.INCORRECT_LOGIN_MESSAGE));
+				page = ConfigurationManager.getProperty(Parameters.LOGIN_PATH);
 			}
 		} catch (ServiceException e) {
 			request.setAttribute("errorStackTrace", e);
-			page = ConfigurationManager.getProperty(ERROR_PAGE);
+			page = ConfigurationManager.getProperty(Parameters.ERROR_PATH);
 		}
 		return page;
 	}

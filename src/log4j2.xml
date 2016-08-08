@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n" />
         </Console>
-        <RollingFile name="MyFile" fileName="logs/log.txt" filePattern="logs/$${date:yyyy-MM}/log-%d{MM-dd-yyyy}">
+        <RollingFile name="MyFile" fileName="logs/log.txt" filePattern="logs/$${date:yyyy-MM}/log-%d{MM-dd-yyyy}.txt">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
         		<TimeBasedTriggeringPolicy />

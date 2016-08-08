@@ -29,7 +29,7 @@ public class CommandFactory {
 			CommandEnum commandType = CommandEnum.valueOf(command.toUpperCase());
 			current = commandType.getCurrentCommand();
 		} catch (IllegalArgumentException e) {
-			LOGGER.error("Unknown command!");
+			LOGGER.error("Unknown command!", e);
 		}
 		return current;
 	}
