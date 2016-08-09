@@ -7,7 +7,7 @@ import by.epam.hostelbeta.dao.UserDAO;
 import by.epam.hostelbeta.entity.User;
 
 public class LoginService {
-	public static User checkLogin(String enterLogin, String enterPassword) throws ServiceException{
+	public static User checkLoginPassword(String enterLogin, String enterPassword) throws ServiceException{
 		UserDAO userDAO = new UserDAO();
 		User user = null;
 		String encryptedPassword = DigestUtils.md5Hex(enterPassword);
@@ -19,5 +19,18 @@ public class LoginService {
 			userDAO.closeConnection();
 		}
 		return user;
+	}
+	
+	public static boolean checkLogin(String login) throws ServiceException{
+		UserDAO userDAO = new UserDAO();
+		boolean isLoginExists = false;
+		try {
+			isLoginExists = userDAO.checkLogin(login);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}finally{
+			userDAO.closeConnection();
+		}
+		return isLoginExists;
 	}
 }

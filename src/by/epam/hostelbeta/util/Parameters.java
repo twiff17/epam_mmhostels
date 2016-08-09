@@ -32,4 +32,5 @@ public class Parameters {
 	public static final String NO_OF_PAGES = "noOfPages";
 	public static final String CURRENT_PAGE = "currentPage";
 	public static final String PAGE_NUMBER = "pageNumber";
+	public static final String COMMAND = "command";
 }

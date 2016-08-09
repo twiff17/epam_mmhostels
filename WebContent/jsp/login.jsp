@@ -33,8 +33,7 @@
                         <div>
                             <div class="wrapper">
                                 <fmt:message key="label.login"></fmt:message>:
-                                 <input type="text" name="login" pattern="[A-Za-z0-9]{6,25}" required title="<fmt:message key="label.login_title"></fmt:message>" placeholder="<fmt:message key="label.login"></fmt:message>" class="input">
-                                    <br/>
+                                 <input type="text" id="loginInput" name="login" pattern="[A-Za-z0-9]{6,25}" required title="<fmt:message key="label.login_title"></fmt:message>" placeholder="<fmt:message key="label.login"></fmt:message>" class="input"><br/>
                             </div>
 
                             <div class="wrapper">

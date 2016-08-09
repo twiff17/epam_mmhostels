@@ -40,6 +40,7 @@
 	                                        <b><fmt:message key="label.room_types" /></b><br/> <i>${hostel.roomTypes }</i> <br/>
                                         	<b><fmt:message key="label.price" /></b><br/> <i>${hostel.minPrice }-${hostel.maxPrice} ${hostel.currency}</i> <br/>
                                         	<b><fmt:message key="label.phone" /></b><br/> <i> ${hostel.phone}</i> <br/>
+                                        	<b><fmt:message key="label.address" /></b><br/> <i> ${hostel.address}</i> <br/>
                                         	<br>
                                         	<br>
                                         	<i> ${hostel.description }</i>
@@ -50,32 +51,28 @@
 	                    </div>
                     </c:forEach>
                     <div class="right">
-						<%--For displaying Previous link except for the 1st page --%>
-					    <c:if test="${currentPage != 1}">
-					        <td><a href="Controller?command=get_page&page=hostels&pageNumber=${currentPage - 1}">Previous</a></td>
-					    </c:if>
-					 
 					    <%--For displaying Page numbers. 
 					    The when condition does not display a link for the current page--%>
-					    <table border="1" cellpadding="5" cellspacing="5">
+					    <table>
 					        <tr>
 					            <c:forEach begin="1" end="${noOfPages}" var="i">
 					                <c:choose>
 					                    <c:when test="${currentPage eq i}">
-					                        <td>${i}</td>
+					                        <input class="page_nav_button active" value="${i}">
 					                    </c:when>
 					                    <c:otherwise>
-					                        <td><a href="Controller?command=get_page&page=hostels&pageNumber=${i}">${i}</a></td>
+					                        <!--  td><a href="Controller?command=get_page&page=hostels&pageNumber=${i}">${i}</a></td-->
+					                        <form method="post" action="Controller">
+					                        	<input type="hidden" name="command" value="get_page">
+					                        	<input type="hidden" name="page" value="hostels">
+					                        	<input type="hidden" name="pageNumber" value="${i}">
+					                        	<input class="page_nav_button" type="submit" value="${i}">
+					                        </form>
 					                    </c:otherwise>
 					                </c:choose>
 					            </c:forEach>
 					        </tr>
 					    </table>
-					     
-					    <%--For displaying Next link --%>
-					    <c:if test="${currentPage lt noOfPages}">
-					        <td><a href="Controller?command=get_page&page=hostels&pageNumber=${currentPage + 1}">Next</a></td>
-					    </c:if>
 				    </div>
                 </article>
             </section>

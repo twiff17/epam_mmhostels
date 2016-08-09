@@ -19,6 +19,20 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/slider.js"></script>
 	<script type="text/javascript" src="js/tabs.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    $("#loginInput").blur(function() {
+	    $.post('CheckLoginController',
+	    		{
+	    			command: "check_login",
+	    			login:$(this).val()
+	    		}, function(serverResponse) {
+	            //  функция обработчик ответа сервера
+	            $("#loginCheckResult").html(serverResponse);
+	        })
+	    })
+	})
+	</script>
 </head>
 <body>
 	<div class="extra">
@@ -33,7 +47,8 @@
                         <div>
                             <div class="wrapper">
                                 <fmt:message key="label.login" /> (*):
-                                <input type="text" name="login" pattern="[A-Za-z0-9]{6,25}" required title="Логин только латинскими буквами и цифрами, длиной от 6 до 25 символов" class="input">
+                                <input type="text" id="loginInput" name="login" pattern="[A-Za-z0-9]{6,25}" required title="Логин только латинскими буквами и цифрами, длиной от 6 до 25 символов" class="input"><br/>
+                                <span id="loginCheckResult"></span>
                                 <br/>
                             </div>
 

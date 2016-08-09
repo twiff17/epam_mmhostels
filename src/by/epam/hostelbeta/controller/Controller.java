@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import by.epam.hostelbeta.command.CommandFactory;
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.util.ConfigurationManager;
+import by.epam.hostelbeta.util.Parameters;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String COMMAND = "command";
-	private static final String INDEX_PAGE = "path.page.index";
-
 	public Controller() {
 		super();
 	}
@@ -36,10 +34,10 @@ public class Controller extends HttpServlet {
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String page = null;
-		ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(COMMAND));
+		ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
 		page = command.execute(request, response);
 		if (page == null) {
-			page = ConfigurationManager.getProperty(INDEX_PAGE);
+			page = ConfigurationManager.getProperty(Parameters.INDEX_PATH);
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}

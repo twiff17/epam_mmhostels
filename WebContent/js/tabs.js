@@ -17,23 +17,16 @@ function click_o_ticket() {
     $('#type').removeClass('invisible');
 }
 
-
- 
-<!--САМ СКРИПТ ОКНА-->
-    $(document).ready(function(){
-        //Скрыть PopUp при загрузке страницы    
-        PopUpHide(false);
-    });
-    //Функция отображения PopUp
-    function PopUpShow(mess){
-		$("#message").html(mess);
-        $("#popup1").show();
-		
-    }
-    //Функция скрытия PopUp
-    function PopUpHide(reloadPage){
-        $("#popup1").hide();
-		if(reloadPage) {
-			location.reload();
-		}
-    }
+$(document).ready(function(){
+    PopUpHide(false);
+});
+function PopUpShow(mess){
+	$("#message").html(mess);
+    $("#popup1").show();
+}
+function PopUpHide(reloadPage){
+    $("#popup1").hide();
+	if(reloadPage) {
+		location.reload();
+	}
+}

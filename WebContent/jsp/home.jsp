@@ -38,43 +38,49 @@
 									<strong>${hostel.country}, ${hostel.city}, ${hostel.name}</strong>
 								</p>
 								<p class='pad_bot2'>${hostel.description}</p>
-								<a href="" class="right"><fmt:message key="label.book" /></a>
+								<c:if test="${empty role}">
+									<a href='javascript:PopUpShow("Необходимо зарегистрироваться")' class="right"><fmt:message key="label.book" /></a>
+								</c:if>
 							</div>
 						</div>
 					</c:forEach>
 					<div class="right">
-						<%--For displaying Previous link except for the 1st page --%>
-					    <c:if test="${currentPage != 1}">
-					        <td><a href="Controller?command=get_page&page=home&pageNumber=${currentPage - 1}">Previous</a></td>
-					    </c:if>
-					 
 					    <%--For displaying Page numbers. 
 					    The when condition does not display a link for the current page--%>
-					    <table border="1" cellpadding="5" cellspacing="5">
+					    <table>
 					        <tr>
 					            <c:forEach begin="1" end="${noOfPages}" var="i">
 					                <c:choose>
 					                    <c:when test="${currentPage eq i}">
-					                        <td>${i}</td>
+					                        <input class="page_nav_button active" value="${i}">
 					                    </c:when>
 					                    <c:otherwise>
-					                        <td><a href="Controller?command=get_page&page=home&pageNumber=${i}">${i}</a></td>
+					                        <!--  td><a href="Controller?command=get_page&page=hostels&pageNumber=${i}">${i}</a></td-->
+					                        <form method="post" action="Controller">
+					                        	<input type="hidden" name="command" value="get_page">
+					                        	<input type="hidden" name="page" value="home">
+					                        	<input type="hidden" name="pageNumber" value="${i}">
+					                        	<input class="page_nav_button" type="submit" value="${i}">
+					                        </form>
 					                    </c:otherwise>
 					                </c:choose>
 					            </c:forEach>
 					        </tr>
 					    </table>
-					     
-					    <%--For displaying Next link --%>
-					    <c:if test="${currentPage lt noOfPages}">
-					        <td><a href="Controller?command=get_page&page=home&pageNumber=${currentPage + 1}">Next</a></td>
-					    </c:if>
 				    </div>
 				</article>
 			 </section>
 		</div>
 		<div class="block"></div>
+		<div class="b-popup" id="popup1" style="z-index:10">
+				<div class="b-popup-content"> 
+                	<span id="message"></span>
+					<br><br>
+					<a href="javascript:PopUpHide()">Закрыть окно</a>
+					</div>
+			</div>
 	</div>
+	
 	<%@include file="footer.jsp" %>
 </body>
 </html>

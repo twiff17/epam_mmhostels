@@ -19,7 +19,7 @@ public class LoginCommand implements ICommand {
 		String login = request.getParameter(Parameters.LOGIN);
 		String password = request.getParameter(Parameters.PASSWORD);
 		try {
-			User user = LoginService.checkLogin(login, password);
+			User user = LoginService.checkLoginPassword(login, password);
 			if (user != null) {
 				request.getSession().setAttribute(Parameters.LOGIN, user.getLogin());
 				request.getSession().setAttribute(Parameters.ROLE, user.getRole());
