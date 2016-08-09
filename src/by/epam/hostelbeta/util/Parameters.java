@@ -28,4 +28,8 @@ public class Parameters {
 	public static final String ERROR_LOGIN_PASS_MESSAGE = "errorLoginPassMessage";
 	public static final String ERROR_REGISTRATION_MESSAGE = "errorRegistrationMessage";
 	public static final String LOGIN_EXISTS_MESSAGE = "error.login_exists";
+	public static final String HOSTEL_LIST = "hostelList";
+	public static final String NO_OF_PAGES = "noOfPages";
+	public static final String CURRENT_PAGE = "currentPage";
+	public static final String PAGE_NUMBER = "pageNumber";
 }

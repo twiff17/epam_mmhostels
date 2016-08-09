@@ -3,6 +3,9 @@ body {background:url(../images/bg.jpg) top center repeat;
 	color:#323232;
 	line-height:17px;
 }
+i{
+	float: left;
+}
 .extra{
 	min-height:100%;
 	height:auto !important;

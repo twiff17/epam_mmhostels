@@ -29,47 +29,54 @@
                 <%@include file="search.jsp" %> 
                 <article class="col2">
                     <h2> <fmt:message key="label.our_hostels" /> </h2>
-                    <c:forEach var="hostel" items="${hostelsList}">
+                    <c:forEach var="hostel" items="${hostelList}">
 	                    <div class='pad'>
 	                            <div class='wrapper under'>
 	                                <figure class='left marg_right1'><img src='images/hostels/1.png' alt='' width='300' height='150'></figure>
 	                                <p class='pad_bot2'>
-	                                    <strong>${hostel.country}, ${hostel.city}, ${hostel.title}</strong> 
+	                                    <strong>${hostel.country}, ${hostel.city}, ${hostel.name}</strong> 
 	                                </p>
 	                                <p class='pad_bot2'>
-	                                        <b>Цена:</b><br/> <i>${hostel.price} USD</i> <br/>
-	                                        <b>Описание:</b><i> ${hostel.description}</i><br/>
+	                                        <b><fmt:message key="label.room_types" /></b><br/> <i>${hostel.roomTypes }</i> <br/>
+                                        	<b><fmt:message key="label.price" /></b><br/> <i>${hostel.minPrice }-${hostel.maxPrice} ${hostel.currency}</i> <br/>
+                                        	<b><fmt:message key="label.phone" /></b><br/> <i> ${hostel.phone}</i> <br/>
+                                        	<br>
+                                        	<br>
+                                        	<i> ${hostel.description }</i>
+                                        	<br/>
 	                                </p>
 	                                <a href="" class="right">Забронировать</a>
 	                            </div>
 	                    </div>
                     </c:forEach>
-                    <%--For displaying Previous link except for the 1st page --%>
-				    <c:if test="${currentPage != 1}">
-				        <td><a href="Controller?page=${currentPage - 1}">Предыдущая</a></td>
-				    </c:if>
-				    
-				    <%--For displaying Page numbers. 
-				    The when condition does not display a link for the current page--%>
-				    <table border="1" cellpadding="5" cellspacing="5">
-				        <tr>
-				            <c:forEach begin="1" end="${numOfPages}" var="i">
-				                <c:choose>
-				                    <c:when test="${currentPage eq i}">
-				                        <td>${i}</td>
-				                    </c:when>
-				                    <c:otherwise>
-				                        <td><a href="Controller?page=${i}">${i}</a></td>
-				                    </c:otherwise>
-				                </c:choose>
-				            </c:forEach>
-				        </tr>
-				    </table>
-				     
-				    <%--For displaying Next link --%>
-				    <c:if test="${currentPage lt noOfPages}">
-				        <td><a href="Controller?page=${currentPage + 1}">Next</a></td>
-				    </c:if>
+                    <div class="right">
+						<%--For displaying Previous link except for the 1st page --%>
+					    <c:if test="${currentPage != 1}">
+					        <td><a href="Controller?command=get_page&page=hostels&pageNumber=${currentPage - 1}">Previous</a></td>
+					    </c:if>
+					 
+					    <%--For displaying Page numbers. 
+					    The when condition does not display a link for the current page--%>
+					    <table border="1" cellpadding="5" cellspacing="5">
+					        <tr>
+					            <c:forEach begin="1" end="${noOfPages}" var="i">
+					                <c:choose>
+					                    <c:when test="${currentPage eq i}">
+					                        <td>${i}</td>
+					                    </c:when>
+					                    <c:otherwise>
+					                        <td><a href="Controller?command=get_page&page=hostels&pageNumber=${i}">${i}</a></td>
+					                    </c:otherwise>
+					                </c:choose>
+					            </c:forEach>
+					        </tr>
+					    </table>
+					     
+					    <%--For displaying Next link --%>
+					    <c:if test="${currentPage lt noOfPages}">
+					        <td><a href="Controller?command=get_page&page=hostels&pageNumber=${currentPage + 1}">Next</a></td>
+					    </c:if>
+				    </div>
                 </article>
             </section>
         </div>
