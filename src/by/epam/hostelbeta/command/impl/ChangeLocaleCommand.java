@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.service.PageService;
 import by.epam.hostelbeta.service.ServiceException;
@@ -15,7 +14,7 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class ChangeLocaleCommand extends AbstractCommand implements ICommand {
+public class ChangeLocaleCommand implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -27,15 +26,16 @@ public class ChangeLocaleCommand extends AbstractCommand implements ICommand {
 		String page = (String) session.getAttribute(Parameters.PAGE);
 		String pathPage = null;
 		try {
-			if (page != null) {
-				HashMap<String, Object> attributes = PageService.getPageAttrubutes(page, request.getParameterMap());
-				if (attributes != null) {
-					for (Map.Entry<String, Object> entry : attributes.entrySet()) {
-						request.setAttribute(entry.getKey(), entry.getValue());
-					}
+			HashMap<String, Object> attributes = PageService.getPageAttrubutes(page, request.getParameterMap());
+			if (attributes != null) {
+				for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+					request.setAttribute(entry.getKey(), entry.getValue());
 				}
+			}
+			if (page != null) {
 				pathPage = ConfigurationManager.getProperty(Parameters.SHORT_PATH + page);
 			} else {
+				session.setAttribute(Parameters.PAGE, Parameters.HOME);
 				pathPage = ConfigurationManager.getProperty(Parameters.HOME_PATH);
 			}
 		} catch (ServiceException e) {

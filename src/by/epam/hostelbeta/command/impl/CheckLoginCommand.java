@@ -3,13 +3,12 @@ package by.epam.hostelbeta.command.impl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.service.LoginService;
 import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.Parameters;
 
-public class CheckLoginCommand extends AbstractCommand implements ICommand{
+public class CheckLoginCommand implements ICommand{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {

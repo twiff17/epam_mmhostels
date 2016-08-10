@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.command.CommandFactory;
 import by.epam.hostelbeta.command.ICommand;
-import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
 @WebServlet(urlPatterns = "/Controller")
@@ -36,7 +35,7 @@ public class Controller extends HttpServlet {
 		String page = null;
 		ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
 		
-		page = command.setUp(request, response).execute(request, response);
+		page = command.execute(request, response);
 //		if (page == null) {
 //			page = ConfigurationManager.getProperty(Parameters.HOME);
 //		}

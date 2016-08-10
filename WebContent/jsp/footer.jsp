@@ -9,3 +9,10 @@
             </footer>
         </div>
 </div>
+<div class="b-popup" id="popup1" style="z-index:10">
+				<div class="b-popup-content"> 
+                	<span id="message"></span>
+					<br><br>
+					<a href="javascript:PopUpHide()">Закрыть окно</a>
+					</div>
+			</div>

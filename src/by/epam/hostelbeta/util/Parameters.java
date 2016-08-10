@@ -33,4 +33,6 @@ public class Parameters {
 	public static final String CURRENT_PAGE = "currentPage";
 	public static final String PAGE_NUMBER = "pageNumber";
 	public static final String COMMAND = "command";
+	public static final String USER_ID = "userId";
+	public static final String ORDER_LIST = "orderList";
 }

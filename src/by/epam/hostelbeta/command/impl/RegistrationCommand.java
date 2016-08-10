@@ -1,19 +1,22 @@
 package by.epam.hostelbeta.command.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.ICommand;
-import by.epam.hostelbeta.entity.User;
+import by.epam.hostelbeta.domain.entity.User;
+import by.epam.hostelbeta.service.PageService;
 import by.epam.hostelbeta.service.RegistrationService;
 import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class RegistrationCommand extends AbstractCommand implements ICommand {
+public class RegistrationCommand implements ICommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;
@@ -30,6 +33,12 @@ public class RegistrationCommand extends AbstractCommand implements ICommand {
 				session.setAttribute(Parameters.LOGIN, user.getLogin());
 				session.setAttribute(Parameters.ROLE, Parameters.ROLE_CLIENT);
 				session.setAttribute(Parameters.PAGE, Parameters.HOME);
+				HashMap<String, Object> attributes = PageService.getPageAttrubutes(Parameters.HOME, request.getParameterMap());
+				if(attributes != null){
+					for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+				        request.setAttribute(entry.getKey(), entry.getValue());          
+				    }
+				}
 				page = ConfigurationManager.getProperty(Parameters.HOME_PATH);
 			} else {
 				LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);

@@ -126,22 +126,55 @@
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${page eq 'cabinet'}">
-					<li>
-						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="cabinet">
-							<input class="menu_lk active" type="submit" value="<fmt:message key="menu.cabinet" />" />
-						</form>
-					</li>
+				<c:when test="${not empty role and role eq 'client'}">
+					<c:choose>
+						<c:when test="${page eq 'cabinet'}">
+							<li>
+								<form method="post" action="Controller">
+									<input type="hidden" name="command" value="get_page" />
+									<input type="hidden" name="page" value="cabinet">
+									<input type="hidden" name="userId" value="${userId}">
+									<input class="menu_lk active" type="submit" value="<fmt:message key="menu.cabinet" />" />
+								</form>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<form method="post" action="Controller">
+									<input type="hidden" name="command" value="get_page" />
+									<input type="hidden" name="page" value="cabinet">
+									<input type="hidden" name="userId" value="${userId}">
+									<input class="menu_lk" type="submit" value="<fmt:message key="menu.cabinet" />" />
+								</form>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:when test="${not empty role and role eq 'admin'}">
+					<c:choose>
+					<c:when test="${page eq 'admin'}">
+							<li>
+								<form method="post" action="Controller">
+									<input type="hidden" name="command" value="get_page" />
+									<input type="hidden" name="page" value="admin">
+									<input class="menu_lk active" type="submit" value="<fmt:message key="menu.admin" />" />
+								</form>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<form method="post" action="Controller">
+									<input type="hidden" name="command" value="get_page" />
+									<input type="hidden" name="page" value="admin">
+									<input class="menu_lk" type="submit" value="<fmt:message key="menu.admin" />" />
+								</form>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 					<li>
-						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="cabinet">
-							<input class="menu_lk" type="submit" value="<fmt:message key="menu.cabinet" />" />
-						</form>
+						<input class="menu_lk" type="button" value="<fmt:message key="menu.cabinet" />" onclick="PopUpShow('Войдите или зарегистрируйтесь на сайте!')" />
 					</li>
 				</c:otherwise>
 			</c:choose>

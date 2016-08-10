@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.epam.hostelbeta.dto.HostelDTO;
-import by.epam.hostelbeta.entity.Hostel;
+import by.epam.hostelbeta.domain.dto.HostelDTO;
+import by.epam.hostelbeta.domain.entity.Hostel;
 
 public class HostelDAO extends AbstractDAO {
 	private static final String SELECT_POPULAR_HOSTELS = "SELECT SQL_CALC_FOUND_ROWS * FROM `hostel` LIMIT ?, ?";

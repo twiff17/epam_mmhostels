@@ -1,4 +1,4 @@
-package by.epam.hostelbeta.entity;
+package by.epam.hostelbeta.domain.entity;
 
 public class User {
 	private long userId;

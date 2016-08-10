@@ -33,12 +33,12 @@
                         <div>
                             <div class="wrapper">
                                 <fmt:message key="label.login"></fmt:message>:
-                                 <input type="text" id="loginInput" name="login" pattern="[A-Za-z0-9]{6,25}" required title="<fmt:message key="label.login_title"></fmt:message>" placeholder="<fmt:message key="label.login"></fmt:message>" class="input"><br/>
+                                 <input type="text" id="loginInput" name="login" pattern="[A-Za-z0-9]{5,25}" required title="<fmt:message key="label.login_title"></fmt:message>" placeholder="<fmt:message key="label.login"></fmt:message>" class="input"><br/>
                             </div>
 
                             <div class="wrapper">
                                     <fmt:message key="label.password"></fmt:message>:
-                                <input type="password" name="password" pattern="[A-Za-z0-9]{6,25}" title="<fmt:message key="label.pass_title"></fmt:message>" required placeholder="<fmt:message key="label.password"></fmt:message>" class="input">
+                                <input type="password" name="password" pattern="[A-Za-z0-9]{5,25}" title="<fmt:message key="label.pass_title"></fmt:message>" required placeholder="<fmt:message key="label.password"></fmt:message>" class="input">
                                     <br/>
                             </div>
                             <input type="submit" class="button_submit" style="float:none; margin-left: 260px;" value="<fmt:message key="menu.login"></fmt:message>">

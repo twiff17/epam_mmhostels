@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.epam.hostelbeta.dao.DAOException;
-import by.epam.hostelbeta.entity.User;
+import by.epam.hostelbeta.domain.entity.User;
+import by.epam.hostelbeta.util.Parameters;
 
 public class UserDAO extends AbstractDAO {
 	private static final String SELECT_ALL_USERS = "SELECT UserId, Login, Password FROM user";
@@ -91,9 +92,9 @@ public class UserDAO extends AbstractDAO {
 		user.setLogin(rs.getString(LOGIN));
 		boolean role = rs.getBoolean(ROLE);
 		if(!role){
-			user.setRole("client");
+			user.setRole(Parameters.ROLE_CLIENT);
 		}else{
-			user.setRole("admin");
+			user.setRole(Parameters.ROLE_ADMIN);
 		}
 	}
 }

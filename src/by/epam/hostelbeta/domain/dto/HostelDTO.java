@@ -1,15 +1,17 @@
-package by.epam.hostelbeta.entity;
+package by.epam.hostelbeta.domain.dto;
 
-public class Hostel {
+public class HostelDTO {
 	private long hostelId;
 	private String name;
 	private String country;
-	private String city;
-	private String address;
 	private String currency;
-	private int standartPrice;
+	private String city;
 	private String phone;
 	private String description;
+	private String address;
+	private int minPrice;
+	private int maxPrice;
+	private String roomTypes;
 	
 	public long getHostelId() {
 		return hostelId;
@@ -29,29 +31,17 @@ public class Hostel {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public String getCurrency() {
 		return currency;
 	}
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
-	public int getStandartPrice() {
-		return standartPrice;
+	public String getCity() {
+		return city;
 	}
-	public void setStandartPrice(int standartPrice) {
-		this.standartPrice = standartPrice;
+	public void setCity(String city) {
+		this.city = city;
 	}
 	public String getPhone() {
 		return phone;
@@ -65,6 +55,30 @@ public class Hostel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public int getMinPrice() {
+		return minPrice;
+	}
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
+	}
+	public int getMaxPrice() {
+		return maxPrice;
+	}
+	public void setMaxPrice(int maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+	public String getRoomTypes() {
+		return roomTypes;
+	}
+	public void setRoomTypes(String roomTypes) {
+		this.roomTypes = roomTypes;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,9 +89,11 @@ public class Hostel {
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (hostelId ^ (hostelId >>> 32));
+		result = prime * result + maxPrice;
+		result = prime * result + minPrice;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + standartPrice;
+		result = prime * result + ((roomTypes == null) ? 0 : roomTypes.hashCode());
 		return result;
 	}
 	@Override
@@ -91,7 +107,7 @@ public class Hostel {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Hostel other = (Hostel) obj;
+		HostelDTO other = (HostelDTO) obj;
 		if (address == null) {
 			if (other.address != null) {
 				return false;
@@ -130,6 +146,12 @@ public class Hostel {
 		if (hostelId != other.hostelId) {
 			return false;
 		}
+		if (maxPrice != other.maxPrice) {
+			return false;
+		}
+		if (minPrice != other.minPrice) {
+			return false;
+		}
 		if (name == null) {
 			if (other.name != null) {
 				return false;
@@ -144,7 +166,11 @@ public class Hostel {
 		} else if (!phone.equals(other.phone)) {
 			return false;
 		}
-		if (standartPrice != other.standartPrice) {
+		if (roomTypes == null) {
+			if (other.roomTypes != null) {
+				return false;
+			}
+		} else if (!roomTypes.equals(other.roomTypes)) {
 			return false;
 		}
 		return true;

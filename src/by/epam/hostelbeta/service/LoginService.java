@@ -4,7 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.UserDAO;
-import by.epam.hostelbeta.entity.User;
+import by.epam.hostelbeta.domain.entity.User;
 
 public class LoginService {
 	public static User checkLoginPassword(String enterLogin, String enterPassword) throws ServiceException{

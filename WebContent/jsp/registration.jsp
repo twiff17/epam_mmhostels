@@ -47,14 +47,14 @@
                         <div>
                             <div class="wrapper">
                                 <fmt:message key="label.login" /> (*):
-                                <input type="text" id="loginInput" name="login" pattern="[A-Za-z0-9]{6,25}" required title="Логин только латинскими буквами и цифрами, длиной от 6 до 25 символов" class="input"><br/>
+                                <input type="text" id="loginInput" name="login" pattern="[A-Za-z0-9]{5,25}" required title="Логин только латинскими буквами и цифрами, длиной от 6 до 25 символов" class="input"><br/>
                                 <span id="loginCheckResult"></span>
                                 <br/>
                             </div>
 
                             <div class="wrapper">
                                 <fmt:message key="label.password" /> (*):
-                                <input type="password" name="password" required pattern="[A-Za-z0-9]{6,25}" title="Пароль только латинскими буквами и цифрами, длиной от 6 до 25 символов" 
+                                <input type="password" name="password" required pattern="[A-Za-z0-9]{5,25}" title="Пароль только латинскими буквами и цифрами, длиной от 6 до 25 символов" 
                                 class="input">
                                 <br/>
                             </div>
