@@ -13,6 +13,6 @@
 				<div class="b-popup-content"> 
                 	<span id="message"></span>
 					<br><br>
-					<a href="javascript:PopUpHide()">Закрыть окно</a>
+					<a href="javascript:PopUpHide()"><fmt:message key="menu.close_window" /></a>
 					</div>
 			</div>

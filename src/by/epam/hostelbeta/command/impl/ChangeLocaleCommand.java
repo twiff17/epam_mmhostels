@@ -1,20 +1,17 @@
 package by.epam.hostelbeta.command.impl;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.epam.hostelbeta.command.ICommand;
-import by.epam.hostelbeta.service.PageService;
+import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class ChangeLocaleCommand implements ICommand {
+public class ChangeLocaleCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -26,12 +23,7 @@ public class ChangeLocaleCommand implements ICommand {
 		String page = (String) session.getAttribute(Parameters.PAGE);
 		String pathPage = null;
 		try {
-			HashMap<String, Object> attributes = PageService.getPageAttrubutes(page, request.getParameterMap());
-			if (attributes != null) {
-				for (Map.Entry<String, Object> entry : attributes.entrySet()) {
-					request.setAttribute(entry.getKey(), entry.getValue());
-				}
-			}
+			fillRequest(request, page);
 			if (page != null) {
 				pathPage = ConfigurationManager.getProperty(Parameters.SHORT_PATH + page);
 			} else {

@@ -42,7 +42,6 @@
                                         	<b><fmt:message key="label.phone" /></b><br/> <i> ${hostel.phone}</i> <br/>
                                         	<b><fmt:message key="label.address" /></b><br/> <i> ${hostel.address}</i> <br/>
                                         	<br>
-                                        	<br>
                                         	<i> ${hostel.description }</i>
                                         	<br/>
 	                                </p>

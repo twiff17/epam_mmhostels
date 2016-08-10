@@ -53,7 +53,7 @@ public class UserDAO extends AbstractDAO {
 		return user;
 	}
 
-	public boolean insertUser(User user) throws DAOException {
+	public User insertUser(User user) throws DAOException {
 		try (PreparedStatement ps = connection.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
 			ps.setString(1, user.getLogin());
 			ps.setString(2, user.getPassword());
@@ -65,12 +65,12 @@ public class UserDAO extends AbstractDAO {
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()) {
-				return true;
+				user.setUserId(rs.getLong(1));
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
-		return false;
+		return user;
 	}
 
 	public boolean checkLogin(String login) throws DAOException {

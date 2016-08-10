@@ -35,4 +35,6 @@ public class Parameters {
 	public static final String COMMAND = "command";
 	public static final String USER_ID = "userId";
 	public static final String ORDER_LIST = "orderList";
+	public static final String LOGIN_NOT_AVAILABLE = "label.login_not_available";
+	public static final String LOGIN_CHECK_ERROR = "label.login_check_error";
 }

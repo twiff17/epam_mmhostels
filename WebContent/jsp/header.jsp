@@ -174,7 +174,7 @@
 				</c:when>
 				<c:otherwise>
 					<li>
-						<input class="menu_lk" type="button" value="<fmt:message key="menu.cabinet" />" onclick="PopUpShow('Войдите или зарегистрируйтесь на сайте!')" />
+						<input class="menu_lk" type="button" value="<fmt:message key="menu.cabinet" />" onclick="PopUpShow('<fmt:message key="menu.login_required" />')" />
 					</li>
 				</c:otherwise>
 			</c:choose>

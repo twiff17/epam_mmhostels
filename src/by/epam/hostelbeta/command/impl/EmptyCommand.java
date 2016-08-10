@@ -1,29 +1,22 @@
 package by.epam.hostelbeta.command.impl;
 
 
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.ICommand;
-import by.epam.hostelbeta.service.PageService;
 import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class EmptyCommand implements ICommand {
+public class EmptyCommand extends AbstractCommand implements ICommand {
 	@Override
 	
 	public String execute(HttpServletRequest request, HttpServletResponse response){
 		try{
-			HashMap<String, Object> attributes = PageService.getPageAttrubutes(Parameters.HOME, request.getParameterMap());
-			if(attributes != null){
-				for (Map.Entry<String, Object> entry : attributes.entrySet()) {
-			        request.setAttribute(entry.getKey(), entry.getValue());          
-			    }
-			}
+			fillRequest(request, Parameters.HOME);
 			request.getSession().setAttribute(Parameters.PAGE, Parameters.HOME);
 			return ConfigurationManager.getProperty(Parameters.HOME_PATH);
 		}catch(ServiceException e){

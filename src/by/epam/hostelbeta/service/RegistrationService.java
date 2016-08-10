@@ -7,14 +7,14 @@ import by.epam.hostelbeta.dao.UserDAO;
 import by.epam.hostelbeta.domain.entity.User;
 
 public class RegistrationService {
-	public static boolean signUp(User user) throws ServiceException {
+	public static User signUp(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
 			if (!userDAO.checkLogin(user.getLogin())) {
 				user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 				return userDAO.insertUser(user);
 			} else {
-				return false;
+				return null;
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(e);
