@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.entity.User;
 import by.epam.hostelbeta.service.RegistrationService;
@@ -12,7 +13,7 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class RegistrationCommand implements ICommand {
+public class RegistrationCommand extends AbstractCommand implements ICommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;

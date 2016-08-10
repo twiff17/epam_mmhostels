@@ -13,7 +13,7 @@ import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-@WebServlet("/Controller")
+@WebServlet(urlPatterns = "/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -35,10 +35,11 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		String page = null;
 		ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
-		page = command.execute(request, response);
-		if (page == null) {
-			page = ConfigurationManager.getProperty(Parameters.INDEX_PATH);
-		}
+		
+		page = command.setUp(request, response).execute(request, response);
+//		if (page == null) {
+//			page = ConfigurationManager.getProperty(Parameters.HOME);
+//		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 }

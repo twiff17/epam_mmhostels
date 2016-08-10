@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.service.PageService;
 import by.epam.hostelbeta.service.ServiceException;
@@ -14,7 +15,7 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class ChangeLocaleCommand implements ICommand {
+public class ChangeLocaleCommand extends AbstractCommand implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
