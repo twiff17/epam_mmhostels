@@ -7,6 +7,6 @@
 <title>Index</title>
 </head>
 <body>
-	<jsp:forward page="/Controller?command=get_page&page=home"></jsp:forward>
+	<jsp:forward page="/Controller?command=get_home"></jsp:forward>
 </body>
 </html>

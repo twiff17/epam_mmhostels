@@ -61,7 +61,7 @@
 
                             <div class="wrapper">
                                 <fmt:message key="label.name" /> (*):
-                                <input type="text" name="fullname" required pattern="[А-Яа-я]+|[a-zA-z]+" title="В имени содержатся только буквы одного алфавита" maxlength="30" class="input">
+                                <input type="text" name="fullname" required pattern="[А-Яа-я ]+|[a-zA-z ]+" title="В имени содержатся только буквы одного алфавита" maxlength="30" class="input">
                                 <br/>
                             </div>
 

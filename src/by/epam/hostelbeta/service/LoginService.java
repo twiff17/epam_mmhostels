@@ -15,8 +15,6 @@ public class LoginService {
 			user = userDAO.findByLoginAndPassword(enterLogin, encryptedPassword);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
-		}finally{
-			userDAO.closeConnection();
 		}
 		return user;
 	}
@@ -28,8 +26,6 @@ public class LoginService {
 			isLoginExists = userDAO.checkLogin(login);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
-		}finally{
-			userDAO.closeConnection();
 		}
 		return isLoginExists;
 	}

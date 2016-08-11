@@ -18,8 +18,6 @@ public class RegistrationService {
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(e);
-		}finally{
-			userDAO.closeConnection();
 		}
 	}
 }

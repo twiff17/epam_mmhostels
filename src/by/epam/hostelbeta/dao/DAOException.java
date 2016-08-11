@@ -1,8 +1,7 @@
 package by.epam.hostelbeta.dao;
 
+@SuppressWarnings("serial")
 public class DAOException extends Exception {
-	private static final long serialVersionUID = -3674246371233773772L;
-
 	public DAOException() {
 		super();
 	}

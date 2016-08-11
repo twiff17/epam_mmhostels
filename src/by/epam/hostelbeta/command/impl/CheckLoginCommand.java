@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.command.AbstractCommand;
+import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.service.LoginService;
 import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.LocaleManager;
@@ -12,8 +13,8 @@ import by.epam.hostelbeta.util.Parameters;
 public class CheckLoginCommand extends AbstractCommand{
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String message = "";
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+		String message = null;
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
 		try {
 			if(LoginService.checkLogin(request.getParameter(Parameters.LOGIN))){
@@ -22,7 +23,7 @@ public class CheckLoginCommand extends AbstractCommand{
 				message = "";
 			}
 		} catch (ServiceException e) {
-			message = Parameters.LOGIN_CHECK_ERROR;
+			throw new CommandException(e);
 		}
 		return message;
 	}

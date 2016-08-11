@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.command.CommandFactory;
 import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.util.Parameters;
@@ -35,10 +36,11 @@ public class Controller extends HttpServlet {
 		String page = null;
 		ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
 		
-		page = command.execute(request, response);
-//		if (page == null) {
-//			page = ConfigurationManager.getProperty(Parameters.HOME);
-//		}
+		try {
+			page = command.execute(request, response);
+		} catch (CommandException e) {
+			page = Parameters.ERROR_PATH;
+		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 }

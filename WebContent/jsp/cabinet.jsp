@@ -57,7 +57,7 @@
 					            <c:forEach begin="1" end="${noOfPages}" var="i">
 					                <c:choose>
 					                    <c:when test="${currentPage eq i}">
-					                        <input class="page_nav_button active" value="${i}">
+					                        <input disabled class="page_nav_button active" value="${i}">
 					                    </c:when>
 					                    <c:otherwise>
 					                        <!--  td><a href="Controller?command=get_page&page=cabinet&pageNumber=${i}">${i}</a></td-->

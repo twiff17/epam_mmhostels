@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ConnectionWrapper {
+public class ConnectionWrapper implements AutoCloseable{
 	private Connection connection;
 	
 	ConnectionWrapper(Connection connection){

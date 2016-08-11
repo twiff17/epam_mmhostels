@@ -89,8 +89,7 @@
 				<c:when test="${page eq 'home' or empty page}">
 					<li>
 						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="home">
+							<input type="hidden" name="command" value="get_home" />
 							<input class="menu_lk active" type="submit" value="<fmt:message key="menu.main" />" />
 						</form>
 					</li>
@@ -98,8 +97,7 @@
 				<c:otherwise>
 					<li>
 						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="home">
+							<input type="hidden" name="command" value="get_home" />
 							<input class="menu_lk" type="submit" value="<fmt:message key="menu.main" />" />
 						</form>
 					</li>
@@ -109,8 +107,7 @@
 				<c:when test="${page eq 'hostels'}">
 					<li>
 						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="hostels">
+							<input type="hidden" name="command" value="get_hostels" />
 							<input class="menu_lk active" type="submit" value="<fmt:message key="menu.hostels" />" />
 						</form>
 					</li>
@@ -118,8 +115,7 @@
 				<c:otherwise>
 					<li>
 						<form method="post" action="Controller">
-							<input type="hidden" name="command" value="get_page" />
-							<input type="hidden" name="page" value="hostels">
+							<input type="hidden" name="command" value="get_hostels" />
 							<input class="menu_lk" type="submit" value="<fmt:message key="menu.hostels" />" />
 						</form>
 					</li>
@@ -131,8 +127,7 @@
 						<c:when test="${page eq 'cabinet'}">
 							<li>
 								<form method="post" action="Controller">
-									<input type="hidden" name="command" value="get_page" />
-									<input type="hidden" name="page" value="cabinet">
+									<input type="hidden" name="command" value="get_cabinet" />
 									<input type="hidden" name="userId" value="${userId}">
 									<input class="menu_lk active" type="submit" value="<fmt:message key="menu.cabinet" />" />
 								</form>
@@ -141,8 +136,7 @@
 						<c:otherwise>
 							<li>
 								<form method="post" action="Controller">
-									<input type="hidden" name="command" value="get_page" />
-									<input type="hidden" name="page" value="cabinet">
+									<input type="hidden" name="command" value="get_cabinet" />
 									<input type="hidden" name="userId" value="${userId}">
 									<input class="menu_lk" type="submit" value="<fmt:message key="menu.cabinet" />" />
 								</form>

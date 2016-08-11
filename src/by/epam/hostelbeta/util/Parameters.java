@@ -37,4 +37,10 @@ public class Parameters {
 	public static final String ORDER_LIST = "orderList";
 	public static final String LOGIN_NOT_AVAILABLE = "label.login_not_available";
 	public static final String LOGIN_CHECK_ERROR = "label.login_check_error";
+	public static final String INVALID_DATA = "error.invalid_data";
+	public static final String HOSTELS_PATH = "path.page.hostels";
+	public static final String HOSTELS = "hostels";
+	public static final String CABINET = "cabinet";
+	public static final String CABINET_PATH = "path.page.cabinet";
+	
 }

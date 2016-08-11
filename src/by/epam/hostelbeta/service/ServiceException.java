@@ -1,8 +1,7 @@
 package by.epam.hostelbeta.service;
 
+@SuppressWarnings("serial")
 public class ServiceException extends Exception{
-	private static final long serialVersionUID = 6175361934604413628L;
-
 	public ServiceException() {
 		super();
 	}

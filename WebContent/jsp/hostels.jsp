@@ -38,7 +38,7 @@
 	                                </p>
 	                                <p class='pad_bot2'>
 	                                        <b><fmt:message key="label.room_types" /></b><br/> <i>${hostel.roomTypes }</i> <br/>
-                                        	<b><fmt:message key="label.price" /></b><br/> <i>${hostel.minPrice }-${hostel.maxPrice} ${hostel.currency}</i> <br/>
+                                        	<b><fmt:message key="label.price" /></b><br/> <i>${hostel.minPrice }<c:if test="${hostel.minPrice ne hostel.maxPrice}">-${hostel.maxPrice}</c:if> ${hostel.currency}</i> <br/>
                                         	<b><fmt:message key="label.phone" /></b><br/> <i> ${hostel.phone}</i> <br/>
                                         	<b><fmt:message key="label.address" /></b><br/> <i> ${hostel.address}</i> <br/>
                                         	<br>
@@ -57,13 +57,11 @@
 					            <c:forEach begin="1" end="${noOfPages}" var="i">
 					                <c:choose>
 					                    <c:when test="${currentPage eq i}">
-					                        <input class="page_nav_button active" value="${i}">
+					                        <input disabled class="page_nav_button active" value="${i}">
 					                    </c:when>
 					                    <c:otherwise>
-					                        <!--  td><a href="Controller?command=get_page&page=hostels&pageNumber=${i}">${i}</a></td-->
 					                        <form method="post" action="Controller">
-					                        	<input type="hidden" name="command" value="get_page">
-					                        	<input type="hidden" name="page" value="hostels">
+					                        	<input type="hidden" name="command" value="get_hostels">
 					                        	<input type="hidden" name="pageNumber" value="${i}">
 					                        	<input class="page_nav_button" type="submit" value="${i}">
 					                        </form>
