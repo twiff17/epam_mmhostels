@@ -45,7 +45,22 @@
                                         	<i> ${hostel.description }</i>
                                         	<br/>
 	                                </p>
-	                                <a href="" class="right">Забронировать</a>
+	                                <c:choose>
+	                                	<c:when test="${role eq 'client'}">
+			                                <form action="Controller" method="post">
+			                                	<input type="hidden" name="command" value="get_rooms">
+			                                	<input type="hidden" name="hostelName" value="${hostel.name}">
+			                                	<input type="hidden" name="hostelId" value="${hostel.hostelId}">
+			                                	<input class="details-btn" type="submit" value="<fmt:message key="label.book" />">
+			                                </form>
+		                                </c:when>
+		                                <c:when test="${role eq 'admin'}">
+		                                	<input class="details-btn" type="button" value="<fmt:message key="label.book" />" onClick="PopUpShow('<fmt:message key="menu.admin_ban" />')">
+		                                </c:when>
+		                                <c:otherwise>
+		                                	<input class="details-btn" type="button" value="<fmt:message key="label.book" />" onClick="PopUpShow('<fmt:message key="menu.login_required" />')">
+		                                </c:otherwise>
+		                            </c:choose>
 	                            </div>
 	                    </div>
                     </c:forEach>

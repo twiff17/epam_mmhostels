@@ -16,10 +16,6 @@ public class OrderDAO implements IOrderDAO{
 	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? LIMIT ?, ?";
 
 	private static final String USER_ID = "UserId";
-	private static final String FULLNAME = "Fullname";
-	private static final String PASSPORT = "Passport";
-	private static final String EMAIL = "Email";
-	private static final String PHONE = "Phone";
 	private static final String HOSTEL_NAME = "HostelName";
 	private static final String COUNTRY = "Country";
 	private static final String CITY = "City";
@@ -30,8 +26,6 @@ public class OrderDAO implements IOrderDAO{
 	private static final String OUT_DATE = "OutDate";
 	private static final String BOOKING = "Booking";
 	private static final String PRICE = "Price";
-	private static final String BYN_PRICE = "BYNPrice";
-	private static final String CURRENCY = "Currency";
 	private static final String ROOM_ID = "RoomId";
 
 	private int noOfRecords;
@@ -67,19 +61,13 @@ public class OrderDAO implements IOrderDAO{
 
 	private void fillOrderDTO(ResultSet rs, OrderDTO order) throws SQLException {
 		order.setUserId(rs.getLong(USER_ID));
-		order.setBynPrice(rs.getDouble(BYN_PRICE));
 		order.setBooking(rs.getBoolean(BOOKING));
 		order.setCountry(rs.getString(COUNTRY));
 		order.setCity(rs.getString(CITY));
-		order.setCurrency(rs.getString(CURRENCY));
-		order.setEmail(rs.getString(EMAIL));
-		order.setFullname(rs.getString(FULLNAME));
 		order.setHostelName(rs.getString(HOSTEL_NAME));
 		order.setInDate(rs.getDate(IN_DATE).toLocalDate());
 		order.setOrderTime(rs.getTimestamp(ORDER_TIME).toLocalDateTime());
 		order.setOutDate(rs.getDate(OUT_DATE).toLocalDate());
-		order.setPassport(rs.getString(PASSPORT));
-		order.setPhone(rs.getString(PHONE));
 		order.setPrice(rs.getDouble(PRICE));
 		order.setRoomId(rs.getInt(ROOM_ID));
 		order.setRoomType(rs.getString(ROOM_TYPE));

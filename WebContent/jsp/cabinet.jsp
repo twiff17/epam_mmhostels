@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="pagecontent"/>
 
@@ -37,8 +38,7 @@
 	                                </p>
 	                                <p class='pad_bot2'>
 	                                        <b><fmt:message key="label.room_type" />:</b><br/> <i>${order.roomType}</i> <br/>
-	                                        <b><fmt:message key="label.price" />:</b><br/> <i>${order.price } ${order.currency }</i> <br/>
-	                                        <b><fmt:message key="label.bynprice" />:</b><br/> <i>${order.bynPrice } <fmt:message key="label.roubles" /></i> <br/>
+	                                        <b><fmt:message key="label.price" />:</b><br/> <i>${order.price } </i> <br/>
 	                                        <b><fmt:message key="label.in_date" />:</b><br/><i> ${order.inDate } </i> <br/>
 	                                        <b><fmt:message key="label.out_date" />:</b><br/><i> ${order.outDate } </i><br/>
 	                                        <b><fmt:message key="label.status" />:</b><br/><i> ${order.status} </i><br/>

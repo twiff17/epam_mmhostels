@@ -303,3 +303,14 @@ height:100%;
 	background: url(../images/en.png);
 	cursor: pointer;
 }
+.details-btn{
+	background-color: #660033;
+    color: #fff;
+    height: 30px;
+    cursor: pointer;
+    float: right;
+}
+.details-btn:hover, .details-btn.active {
+	background:#fff;
+	color: #660033;
+}

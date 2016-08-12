@@ -1,5 +1,6 @@
 package by.epam.hostelbeta.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import by.epam.hostelbeta.dao.DAOException;
@@ -9,7 +10,7 @@ import by.epam.hostelbeta.domain.entity.Hostel;
 public class HostelService {
 	public static List<Hostel> getPopularHostels() throws ServiceException{
 		HostelDAO hostelDAO = new HostelDAO();
-		List<Hostel> hostels;
+		List<Hostel> hostels = new ArrayList<Hostel>();
 		try {
 			hostels = hostelDAO.findPopularHostels();
 		} catch (DAOException e) {

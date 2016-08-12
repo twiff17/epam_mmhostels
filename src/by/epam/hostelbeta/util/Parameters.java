@@ -31,4 +31,7 @@ public class Parameters {
 	public static final String LOGIN_CHECK_ERROR = "label.login_check_error";
 	public static final String INVALID_DATA = "error.invalid_data";
 	public static final String ERROR_STACKTRACE = "errorStackTrace";
+	public static final String HOSTEL_ID = "hostelId";
+	public static final String ROOM_LIST = "roomList";
+	public static final String HOSTEL_NAME = "hostelName";
 }
