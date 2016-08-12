@@ -248,8 +248,9 @@ footer a {color:#439deb}
 }
 .lang_menu{
 	position: absolute;
-    top: 38px;
-    right: -98px;
+    top: 17px;
+    right: -112px;
+    display: inline-flex;
 }
 .user_data{
 	position: absolute;
@@ -289,4 +290,16 @@ height:100%;
    background-color: #ffffff;
     border-radius:5px;
     box-shadow: 0px 0px 10px #000;
+}
+.locale-btn-ru{
+	height: 48px;
+	width: 48px;
+	background: url(../images/ru.png);
+	cursor: pointer;
+}
+.locale-btn-en{
+	height: 48px;
+	width: 48px;
+	background: url(../images/en.png);
+	cursor: pointer;
 }

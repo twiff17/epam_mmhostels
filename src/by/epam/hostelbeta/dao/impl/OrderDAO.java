@@ -1,4 +1,4 @@
-package by.epam.hostelbeta.dao;
+package by.epam.hostelbeta.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.epam.hostelbeta.dao.DAOException;
+import by.epam.hostelbeta.dao.IOrderDAO;
 import by.epam.hostelbeta.domain.dto.OrderDTO;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionWrapper;
 
-public class OrderDAO {
+public class OrderDAO implements IOrderDAO{
 	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? LIMIT ?, ?";
 
 	private static final String USER_ID = "UserId";

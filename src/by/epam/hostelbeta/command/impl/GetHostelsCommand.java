@@ -8,13 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.dao.DAOException;
-import by.epam.hostelbeta.dao.HostelDAO;
+import by.epam.hostelbeta.dao.impl.HostelDAO;
 import by.epam.hostelbeta.domain.dto.HostelDTO;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
 public class GetHostelsCommand extends AbstractCommand {
-
+	private static final String HOSTELS = "hostels";
+	private static final String HOSTELS_PATH = "path.page.hostels";
+	
 	private static final int RECORDS_PER_PAGE = 5;
 
 	@Override
@@ -32,11 +34,11 @@ public class GetHostelsCommand extends AbstractCommand {
 			request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 			request.setAttribute(Parameters.NO_OF_PAGES, noOfPages);
 			request.setAttribute(Parameters.CURRENT_PAGE, page);
-			request.getSession().setAttribute(Parameters.PAGE, Parameters.HOSTELS);
+			request.getSession().setAttribute(Parameters.PAGE, HOSTELS);
 		} catch (DAOException e) {
 			throw new CommandException(e);
 		}
-		return ConfigurationManager.getProperty(Parameters.HOSTELS_PATH);
+		return ConfigurationManager.getProperty(HOSTELS_PATH);
 	}
 
 }

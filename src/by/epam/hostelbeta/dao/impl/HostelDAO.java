@@ -1,4 +1,4 @@
-package by.epam.hostelbeta.dao;
+package by.epam.hostelbeta.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,13 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.epam.hostelbeta.dao.DAOException;
+import by.epam.hostelbeta.dao.IHostelDAO;
 import by.epam.hostelbeta.domain.dto.HostelDTO;
 import by.epam.hostelbeta.domain.entity.Hostel;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionWrapper;
 
-public class HostelDAO {
-	private static final String SELECT_POPULAR_HOSTELS = "SELECT SQL_CALC_FOUND_ROWS * FROM `hostel` LIMIT ?, ?";
+public class HostelDAO implements IHostelDAO{
+	private static final String SELECT_POPULAR_HOSTELS = "SELECT `hostel`.HostelId,`hostel`.Country, `hostel`.City, `hostel`.Name, `hostel`.Description from `hostel` join `order` on `hostel`.HostelId = `order`.HostelId GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5;";
 	private static final String SELECT_ALL_HOSTELS = "SELECT SQL_CALC_FOUND_ROWS * FROM `v_hostel_information` LIMIT ?, ?";
 
 	private static final String HOSTEL_ID = "HostelId";
@@ -29,24 +31,19 @@ public class HostelDAO {
 
 	private int noOfRecords;
 
-	public List<Hostel> findPopularHostels(int offset, int noOfRecords) throws DAOException {
+	public List<Hostel> findPopularHostels() throws DAOException {
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
 		ArrayList<Hostel> hostels = new ArrayList<Hostel>();
 
 		try (PreparedStatement st = connection.prepareStatement(SELECT_POPULAR_HOSTELS)) {
-			st.setInt(1, offset);
-			st.setInt(2, noOfRecords);
 			ResultSet rs = st.executeQuery();
+
 			while (rs.next()) {
 				Hostel hostel = new Hostel();
 				fillHostel(rs, hostel);
 				hostels.add(hostel);
 			}
-			rs = st.executeQuery("SELECT FOUND_ROWS()");
-			
-			if (rs.next()){
-				this.noOfRecords = rs.getInt(1);
-			}
+
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
@@ -58,20 +55,20 @@ public class HostelDAO {
 	public List<HostelDTO> findAllHostels(int offset, int noOfRecords) throws DAOException {
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
 		ArrayList<HostelDTO> hostels = new ArrayList<HostelDTO>();
-		
+
 		try (PreparedStatement st = connection.prepareStatement(SELECT_ALL_HOSTELS)) {
 			st.setInt(1, offset);
 			st.setInt(2, noOfRecords);
 			ResultSet rs = st.executeQuery();
-			
+
 			while (rs.next()) {
 				HostelDTO hostel = new HostelDTO();
 				fillHostelDto(rs, hostel);
 				hostels.add(hostel);
 			}
-			
+
 			rs = st.executeQuery("SELECT FOUND_ROWS()");
-			if (rs.next()){
+			if (rs.next()) {
 				this.noOfRecords = rs.getInt(1);
 			}
 		} catch (SQLException e) {
@@ -79,11 +76,12 @@ public class HostelDAO {
 		} finally {
 			connection.close();
 		}
-		
+
 		return hostels;
 	}
 
 	private void fillHostel(ResultSet rs, Hostel hostel) throws SQLException {
+		hostel.setHostelId(rs.getLong(HOSTEL_ID));
 		hostel.setCountry(rs.getString(COUNTRY));
 		hostel.setCity(rs.getString(CITY));
 		hostel.setName(rs.getString(NAME));

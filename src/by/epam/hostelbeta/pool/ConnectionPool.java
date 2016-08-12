@@ -63,6 +63,7 @@ public class ConnectionPool {
 					DBConfig.getProperty(DBConfig.USER), DBConfig.getProperty(DBConfig.PASSWORD));
 		} catch (SQLException e) {
 			LOGGER.error("Error connection to DB!", e);
+			throw new RuntimeException(e);
 		}
 		return connection;
 	}

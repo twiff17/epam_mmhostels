@@ -44,30 +44,6 @@
 							</div>
 						</div>
 					</c:forEach>
-					<div class="right">
-					    <%--For displaying Page numbers. 
-					    The when condition does not display a link for the current page--%>
-					    <table>
-					        <tr>
-					            <c:forEach begin="1" end="${noOfPages}" var="i">
-					                <c:choose>
-					                    <c:when test="${currentPage eq i}">
-					                        <input class="page_nav_button active" value="${i}">
-					                    </c:when>
-					                    <c:otherwise>
-					                        <!--  td><a href="Controller?command=get_page&page=hostels&pageNumber=${i}">${i}</a></td-->
-					                        <form method="post" action="Controller">
-					                        	<input type="hidden" name="command" value="get_page">
-					                        	<input type="hidden" name="page" value="home">
-					                        	<input type="hidden" name="pageNumber" value="${i}">
-					                        	<input class="page_nav_button" type="submit" value="${i}">
-					                        </form>
-					                    </c:otherwise>
-					                </c:choose>
-					            </c:forEach>
-					        </tr>
-					    </table>
-				    </div>
 				</article>
 			 </section>
 		</div>

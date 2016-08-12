@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.dao.DAOException;
-import by.epam.hostelbeta.dao.OrderDAO;
+import by.epam.hostelbeta.dao.impl.OrderDAO;
 import by.epam.hostelbeta.domain.dto.OrderDTO;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
 public class GetCabinetCommand extends AbstractCommand {
-
+	private static final String CABINET = "cabinet";
+	private static final String CABINET_PATH = "path.page.cabinet";
 	private static final int RECORDS_PER_PAGE = 5;
 
 	@Override
@@ -33,11 +34,13 @@ public class GetCabinetCommand extends AbstractCommand {
 			request.setAttribute(Parameters.ORDER_LIST, orders);
 			request.setAttribute(Parameters.NO_OF_PAGES, noOfPages);
 			request.setAttribute(Parameters.CURRENT_PAGE, page);
-			request.getSession().setAttribute(Parameters.PAGE, Parameters.CABINET);
-		} catch (NumberFormatException | DAOException e) {
+			request.getSession().setAttribute(Parameters.PAGE, CABINET);
+		} catch (DAOException e) {
 			throw new CommandException(e);
+		} catch (NumberFormatException e) {
+			throw new CommandException("Inorrect UserId value", e);
 		}
 
-		return ConfigurationManager.getProperty(Parameters.CABINET_PATH);
+		return ConfigurationManager.getProperty(CABINET_PATH);
 	}
 }

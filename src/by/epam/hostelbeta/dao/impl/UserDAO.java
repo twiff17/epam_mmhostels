@@ -1,4 +1,4 @@
-package by.epam.hostelbeta.dao;
+package by.epam.hostelbeta.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.epam.hostelbeta.dao.DAOException;
+import by.epam.hostelbeta.dao.IUserDAO;
 import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionWrapper;
-import by.epam.hostelbeta.util.Parameters;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO{
 	private static final String SELECT_ALL_USERS = "SELECT UserId, Login, Password FROM user";
 	private static final String SELECT_USER_BY_LOGIN_PASSWORD = "SELECT UserId, Login, Role FROM `user` WHERE Login = ? AND Password = ?";
 	private static final String INSERT_USER = "INSERT INTO `user`(Login, Password, Fullname, Passport, Email, Phone) VALUES(?, ?, ?, ?, ?, ?)";
@@ -22,6 +22,9 @@ public class UserDAO {
 	private static final String USER_ID = "UserId";
 	private static final String LOGIN = "Login";
 	private static final String ROLE = "Role";
+	
+	private static final String ROLE_CLIENT = "client";
+	private static final String ROLE_ADMIN = "admin";
 
 	public List<User> findAll() throws DAOException {
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
@@ -118,9 +121,9 @@ public class UserDAO {
 		user.setLogin(rs.getString(LOGIN));
 		boolean role = rs.getBoolean(ROLE);
 		if (!role) {
-			user.setRole(Parameters.ROLE_CLIENT);
+			user.setRole(ROLE_CLIENT);
 		} else {
-			user.setRole(Parameters.ROLE_ADMIN);
+			user.setRole(ROLE_ADMIN);
 		}
 	}
 }

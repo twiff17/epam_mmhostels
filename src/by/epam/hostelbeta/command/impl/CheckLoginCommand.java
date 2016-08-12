@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.CommandException;
-import by.epam.hostelbeta.service.LoginService;
 import by.epam.hostelbeta.service.ServiceException;
+import by.epam.hostelbeta.service.UserService;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
@@ -17,7 +17,7 @@ public class CheckLoginCommand extends AbstractCommand{
 		String message = null;
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
 		try {
-			if(LoginService.checkLogin(request.getParameter(Parameters.LOGIN))){
+			if(UserService.checkLogin(request.getParameter(Parameters.LOGIN))){
 				message = locManager.getResourceBundle().getString(Parameters.LOGIN_NOT_AVAILABLE);
 			}else{
 				message = "";

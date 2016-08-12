@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.command.CommandFactory;
 import by.epam.hostelbeta.command.ICommand;
@@ -15,6 +18,10 @@ import by.epam.hostelbeta.util.Parameters;
 
 @WebServlet(urlPatterns = "/Controller")
 public class Controller extends HttpServlet {
+	static final Logger LOGGER = LogManager.getLogger(Controller.class);
+	
+	private static final String ERROR_PATH = "path.page.error";
+	
 	private static final long serialVersionUID = 1L;
 	
 	public Controller() {
@@ -39,7 +46,9 @@ public class Controller extends HttpServlet {
 		try {
 			page = command.execute(request, response);
 		} catch (CommandException e) {
-			page = Parameters.ERROR_PATH;
+			LOGGER.error(e);
+			request.setAttribute(Parameters.ERROR_STACKTRACE, e);
+			page = ERROR_PATH;
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}
