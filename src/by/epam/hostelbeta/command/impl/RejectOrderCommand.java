@@ -14,29 +14,23 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class GetCabinetCommand extends AbstractCommand {
-	private static final String CABINET = "cabinet";
-	private static final String CABINET_PATH = "path.page.cabinet";
+public class RejectOrderCommand extends AbstractCommand{
+	private static final String ORDERS_PATH = "path.page.orders";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		int page = 1;
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
-		if (request.getParameter(Parameters.PAGE_NUMBER) != null) {
-			page = Integer.parseInt(request.getParameter(Parameters.PAGE_NUMBER));
-		}
 		try {
-			int noOfPages = OrderService.getOrdersByUserId(Long.parseLong(request.getParameter(Parameters.USER_ID)), page, orders);
+			long orderId = Long.parseLong(request.getParameter(Parameters.ORDER_ID));
+			OrderService.rejectOrder(orderId);
+			OrderService.getAllOrders(1, orders);
 			request.setAttribute(Parameters.ORDER_LIST, orders);
-			request.setAttribute(Parameters.NO_OF_PAGES, noOfPages);
-			request.setAttribute(Parameters.CURRENT_PAGE, page);
-			request.getSession().setAttribute(Parameters.PAGE, CABINET);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
-		} catch (NumberFormatException e) {
-			throw new CommandException("Inorrect UserId value", e);
+		}catch(NumberFormatException e){
+			throw new CommandException("Invalid orderId value", e);
 		}
-
-		return ConfigurationManager.getProperty(CABINET_PATH);
+		return ConfigurationManager.getProperty(ORDERS_PATH);
 	}
+	
 }

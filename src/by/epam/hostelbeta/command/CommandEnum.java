@@ -5,11 +5,13 @@ import by.epam.hostelbeta.command.impl.CheckLoginCommand;
 import by.epam.hostelbeta.command.impl.GetCabinetCommand;
 import by.epam.hostelbeta.command.impl.GetHomeCommand;
 import by.epam.hostelbeta.command.impl.GetHostelsCommand;
+import by.epam.hostelbeta.command.impl.GetOrdersCommand;
 import by.epam.hostelbeta.command.impl.GetPageCommand;
 import by.epam.hostelbeta.command.impl.GetRoomsCommand;
 import by.epam.hostelbeta.command.impl.LoginCommand;
 import by.epam.hostelbeta.command.impl.LogoutCommand;
 import by.epam.hostelbeta.command.impl.RegistrationCommand;
+import by.epam.hostelbeta.command.impl.RejectOrderCommand;
 
 public enum CommandEnum {
 	GET_PAGE(new GetPageCommand()),
@@ -21,7 +23,9 @@ public enum CommandEnum {
 	GET_HOME(new GetHomeCommand()),
 	GET_HOSTELS(new GetHostelsCommand()),
 	GET_CABINET(new GetCabinetCommand()),
-	GET_ROOMS(new GetRoomsCommand());
+	GET_ROOMS(new GetRoomsCommand()),
+	GET_ORDERS(new GetOrdersCommand()),
+	REJECT_ORDER(new RejectOrderCommand());
 	
 	ICommand command;
 	CommandEnum(ICommand command){

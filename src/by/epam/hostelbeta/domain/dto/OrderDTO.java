@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OrderDTO {
+	private long orderId;
 	private long userId;
 	private String hostelName;
 	private String country;
@@ -16,6 +17,12 @@ public class OrderDTO {
 	private LocalDate inDate;
 	private LocalDate outDate;
 	private LocalDateTime orderTime;
+	public long getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
+	}
 	public long getUserId() {
 		return userId;
 	}
@@ -97,6 +104,7 @@ public class OrderDTO {
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((hostelName == null) ? 0 : hostelName.hashCode());
 		result = prime * result + ((inDate == null) ? 0 : inDate.hashCode());
+		result = prime * result + (int) (orderId ^ (orderId >>> 32));
 		result = prime * result + ((orderTime == null) ? 0 : orderTime.hashCode());
 		result = prime * result + ((outDate == null) ? 0 : outDate.hashCode());
 		long temp;
@@ -149,6 +157,9 @@ public class OrderDTO {
 				return false;
 			}
 		} else if (!inDate.equals(other.inDate)) {
+			return false;
+		}
+		if (orderId != other.orderId) {
 			return false;
 		}
 		if (orderTime == null) {

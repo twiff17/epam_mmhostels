@@ -14,6 +14,8 @@ import by.epam.hostelbeta.pool.ConnectionWrapper;
 
 public class OrderDAO implements IOrderDAO{
 	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? LIMIT ?, ?";
+	private static final String SELECT_ALL_ORDERS = "SELECT * FROM `v_order_information` ORDER BY `Status` LIMIT ?, ?";
+	private static final String REJECT_ORDER = "UPDATE `order` SET `Status` = 'Отклонен' WHERE `OrderId` = ?";
 
 	private static final String USER_ID = "UserId";
 	private static final String HOSTEL_NAME = "HostelName";
@@ -27,6 +29,7 @@ public class OrderDAO implements IOrderDAO{
 	private static final String BOOKING = "Booking";
 	private static final String PRICE = "Price";
 	private static final String ROOM_ID = "RoomId";
+	private static final String ORDER_ID = "OrderId";
 
 	private int noOfRecords;
 
@@ -58,8 +61,49 @@ public class OrderDAO implements IOrderDAO{
 
 		return orders;
 	}
+	
+	public List<OrderDTO> findAllOrders(int offset, int noOfRecords) throws DAOException{
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 
+		try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL_ORDERS)) {
+			ps.setInt(1, offset);
+			ps.setInt(2, noOfRecords);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				OrderDTO order = new OrderDTO();
+				fillOrderDTO(rs, order);
+				orders.add(order);
+			}
+			
+			rs = ps.executeQuery("SELECT FOUND_ROWS()");
+			if (rs.next()) {
+				this.noOfRecords = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			connection.close();
+		}
+
+		return orders;
+	}
+
+	public void rejectOrder(long orderId) throws DAOException{
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		try(PreparedStatement ps = connection.prepareStatement(REJECT_ORDER)){
+			ps.setLong(1, orderId);
+			System.out.println(orderId);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+	}
+	
 	private void fillOrderDTO(ResultSet rs, OrderDTO order) throws SQLException {
+		order.setOrderId(rs.getLong(ORDER_ID));
 		order.setUserId(rs.getLong(USER_ID));
 		order.setBooking(rs.getBoolean(BOOKING));
 		order.setCountry(rs.getString(COUNTRY));

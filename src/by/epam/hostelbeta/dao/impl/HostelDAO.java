@@ -14,7 +14,7 @@ import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionWrapper;
 
 public class HostelDAO implements IHostelDAO{
-	private static final String SELECT_POPULAR_HOSTELS = "SELECT `hostel`.HostelId,`hostel`.Country, `hostel`.City, `hostel`.Name, `hostel`.Description from `hostel` join `order` on `hostel`.HostelId = `order`.HostelId GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5;";
+	private static final String SELECT_POPULAR_HOSTELS = "SELECT `hostel`.HostelId,`hostel`.Country, `hostel`.City, `hostel`.Name, `hostel`.Description from `hostel` join `order` on `hostel`.HostelId = `order`.HostelId GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5";
 	private static final String SELECT_ALL_HOSTELS = "SELECT SQL_CALC_FOUND_ROWS * FROM `v_hostel_information` LIMIT ?, ?";
 
 	private static final String HOSTEL_ID = "HostelId";

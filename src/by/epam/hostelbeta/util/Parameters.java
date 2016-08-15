@@ -34,4 +34,5 @@ public class Parameters {
 	public static final String HOSTEL_ID = "hostelId";
 	public static final String ROOM_LIST = "roomList";
 	public static final String HOSTEL_NAME = "hostelName";
+	public static final String ORDER_ID = "orderId";
 }
