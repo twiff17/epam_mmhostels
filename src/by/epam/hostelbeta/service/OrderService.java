@@ -41,4 +41,13 @@ public class OrderService {
 			throw new ServiceException(e);
 		}
 	}
+	
+	public static void acceptOrder(long orderId) throws ServiceException{
+		OrderDAO orderDAO = new OrderDAO();
+		try {
+			orderDAO.acceptOrder(orderId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

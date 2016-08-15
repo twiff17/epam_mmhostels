@@ -14,6 +14,6 @@
 				<div class="b-popup-content"> 
                 	<span id="message"></span>
 					<br><br>
-					<a href="javascript:PopUpHide()"><fmt:message key="menu.close_window" /></a>
+					<a href="javascript:PopUpHide(true)"><fmt:message key="menu.close_window" /></a>
 					</div>
 			</div>

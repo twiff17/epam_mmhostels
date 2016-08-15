@@ -14,8 +14,9 @@ import by.epam.hostelbeta.pool.ConnectionWrapper;
 
 public class OrderDAO implements IOrderDAO{
 	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? LIMIT ?, ?";
-	private static final String SELECT_ALL_ORDERS = "SELECT * FROM `v_order_information` ORDER BY `Status` LIMIT ?, ?";
+	private static final String SELECT_ALL_ORDERS = "SELECT * FROM `v_order_information` ORDER BY `OrderTime` DESC LIMIT ?, ?";
 	private static final String REJECT_ORDER = "UPDATE `order` SET `Status` = 'Отклонен' WHERE `OrderId` = ?";
+	private static final String ACCEPT_ORDER = "UPDATE `order` SET `Status` = 'Принят' WHERE `OrderId` = ?";
 
 	private static final String USER_ID = "UserId";
 	private static final String HOSTEL_NAME = "HostelName";
@@ -93,6 +94,17 @@ public class OrderDAO implements IOrderDAO{
 	public void rejectOrder(long orderId) throws DAOException{
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
 		try(PreparedStatement ps = connection.prepareStatement(REJECT_ORDER)){
+			ps.setLong(1, orderId);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+	}
+	
+	public void acceptOrder(long orderId) throws DAOException{
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		try(PreparedStatement ps = connection.prepareStatement(ACCEPT_ORDER)){
 			ps.setLong(1, orderId);
 			System.out.println(orderId);
 			ps.executeUpdate();
