@@ -20,33 +20,7 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/slider.js"></script>
 	<script type="text/javascript" src="js/tabs.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-	    $("#accept-order").submit(function(e)
-	    		{
-	        var postData = $(this).serializeArray();
-	        var formURL = $(this).attr("action");
-	        $.ajax(
-	        {
-	            url : "Controller",
-	            type: "POST",
-	            data : postData,
-	            success:function(data, textStatus, jqXHR) 
-	            {
-	                PopUpShow("success");
-	            },
-	            error: function(jqXHR, textStatus, errorThrown) 
-	            {
-	                //if fails      
-	            }
-	        });
-	        e.preventDefault(); //STOP default action
-	        e.unbind(); //unbind. to stop multiple form submit.
-	    });
-	     
-	    $("#ajaxform").submit();
-		})
-	</script>
+	
 </head>
 <body>
 	<div class="extra">

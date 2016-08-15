@@ -25,11 +25,14 @@ public class AcceptOrderCommand extends AbstractCommand{
 			OrderService.acceptOrder(orderId);
 			OrderService.getAllOrders(1, orders);
 			request.setAttribute(Parameters.ORDER_LIST, orders);
+		//	response.getWriter().println("from java");
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}catch(NumberFormatException e){
 			throw new CommandException("Invalid orderId value", e);
-		}
+		} //catch (IOException e) {
+			
+		//}
 		return ConfigurationManager.getProperty(ORDERS_PATH);
 	}
 	

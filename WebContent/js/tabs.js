@@ -18,6 +18,28 @@ function click_o_ticket() {
 }
 
 $(document).ready(function(){
+	
+	$("#accept-order").submit(function(e)
+    		{
+        var postData = $(this).serializeArray();
+        $.ajax(
+        {
+            url : "Controller",
+            type: "POST",
+            data : postData,
+            success:function(data, textStatus, jqXHR) 
+            {
+                PopUpShow(testStatus);
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                PopUpShow(textStatus);      
+            }
+        });
+        e.preventDefault(); //STOP default action
+        e.unbind(); //unbind. to stop multiple form submit.
+    });
+	
     PopUpHide(false);
 });
 function PopUpShow(mess){

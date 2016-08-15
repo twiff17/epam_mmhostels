@@ -106,7 +106,6 @@ public class OrderDAO implements IOrderDAO{
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
 		try(PreparedStatement ps = connection.prepareStatement(ACCEPT_ORDER)){
 			ps.setLong(1, orderId);
-			System.out.println(orderId);
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

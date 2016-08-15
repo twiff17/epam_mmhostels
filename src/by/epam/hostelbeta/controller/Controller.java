@@ -50,6 +50,10 @@ public class Controller extends HttpServlet {
 			request.setAttribute(Parameters.ERROR_STACKTRACE, e);
 			page = ERROR_PATH;
 		}
-		request.getRequestDispatcher(page).forward(request, response);
+		//if(request.getParameter(Parameters.COMMAND).equals("accept_order")){
+			
+		//}else{
+			request.getRequestDispatcher(page).forward(request, response);
+	//	}
 	}
 }
