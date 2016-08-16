@@ -16,7 +16,7 @@ import by.epam.hostelbeta.util.Parameters;
 
 public class GetOrdersCommand extends AbstractCommand{
 
-	private static final String ORDERS_PATH = "path.page.orders";
+	private static final String ORDERS_PATH = "path.page.order";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

@@ -16,7 +16,7 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 
 @WebFilter("/jsp/*")
 public class PageRedirectSecurityFilter implements Filter {
-	private static final String HOME_PATH = "path.page.home";
+	private static final String INDEX_PATH = "path.page.index";
 	
 	public PageRedirectSecurityFilter() {
 	}
@@ -28,7 +28,7 @@ public class PageRedirectSecurityFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		httpResponse.sendRedirect(httpRequest.getContextPath() + ConfigurationManager.getProperty(HOME_PATH));
+		httpResponse.sendRedirect(httpRequest.getContextPath() + ConfigurationManager.getProperty(INDEX_PATH));
 		chain.doFilter(request, response);
 	}
 

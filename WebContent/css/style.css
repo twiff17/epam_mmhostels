@@ -135,6 +135,10 @@ a {color:#660033;
 .pad {padding:5px 13px}
 .pad_bot1 {padding-bottom:17px}
 .pad_bot2 {padding-bottom:7px}
+.pad_left_top{
+	padding-left:17px;
+	padding-top: 10px;
+}
 .under {
 	padding-bottom:20px;
 	border-bottom:1px solid #cccccc;

@@ -75,3 +75,15 @@ function cancelOrder(orderId) {
 		PopUpShow(data);
 	});
 }
+function changeLocale(locale){
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			locale : locale,
+			command : "change_locale"
+		}
+	}).done(function(data) {
+		location.reload();
+	});
+}

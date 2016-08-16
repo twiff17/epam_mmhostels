@@ -52,7 +52,7 @@
 	                            <fmt:message key="label.operations_hostel" /><br/>
 	                        </p>
 	                        <form action="Controller" method="post">
-	                        	<input type="hidden" name="command" value="">
+	                        	<input type="hidden" name="command" value="get_hostels_admin">
 	                        	<input class="details-btn" style="margin-top: 100px;" type="submit" value="<fmt:message key="label.open" />">
 	                        </form>
 	                    </div>

@@ -14,16 +14,8 @@
 		</h1>
 		<div class="right">
 			<div class="lang_menu">
-				<form action="Controller" method="post">
-					<input type="hidden" name="command" value="change_locale" />
-					<input type="hidden" name="locale" value="Default" />
-					<input class="locale-btn-ru" type="submit" value="" />
-				</form>
-				<form action="Controller" method="post">
-					<input type="hidden" name="command" value="change_locale" />
-					<input type="hidden" name="locale" value="en_US" />
-					<input class="locale-btn-en" type="submit" value="">
-				</form>
+					<input class="locale-btn-ru" type="button" onClick="changeLocale('Default')" value="" />
+					<input class="locale-btn-en" type="button" onClick="changeLocale('en_US')" value="">
 			</div>
 			<c:choose>
 				<c:when test="${empty role}">
