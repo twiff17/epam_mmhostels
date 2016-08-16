@@ -4,6 +4,7 @@ import by.epam.hostelbeta.command.impl.AcceptOrderCommand;
 import by.epam.hostelbeta.command.impl.CancelOrderCommand;
 import by.epam.hostelbeta.command.impl.ChangeLocaleCommand;
 import by.epam.hostelbeta.command.impl.CheckLoginCommand;
+import by.epam.hostelbeta.command.impl.DeleteHostelCommand;
 import by.epam.hostelbeta.command.impl.GetCabinetCommand;
 import by.epam.hostelbeta.command.impl.GetHomeCommand;
 import by.epam.hostelbeta.command.impl.GetHostelsAdminCommand;
@@ -31,7 +32,8 @@ public enum CommandEnum {
 	REJECT_ORDER(new RejectOrderCommand()),
 	CANCEL_ORDER(new CancelOrderCommand()),
 	ACCEPT_ORDER(new AcceptOrderCommand()),
-	GET_HOSTELS_ADMIN(new GetHostelsAdminCommand());
+	GET_HOSTELS_ADMIN(new GetHostelsAdminCommand()),
+	DELETE_HOSTEL(new DeleteHostelCommand());
 	
 	ICommand command;
 	CommandEnum(ICommand command){

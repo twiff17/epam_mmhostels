@@ -87,3 +87,15 @@ function changeLocale(locale){
 		location.reload();
 	});
 }
+function deleteHostel(hostelId){
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			hostelId : hostelId,
+			command : "delete_hostel"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
+}

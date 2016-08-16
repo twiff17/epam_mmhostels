@@ -54,7 +54,7 @@
 									<td>${hostel.address }</td>
 									<td>${hostel.currency}</td>
 									<td>${hostel.standartPrice}</td>
-									<td><a href='deletehotel.php?hotelID=$hotelID'><fmt:message key="table.delete" /> </a></td>
+									<td><a href="javascript:deleteHostel(${hostel.hostelId})"><fmt:message key="table.delete" /> </a></td>
 									<td><a href='hotel-edit.php?hotelID=$hotelID'> <fmt:message key="table.edit" /> </a></td>
 								</tr>
 							</c:forEach>

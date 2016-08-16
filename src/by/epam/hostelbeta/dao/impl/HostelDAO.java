@@ -18,6 +18,7 @@ public class HostelDAO implements IHostelDAO {
 	private static final String SELECT_POPULAR_HOSTELS = "SELECT * from `hostel` join `order` on `hostel`.HostelId = `order`.HostelId GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5";
 	private static final String SELECT_ALL_HOSTELS_BY_PAGES = "SELECT SQL_CALC_FOUND_ROWS * FROM `v_hostel_information` LIMIT ?, ?";
 	private static final String SELECT_ALL_HOSTELS = "SELECT * FROM `hostel`";
+	private static final String DELETE_HOSTEL = "DELETE FROM `hostel` WHERE `HostelId` = ?";
 
 	private static final String HOSTEL_ID = "HostelId";
 	private static final String NAME = "Name";
@@ -103,6 +104,24 @@ public class HostelDAO implements IHostelDAO {
 		}
 
 		return hostels;
+	}
+
+	public boolean deleteHostel(long hostelId) throws DAOException {
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		try (PreparedStatement ps = connection.prepareStatement(DELETE_HOSTEL)) {
+			ps.setLong(1, hostelId);
+
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
 	}
 
 	private void fillHostel(ResultSet rs, Hostel hostel) throws SQLException {

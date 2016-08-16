@@ -34,11 +34,20 @@ public class HostelService {
 		}
 	}
 
-	public static List<Hostel> getAllHostels() throws ServiceException{
+	public static List<Hostel> getAllHostels() throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
-		try{
+		try {
 			return hostelDAO.findAllHostels();
-		}catch(DAOException e){
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	public static boolean deleteHostel(long hostelId) throws ServiceException {
+		HostelDAO hostelDAO = new HostelDAO();
+		try {
+			return hostelDAO.deleteHostel(hostelId);
+		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}
