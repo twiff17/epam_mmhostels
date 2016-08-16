@@ -43,7 +43,9 @@
 	                                        <b><fmt:message key="label.out_date" />:</b><br/><i> ${order.outDate } </i><br/>
 	                                        <b><fmt:message key="label.status" />:</b><br/><i> ${order.status} </i><br/>
 	                                        <b><fmt:message key="label.order_date" />:</b><br/><i> ${order.orderTime} </i><br/>
-	                                        <a href="" class="right"><fmt:message key="label.cancel_order" /></a>
+	                                        <c:if test="${order.status eq 'В обработке' or order.status eq 'Принят'}">
+	                                        	<input type="button" class="details-btn"  onClick="cancelOrder(${order.orderId})" value="<fmt:message key="label.cancel_order" />">
+	                                        </c:if>
 	                                </p>
 	                                
 	                            </div>

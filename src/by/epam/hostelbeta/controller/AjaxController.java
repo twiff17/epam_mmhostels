@@ -1,7 +1,6 @@
 package by.epam.hostelbeta.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,17 +13,16 @@ import org.apache.logging.log4j.Logger;
 import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.command.CommandFactory;
 import by.epam.hostelbeta.command.ICommand;
+import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-@WebServlet("/Controller")
-public class Controller extends HttpServlet {
-	static final Logger LOGGER = LogManager.getLogger(Controller.class);
-
-	private static final String ERROR_PATH = "path.page.error";
-
+@WebServlet("/AjaxController")
+public class AjaxController extends HttpServlet {
+	static final Logger LOGGER = LogManager.getLogger(AjaxController.class);
+	
 	private static final long serialVersionUID = 1L;
 
-	public Controller() {
+	public AjaxController() {
 		super();
 	}
 
@@ -38,18 +36,16 @@ public class Controller extends HttpServlet {
 		processRequest(request, response);
 	}
 
-	private void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String page = null;
-
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String message = "";
 		try {
 			ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
-			page = command.execute(request, response);
+			message = command.execute(request, response);
+			response.getWriter().println(message);
 		} catch (CommandException e) {
 			LOGGER.error(e);
-			request.setAttribute(Parameters.ERROR_STACKTRACE, e);
-			page = ERROR_PATH;
+			LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
+			response.getWriter().println(locManager.getResourceBundle().getString(Parameters.OPERATION_ERROR));
 		}
-		request.getRequestDispatcher(page).forward(request, response);
 	}
 }

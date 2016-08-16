@@ -20,7 +20,6 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/slider.js"></script>
 	<script type="text/javascript" src="js/tabs.js"></script>
-	
 </head>
 <body>
 	<div class="extra">
@@ -45,16 +44,8 @@
 	                                <b><fmt:message key="label.order_date" />:</b><br/><i> ${order.orderTime} </i><br/>
 	                            </p>
 	                            <c:if test="${order.status eq 'В обработке'}">
-	                                <form action="Controller" method="post">
-	                                	<input type="hidden" name="command" value="reject_order">
-	                                	<input type="hidden" name="orderId" value="${order.orderId }">
-	                                	<input class="details-btn" type="submit" value="<fmt:message key="label.reject_order" />">
-	                                </form>
-	                            	<form id="accept-order">
-	                                	<input type="hidden" name="command" value="accept_order">
-	                                	<input type="hidden" name="orderId" value="${order.orderId }">
-	                                	<input class="details-btn" style="margin-right: 5px;" type="submit" value="<fmt:message key="label.accept_order" />">
-	                                </form>
+	                                <input type="button" class="details-btn"  onClick="rejectOrder(${order.orderId})" value="<fmt:message key="label.reject_order" />">
+	                            	<input type="button" class="details-btn"  onClick="acceptOrder(${order.orderId})" value="<fmt:message key="label.accept_order" />">
 	                            </c:if>
 	                       </div>
 	                	</div>

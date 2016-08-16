@@ -35,4 +35,8 @@ public class Parameters {
 	public static final String ROOM_LIST = "roomList";
 	public static final String HOSTEL_NAME = "hostelName";
 	public static final String ORDER_ID = "orderId";
+	
+	public static final String RELOAD = "reload";
+	public static final String OPERATION_SUCCESS = "label.operation_success";
+	public static final String OPERATION_ERROR = "label.operation_error";
 }

@@ -19,20 +19,6 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/slider.js"></script>
 	<script type="text/javascript" src="js/tabs.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-	    $("#loginInput").blur(function() {
-	    $.post('CheckLoginController',
-	    		{
-	    			command: "check_login",
-	    			login:$(this).val()
-	    		}, function(serverResponse) {
-	            //  функция обработчик ответа сервера
-	            $("#loginCheckResult").html(serverResponse);
-	        })
-	    })
-	})
-	</script>
 </head>
 <body>
 	<div class="extra">

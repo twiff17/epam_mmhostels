@@ -1,54 +1,77 @@
 function click_o_hotel() {
-    $('#o_hotel').addClass('active');
-    $('#o_ticket').removeClass('active');
-    $('#start').addClass('invisible');
-    $('#finish').addClass('invisible');
-    $('#type').addClass('invisible');
-    $('#hostelCity').removeClass('invisible');
-    $('#roomCount').removeClass('invisible');
+	$('#o_hotel').addClass('active');
+	$('#o_ticket').removeClass('active');
+	$('#start').addClass('invisible');
+	$('#finish').addClass('invisible');
+	$('#type').addClass('invisible');
+	$('#hostelCity').removeClass('invisible');
+	$('#roomCount').removeClass('invisible');
 }
 function click_o_ticket() {
-    $('#o_hotel').removeClass('active');
-    $('#o_ticket').addClass('active');
-    $('#hostelCity').addClass('invisible');
-    $('#roomCount').addClass('invisible');
-    $('#start').removeClass('invisible');
-    $('#finish').removeClass('invisible');
-    $('#type').removeClass('invisible');
+	$('#o_hotel').removeClass('active');
+	$('#o_ticket').addClass('active');
+	$('#hostelCity').addClass('invisible');
+	$('#roomCount').addClass('invisible');
+	$('#start').removeClass('invisible');
+	$('#finish').removeClass('invisible');
+	$('#type').removeClass('invisible');
 }
 
-$(document).ready(function(){
-	
-	$("#accept-order").submit(function(e)
-    		{
-        var postData = $(this).serializeArray();
-        $.ajax(
-        {
-            url : "Controller",
-            type: "POST",
-            data : postData,
-            success:function(data, textStatus, jqXHR) 
-            {
-                PopUpShow(testStatus);
-            },
-            error: function(jqXHR, textStatus, errorThrown) 
-            {
-                PopUpShow(textStatus);      
-            }
-        });
-        e.preventDefault(); //STOP default action
-        e.unbind(); //unbind. to stop multiple form submit.
-    });
-	
-    PopUpHide(false);
+$(document).ready(function() {
+	$("#loginInput").blur(function() {
+		$.post('AjaxController', {
+			command : "check_login",
+			login : $(this).val()
+		}, function(serverResponse) {
+			$("#loginCheckResult").html(serverResponse);
+		})
+	});
+
+	PopUpHide(false);
 });
-function PopUpShow(mess){
+function PopUpShow(mess) {
 	$("#message").html(mess);
-    $("#popup1").show();
+	$("#popup1").show();
 }
-function PopUpHide(reloadPage){
-    $("#popup1").hide();
-	if(reloadPage) {
+function PopUpHide(reloadPage) {
+	$("#popup1").hide();
+	if (reloadPage) {
 		location.reload();
 	}
+}
+function acceptOrder(orderId) {
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			orderId : orderId,
+			command : "accept_order"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
+}
+function rejectOrder(orderId) {
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			orderId : orderId,
+			command : "reject_order"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
+}
+function cancelOrder(orderId) {
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			orderId : orderId,
+			command : "cancel_order"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
 }

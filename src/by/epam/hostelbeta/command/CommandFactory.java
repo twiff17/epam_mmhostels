@@ -20,7 +20,7 @@ public class CommandFactory {
 		return instance;
 	}
 
-	public ICommand getCommand(String command) {
+	public ICommand getCommand(String command) throws CommandException {
 		ICommand current = new EmptyCommand();
 		if (command == null) {
 			return current;
@@ -29,7 +29,8 @@ public class CommandFactory {
 			CommandEnum commandType = CommandEnum.valueOf(command.toUpperCase());
 			current = commandType.getCurrentCommand();
 		} catch (IllegalArgumentException e) {
-			LOGGER.error("Unknown command!", e);
+			LOGGER.error("Unknown command " + command.toUpperCase(), e);
+			throw new CommandException("Unknown command " + command.toUpperCase(), e);
 		}
 		return current;
 	}

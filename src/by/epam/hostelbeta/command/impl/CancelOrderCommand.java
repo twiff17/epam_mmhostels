@@ -5,25 +5,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.CommandException;
+import by.epam.hostelbeta.service.OrderService;
 import by.epam.hostelbeta.service.ServiceException;
-import by.epam.hostelbeta.service.UserService;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class CheckLoginCommand extends AbstractCommand{
-
+public class CancelOrderCommand extends AbstractCommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		String message = null;
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
+		String message;
 		try {
-			if(UserService.checkLogin(request.getParameter(Parameters.LOGIN))){
-				message = locManager.getResourceBundle().getString(Parameters.LOGIN_NOT_AVAILABLE);
-			}else{
-				message = "";
+			long orderId = Long.parseLong(request.getParameter(Parameters.ORDER_ID));
+			boolean result = OrderService.cancelOrder(orderId);
+			if (result) {
+				message = locManager.getResourceBundle().getString(Parameters.OPERATION_SUCCESS);
+			} else {
+				message = locManager.getResourceBundle().getString(Parameters.OPERATION_ERROR);
 			}
 		} catch (ServiceException e) {
 			throw new CommandException(e);
+		} catch (NumberFormatException e) {
+			throw new CommandException("Invalid orderId value", e);
 		}
 		return message;
 	}

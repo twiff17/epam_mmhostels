@@ -55,7 +55,7 @@
 			                                </form>
 		                                </c:when>
 		                                <c:when test="${role eq 'admin'}">
-		                                	<input class="details-btn" type="button" value="<fmt:message key="label.book" />" onClick="PopUpShow('<fmt:message key="menu.admin_ban" />')">
+		                                	
 		                                </c:when>
 		                                <c:otherwise>
 		                                	<input class="details-btn" type="button" value="<fmt:message key="label.book" />" onClick="PopUpShow('<fmt:message key="menu.login_required" />')">

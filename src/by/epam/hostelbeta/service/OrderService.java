@@ -33,19 +33,28 @@ public class OrderService {
 		}
 	}
 	
-	public static void rejectOrder(long orderId) throws ServiceException{
+	public static boolean rejectOrder(long orderId) throws ServiceException{
 		OrderDAO orderDAO = new OrderDAO();
 		try {
-			orderDAO.rejectOrder(orderId);
+			return orderDAO.rejectOrder(orderId);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}
 	
-	public static void acceptOrder(long orderId) throws ServiceException{
+	public static boolean acceptOrder(long orderId) throws ServiceException{
 		OrderDAO orderDAO = new OrderDAO();
 		try {
-			orderDAO.acceptOrder(orderId);
+			return orderDAO.acceptOrder(orderId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+	
+	public static boolean cancelOrder(long orderId) throws ServiceException{
+		OrderDAO orderDAO = new OrderDAO();
+		try {
+			return orderDAO.cancelOrder(orderId);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}

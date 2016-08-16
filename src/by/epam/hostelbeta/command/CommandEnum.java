@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command;
 
 import by.epam.hostelbeta.command.impl.AcceptOrderCommand;
+import by.epam.hostelbeta.command.impl.CancelOrderCommand;
 import by.epam.hostelbeta.command.impl.ChangeLocaleCommand;
 import by.epam.hostelbeta.command.impl.CheckLoginCommand;
 import by.epam.hostelbeta.command.impl.GetCabinetCommand;
@@ -27,6 +28,7 @@ public enum CommandEnum {
 	GET_ROOMS(new GetRoomsCommand()),
 	GET_ORDERS(new GetOrdersCommand()),
 	REJECT_ORDER(new RejectOrderCommand()),
+	CANCEL_ORDER(new CancelOrderCommand()),
 	ACCEPT_ORDER(new AcceptOrderCommand());
 	
 	ICommand command;

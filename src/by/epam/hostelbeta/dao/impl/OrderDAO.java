@@ -12,12 +12,13 @@ import by.epam.hostelbeta.domain.dto.OrderDTO;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionWrapper;
 
-public class OrderDAO implements IOrderDAO{
+public class OrderDAO implements IOrderDAO {
 	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? LIMIT ?, ?";
 	private static final String SELECT_ALL_ORDERS = "SELECT * FROM `v_order_information` ORDER BY `OrderTime` DESC LIMIT ?, ?";
 	private static final String REJECT_ORDER = "UPDATE `order` SET `Status` = 'Отклонен' WHERE `OrderId` = ?";
 	private static final String ACCEPT_ORDER = "UPDATE `order` SET `Status` = 'Принят' WHERE `OrderId` = ?";
-
+	private static final String CANCEL_ORDER = "UPDATE `order` SET `Status` = 'Отказ' WHERE `OrderId` = ?";
+	
 	private static final String USER_ID = "UserId";
 	private static final String HOSTEL_NAME = "HostelName";
 	private static final String COUNTRY = "Country";
@@ -31,6 +32,7 @@ public class OrderDAO implements IOrderDAO{
 	private static final String PRICE = "Price";
 	private static final String ROOM_ID = "RoomId";
 	private static final String ORDER_ID = "OrderId";
+	
 
 	private int noOfRecords;
 
@@ -43,13 +45,13 @@ public class OrderDAO implements IOrderDAO{
 			ps.setInt(2, offset);
 			ps.setInt(3, noOfRecords);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				OrderDTO order = new OrderDTO();
 				fillOrderDTO(rs, order);
 				orders.add(order);
 			}
-			
+
 			rs = ps.executeQuery("SELECT FOUND_ROWS()");
 			if (rs.next()) {
 				this.noOfRecords = rs.getInt(1);
@@ -62,8 +64,8 @@ public class OrderDAO implements IOrderDAO{
 
 		return orders;
 	}
-	
-	public List<OrderDTO> findAllOrders(int offset, int noOfRecords) throws DAOException{
+
+	public List<OrderDTO> findAllOrders(int offset, int noOfRecords) throws DAOException {
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 
@@ -71,13 +73,13 @@ public class OrderDAO implements IOrderDAO{
 			ps.setInt(1, offset);
 			ps.setInt(2, noOfRecords);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				OrderDTO order = new OrderDTO();
 				fillOrderDTO(rs, order);
 				orders.add(order);
 			}
-			
+
 			rs = ps.executeQuery("SELECT FOUND_ROWS()");
 			if (rs.next()) {
 				this.noOfRecords = rs.getInt(1);
@@ -91,23 +93,52 @@ public class OrderDAO implements IOrderDAO{
 		return orders;
 	}
 
-	public void rejectOrder(long orderId) throws DAOException{
+	public boolean rejectOrder(long orderId) throws DAOException {
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
-		try(PreparedStatement ps = connection.prepareStatement(REJECT_ORDER)){
+		try (PreparedStatement ps = connection.prepareStatement(REJECT_ORDER)) {
 			ps.setLong(1, orderId);
-			ps.executeUpdate();
-			
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 	}
-	
-	public void acceptOrder(long orderId) throws DAOException{
+
+	public boolean acceptOrder(long orderId) throws DAOException {
 		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
-		try(PreparedStatement ps = connection.prepareStatement(ACCEPT_ORDER)){
+		try (PreparedStatement ps = connection.prepareStatement(ACCEPT_ORDER)) {
 			ps.setLong(1, orderId);
-			ps.executeUpdate();
-			
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+	}
+
+	public boolean cancelOrder(long orderId) throws DAOException {
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		try (PreparedStatement ps = connection.prepareStatement(CANCEL_ORDER)) {
+			ps.setLong(1, orderId);
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
