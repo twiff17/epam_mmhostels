@@ -38,7 +38,7 @@
 	                                    <strong>${room.roomType}</strong> 
 	                                </p>
 	                                <p class='pad_bot2'>
-	                                        <b><fmt:message key="label.price" /></b><br/> <i>${room.price }</i> <br/>
+	                                        <b><fmt:message key="label.price" /></b><br/> <i>${room.price } <fmt:message key="label.roubles" /></i> <br/>
                                         	<b><fmt:message key="label.beds_number" /></b><br/> <i>${room.bedsNumber }</i> <br/>
 	                                </p>
 	                                <a href="" class="right">Забронировать</a>

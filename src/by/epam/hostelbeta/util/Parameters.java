@@ -1,7 +1,7 @@
 package by.epam.hostelbeta.util;
 
 public class Parameters {
-	
+	//for User
 	public static final String FULLNAME = "fullname";
 	public static final String PASSPORT = "passport";
 	public static final String EMAIL = "email";
@@ -9,6 +9,16 @@ public class Parameters {
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
 	public static final String ROLE = "role";
+	
+	//for Hostel
+	public static final String NAME = "name";
+	public static final String COUNTRY = "country";
+	public static final String CITY = "city";
+	public static final String ADDRESS = "address";
+	public static final String CURRENCY = "currency";
+	public static final String STANDART_PRICE = "standart_price";
+	public static final String DESCRIPTION = "description";
+	
 	public static final String LOCALE = "locale";
 	public static final String PAGE = "page";
 	public static final String CONFIG = "config";
@@ -39,4 +49,7 @@ public class Parameters {
 	public static final String RELOAD = "reload";
 	public static final String OPERATION_SUCCESS = "label.operation_success";
 	public static final String OPERATION_ERROR = "label.operation_error";
+	public static final String COUNTRY_LIST = "countryList";
+	public static final String CURRENCY_LIST = "currencyList";
+	public static final String HOSTEL = "hostel";
 }

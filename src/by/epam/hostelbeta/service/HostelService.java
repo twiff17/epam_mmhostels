@@ -51,4 +51,31 @@ public class HostelService {
 			throw new ServiceException(e);
 		}
 	}
+	
+	public static boolean addHostel(Hostel hostel) throws ServiceException{
+		HostelDAO hostelDAO = new HostelDAO();
+		try {
+			return hostelDAO.addHostel(hostel);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	public static Hostel getHostelById(long hostelId) throws ServiceException {
+		HostelDAO hostelDAO = new HostelDAO();
+		try {
+			return hostelDAO.findHostelById(hostelId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	public static boolean editHostel(Hostel hostel) throws ServiceException {
+		HostelDAO hostelDAO = new HostelDAO();
+		try {
+			return hostelDAO.editHostel(hostel);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

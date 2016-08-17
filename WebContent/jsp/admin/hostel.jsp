@@ -54,18 +54,23 @@
 									<td>${hostel.address }</td>
 									<td>${hostel.currency}</td>
 									<td>${hostel.standartPrice}</td>
-									<td><a href="javascript:deleteHostel(${hostel.hostelId})"><fmt:message key="table.delete" /> </a></td>
-									<td><a href='hotel-edit.php?hotelID=$hotelID'> <fmt:message key="table.edit" /> </a></td>
+									<td><input type="button" class="delete-btn" onClick="deleteHostel(${hostel.hostelId})"></td>
+									<td>
+									<form action="Controller" method="post">
+										<input type="hidden" name="command" value="get_hostel_edit">
+										<input type="hidden" name="hostelId" value="${hostel.hostelId}">
+										<input type="submit" class="edit-btn" value="">
+									</form>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>
 					</div>
-					<div class="wrapper">
-						<a href="hotel-add.php" class="button_submit"
-							style="width: 150px; margin-top: 20px; margin-left: 550px;">
-							<fmt:message key="table.add" /> </a> <br />
-					</div>
-					<div class="clear"></div>
+					<form action="Controller" method="post">
+						<input type="hidden" name="command" value="get_hostel_add">
+						<input class="details-btn" style="margin-top: 28px;"
+							type="submit" value="<fmt:message key="table.add" />">
+					</form>
 				</article>
 			</section>
 		</div>

@@ -53,7 +53,7 @@
 
                             <div class="wrapper">
                                 <fmt:message key="label.passport" /> (*):
-                                <input type="text" name="passport" pattern="[A-Z]{2}[0-9]{7}" title="Введите номер паспорта в формате AA1111111" required maxlength="100" class="input">
+                                <input type="text" name="passport" pattern="[A-Z]{2}[0-9]{7}" title="Введите номер паспорта в формате AA1111111" required class="input">
                                 <br/>
                             </div>
 

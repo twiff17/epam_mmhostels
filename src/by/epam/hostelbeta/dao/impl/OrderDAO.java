@@ -18,7 +18,7 @@ public class OrderDAO implements IOrderDAO {
 	private static final String REJECT_ORDER = "UPDATE `order` SET `Status` = 'Отклонен' WHERE `OrderId` = ?";
 	private static final String ACCEPT_ORDER = "UPDATE `order` SET `Status` = 'Принят' WHERE `OrderId` = ?";
 	private static final String CANCEL_ORDER = "UPDATE `order` SET `Status` = 'Отказ' WHERE `OrderId` = ?";
-	
+
 	private static final String USER_ID = "UserId";
 	private static final String HOSTEL_NAME = "HostelName";
 	private static final String COUNTRY = "Country";
@@ -32,7 +32,6 @@ public class OrderDAO implements IOrderDAO {
 	private static final String PRICE = "Price";
 	private static final String ROOM_ID = "RoomId";
 	private static final String ORDER_ID = "OrderId";
-	
 
 	private int noOfRecords;
 
@@ -107,6 +106,8 @@ public class OrderDAO implements IOrderDAO {
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
+		} finally {
+			connection.close();
 		}
 	}
 
@@ -124,6 +125,8 @@ public class OrderDAO implements IOrderDAO {
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
+		} finally {
+			connection.close();
 		}
 	}
 
@@ -141,9 +144,11 @@ public class OrderDAO implements IOrderDAO {
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
+		} finally {
+			connection.close();
 		}
 	}
-	
+
 	private void fillOrderDTO(ResultSet rs, OrderDTO order) throws SQLException {
 		order.setOrderId(rs.getLong(ORDER_ID));
 		order.setUserId(rs.getLong(USER_ID));

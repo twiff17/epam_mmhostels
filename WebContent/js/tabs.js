@@ -75,7 +75,7 @@ function cancelOrder(orderId) {
 		PopUpShow(data);
 	});
 }
-function changeLocale(locale){
+function changeLocale(locale) {
 	$.ajax({
 		url : "AjaxController",
 		method : "post",
@@ -87,7 +87,7 @@ function changeLocale(locale){
 		location.reload();
 	});
 }
-function deleteHostel(hostelId){
+function deleteHostel(hostelId) {
 	$.ajax({
 		url : "AjaxController",
 		method : "post",
@@ -97,5 +97,19 @@ function deleteHostel(hostelId){
 		}
 	}).done(function(data) {
 		PopUpShow(data);
+	});
+}
+function addEditHostel() {
+	var msg = $('#hostel-form').serialize();
+	$.ajax({
+		type : 'POST',
+		url : 'AjaxController',
+		data : msg,
+		success : function(data) {
+			PopUpShow(data);
+		},
+		error : function(xhr, str) {
+			alert('Возникла ошибка: ' + xhr.responseCode);
+		}
 	});
 }

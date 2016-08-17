@@ -267,7 +267,6 @@ footer a {
 }
 
 .form .input {
-	float: right;
 	margin-right: 222px;
 	width: 335px;
 	height: 28px;
@@ -435,4 +434,20 @@ span {
 
 .marg_right1 {
 	margin-right: 18px
+}
+
+.delete-btn {
+	background: url(../images/delete.png);
+	width: 32px;
+	height: 32px;
+	margin-left: 17px;
+	cursor: pointer;
+}
+
+.edit-btn {
+	background: url(../images/edit.png);
+	width: 32px;
+	height: 32px;
+	margin-left: 17px;
+	cursor: pointer;
 }

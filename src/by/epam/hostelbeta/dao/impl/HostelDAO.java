@@ -18,7 +18,10 @@ public class HostelDAO implements IHostelDAO {
 	private static final String SELECT_POPULAR_HOSTELS = "SELECT * from `hostel` join `order` on `hostel`.HostelId = `order`.HostelId GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5";
 	private static final String SELECT_ALL_HOSTELS_BY_PAGES = "SELECT SQL_CALC_FOUND_ROWS * FROM `v_hostel_information` LIMIT ?, ?";
 	private static final String SELECT_ALL_HOSTELS = "SELECT * FROM `hostel`";
+	private static final String SELECT_HOSTEL_BY_ID = "SELECT * FROM `hostel` WHERE `HostelId` = ?";
 	private static final String DELETE_HOSTEL = "DELETE FROM `hostel` WHERE `HostelId` = ?";
+	private static final String ADD_HOSTEL = "INSERT INTO `hostel`(`Name`, `Country`, `City`, `Address`, `Currency`, `StandartPrice`, `Phone`, `Description`) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String EDIT_HOSTEL = "UPDATE `hostel` SET `Name` = ?, `Country` = ?, `City` = ?, `Address` = ?, `Currency` = ?, `StandartPrice` = ?, `Phone` = ?, `Description` = ? WHERE `HostelId` = ?";
 
 	private static final String HOSTEL_ID = "HostelId";
 	private static final String NAME = "Name";
@@ -121,6 +124,84 @@ public class HostelDAO implements IHostelDAO {
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
+		} finally {
+			connection.close();
+		}
+	}
+
+	public boolean addHostel(Hostel hostel) throws DAOException {
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		try (PreparedStatement ps = connection.prepareStatement(ADD_HOSTEL)) {
+			ps.setString(1, hostel.getName());
+			ps.setString(2, hostel.getCountry());
+			ps.setString(3, hostel.getCity());
+			ps.setString(4, hostel.getAddress());
+			ps.setString(5, hostel.getCurrency());
+			ps.setInt(6, hostel.getStandartPrice());
+			ps.setString(7, hostel.getPhone());
+			ps.setString(8, hostel.getDescription());
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			connection.close();
+		}
+	}
+
+	public Hostel findHostelById(long hostelId) throws DAOException {
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		Hostel hostel = null;
+		try (PreparedStatement ps = connection.prepareStatement(SELECT_HOSTEL_BY_ID)) {
+			ps.setLong(1, hostelId);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				hostel = new Hostel();
+				fillHostel(rs, hostel);
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			connection.close();
+		}
+
+		return hostel;
+	}
+
+	public boolean editHostel(Hostel hostel) throws DAOException {
+		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		try (PreparedStatement ps = connection.prepareStatement(EDIT_HOSTEL)) {
+			ps.setString(1, hostel.getName());
+			ps.setString(2, hostel.getCountry());
+			ps.setString(3, hostel.getCity());
+			ps.setString(4, hostel.getAddress());
+			ps.setString(5, hostel.getCurrency());
+			ps.setInt(6, hostel.getStandartPrice());
+			ps.setString(7, hostel.getPhone());
+			ps.setString(8, hostel.getDescription());
+			ps.setLong(9, hostel.getHostelId());
+
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			connection.close();
 		}
 	}
 
@@ -153,4 +234,5 @@ public class HostelDAO implements IHostelDAO {
 	public int getNoOfRecords() {
 		return noOfRecords;
 	}
+
 }
