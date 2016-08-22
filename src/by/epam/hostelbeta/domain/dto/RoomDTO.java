@@ -3,10 +3,10 @@ package by.epam.hostelbeta.domain.dto;
 public class RoomDTO {
 	private int roomId;
 	private long hostelId;
+	private String hostelName;
 	private String roomType;
 	private double price;
 	private int bedsNumber;
-	
 	public int getRoomId() {
 		return roomId;
 	}
@@ -18,6 +18,12 @@ public class RoomDTO {
 	}
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
+	}
+	public String getHostelName() {
+		return hostelName;
+	}
+	public void setHostelName(String hostelName) {
+		this.hostelName = hostelName;
 	}
 	public String getRoomType() {
 		return roomType;
@@ -43,6 +49,7 @@ public class RoomDTO {
 		int result = 1;
 		result = prime * result + bedsNumber;
 		result = prime * result + (int) (hostelId ^ (hostelId >>> 32));
+		result = prime * result + ((hostelName == null) ? 0 : hostelName.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -66,6 +73,13 @@ public class RoomDTO {
 			return false;
 		}
 		if (hostelId != other.hostelId) {
+			return false;
+		}
+		if (hostelName == null) {
+			if (other.hostelName != null) {
+				return false;
+			}
+		} else if (!hostelName.equals(other.hostelName)) {
 			return false;
 		}
 		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price)) {

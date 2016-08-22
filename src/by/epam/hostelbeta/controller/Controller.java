@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.command.CommandFactory;
 import by.epam.hostelbeta.command.ICommand;
+import by.epam.hostelbeta.command.impl.hostel.AddHostelCommand;
 import by.epam.hostelbeta.util.Parameters;
 
 @WebServlet("/Controller")
@@ -41,9 +43,13 @@ public class Controller extends HttpServlet {
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String page = null;
-
+		ICommand command;
 		try {
-			ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
+			if (ServletFileUpload.isMultipartContent(request)) {
+				command = new AddHostelCommand();
+			} else {
+				command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
+			}
 			page = command.execute(request, response);
 		} catch (CommandException e) {
 			LOGGER.error(e);

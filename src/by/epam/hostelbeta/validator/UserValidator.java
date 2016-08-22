@@ -12,7 +12,7 @@ public class UserValidator {
 	public static boolean validate(User user) {
 		if (user.getEmail() == null || user.getFullname() == null || user.getLogin() == null
 				|| user.getPassport() == null || user.getPassword() == null || user.getPhone() == null
-				|| user.getRole() == null || user.getFullname().length() > 30) {
+				|| user.getFullname().length() > 30) {
 			return false;
 		}
 		if (user.getLogin().matches(LOGIN_PASSWORD_REGEXP) && user.getPassword().matches(LOGIN_PASSWORD_REGEXP)

@@ -3,7 +3,7 @@ package by.epam.hostelbeta.command;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epam.hostelbeta.command.impl.EmptyCommand;
+import by.epam.hostelbeta.command.impl.common.EmptyCommand;
 
 public class CommandFactory {
 	static final Logger LOGGER = LogManager.getLogger(CommandFactory.class);

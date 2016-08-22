@@ -7,11 +7,11 @@ import by.epam.hostelbeta.dao.impl.CountryDAO;
 import by.epam.hostelbeta.domain.entity.Country;
 
 public class CountryService {
-	public static List<Country> getAllCountries() throws ServiceException{
+	public static List<Country> getAllCountries() throws ServiceException {
 		CountryDAO countryDAO = new CountryDAO();
-		try{
+		try {
 			return countryDAO.findAll();
-		}catch(DAOException e){
+		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}

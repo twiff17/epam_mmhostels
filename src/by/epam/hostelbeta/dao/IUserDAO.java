@@ -6,7 +6,16 @@ import by.epam.hostelbeta.domain.entity.User;
 
 public interface IUserDAO {
 	List<User> findAll() throws DAOException;
+
 	User findByLoginAndPassword(String login, String password) throws DAOException;
+
 	public User insertUser(User user) throws DAOException;
+
 	public boolean checkLogin(String login) throws DAOException;
+
+	void banUser(long userId) throws DAOException;
+
+	void unbanUser(long userId) throws DAOException;
+
+	void addDiscount(long userId) throws DAOException;
 }

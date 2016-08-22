@@ -65,20 +65,20 @@
 	                            <fmt:message key="label.operations_room" /><br/>
 	                        </p>
 	                        <form action="Controller" method="post">
-	                        	<input type="hidden" name="command" value="get_orders">
+	                        	<input type="hidden" name="command" value="get_rooms_admin">
 	                        	<input class="details-btn" style="margin-top: 100px;" type="submit" value="<fmt:message key="label.open" />">
 	                        </form>
 	                    </div>
 	                    <div class="wrapper under">
-	                        <figure class="left marg_right1"><img src="images/currency.jpg" alt="" width="246" height="195"></figure>
+	                        <figure class="left marg_right1"><img src="images/user.jpg" alt="" width="246" height="195"></figure>
 	                        <p class="pad_bot2" style="font-size: large;">
-	                            <fmt:message key="label.currency_management" />
+	                            <fmt:message key="label.user_management" />
 	                        </p>
 	                        <p class="pad_bot2">
-	                            <fmt:message key="label.operations_currency" /><br/>
+	                            <fmt:message key="label.operations_user" /><br/>
 	                        </p>
 	                        <form action="Controller" method="post">
-	                        	<input type="hidden" name="command" value="get_orders">
+	                        	<input type="hidden" name="command" value="get_users">
 	                        	<input class="details-btn" style="margin-top: 100px;" type="submit" value="<fmt:message key="label.open" />">
 	                        </form>
 	                    </div>

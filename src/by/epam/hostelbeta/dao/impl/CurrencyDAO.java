@@ -10,7 +10,7 @@ import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.ICurrencyDAO;
 import by.epam.hostelbeta.domain.entity.Currency;
 import by.epam.hostelbeta.pool.ConnectionPool;
-import by.epam.hostelbeta.pool.ConnectionWrapper;
+import by.epam.hostelbeta.pool.ConnectionDecorator;
 
 public class CurrencyDAO implements ICurrencyDAO {
 	private static final String SELECT_ALL = "SELECT `Code`, `Name` FROM `currency`";
@@ -19,7 +19,7 @@ public class CurrencyDAO implements ICurrencyDAO {
 	private static final String NAME = "Name";
 
 	public List<Currency> findAll() throws DAOException {
-		ConnectionWrapper connection = ConnectionPool.getInstance().retrieve();
+		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		List<Currency> currencyList = new ArrayList<Currency>();
 		try (Statement st = connection.createStatement()) {
 			ResultSet rs = st.executeQuery(SELECT_ALL);

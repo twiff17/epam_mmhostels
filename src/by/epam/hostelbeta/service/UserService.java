@@ -1,5 +1,7 @@
 package by.epam.hostelbeta.service;
 
+import java.util.List;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import by.epam.hostelbeta.dao.DAOException;
@@ -39,6 +41,42 @@ public class UserService {
 			} else {
 				return null;
 			}
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	public static List<User> getAllUsers() throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		try {
+			return userDAO.findAll();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	public static void banUser(long userId) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		try {
+			userDAO.banUser(userId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	public static void unbanUser(long userId) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		try {
+			userDAO.unbanUser(userId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	public static void addDiscount(long userId) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		try {
+			userDAO.addDiscount(userId);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}

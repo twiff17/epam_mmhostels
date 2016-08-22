@@ -12,7 +12,7 @@ public class HostelDTO {
 	private int minPrice;
 	private int maxPrice;
 	private String roomTypes;
-	
+	private String imageName;
 	public long getHostelId() {
 		return hostelId;
 	}
@@ -79,6 +79,12 @@ public class HostelDTO {
 	public void setRoomTypes(String roomTypes) {
 		this.roomTypes = roomTypes;
 	}
+	public String getImageName() {
+		return imageName;
+	}
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,6 +95,7 @@ public class HostelDTO {
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (hostelId ^ (hostelId >>> 32));
+		result = prime * result + ((imageName == null) ? 0 : imageName.hashCode());
 		result = prime * result + maxPrice;
 		result = prime * result + minPrice;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -146,6 +153,13 @@ public class HostelDTO {
 		if (hostelId != other.hostelId) {
 			return false;
 		}
+		if (imageName == null) {
+			if (other.imageName != null) {
+				return false;
+			}
+		} else if (!imageName.equals(other.imageName)) {
+			return false;
+		}
 		if (maxPrice != other.maxPrice) {
 			return false;
 		}
@@ -175,4 +189,6 @@ public class HostelDTO {
 		}
 		return true;
 	}
+	
+	
 }

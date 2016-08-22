@@ -2,6 +2,7 @@ package by.epam.hostelbeta.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
 @WebServlet("/AjaxController")
+@MultipartConfig
 public class AjaxController extends HttpServlet {
 	static final Logger LOGGER = LogManager.getLogger(AjaxController.class);
 	

@@ -1,7 +1,7 @@
 package by.epam.hostelbeta.util;
 
 public class Parameters {
-	//for User
+	// for User
 	public static final String FULLNAME = "fullname";
 	public static final String PASSPORT = "passport";
 	public static final String EMAIL = "email";
@@ -9,8 +9,8 @@ public class Parameters {
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
 	public static final String ROLE = "role";
-	
-	//for Hostel
+
+	// for Hostel
 	public static final String NAME = "name";
 	public static final String COUNTRY = "country";
 	public static final String CITY = "city";
@@ -18,7 +18,11 @@ public class Parameters {
 	public static final String CURRENCY = "currency";
 	public static final String STANDART_PRICE = "standart_price";
 	public static final String DESCRIPTION = "description";
-	
+
+	// for Room
+	public static final String ROOM_TYPE = "roomType";
+	public static final String BEDS_NUMBER = "bedsNumber";
+
 	public static final String LOCALE = "locale";
 	public static final String PAGE = "page";
 	public static final String CONFIG = "config";
@@ -45,11 +49,29 @@ public class Parameters {
 	public static final String ROOM_LIST = "roomList";
 	public static final String HOSTEL_NAME = "hostelName";
 	public static final String ORDER_ID = "orderId";
-	
+
 	public static final String RELOAD = "reload";
 	public static final String OPERATION_SUCCESS = "label.operation_success";
 	public static final String OPERATION_ERROR = "label.operation_error";
 	public static final String COUNTRY_LIST = "countryList";
 	public static final String CURRENCY_LIST = "currencyList";
 	public static final String HOSTEL = "hostel";
+	public static final String ERROR_ADD_HOSTEL_MESSAGE = "errorAddHostelMessage";
+	public static final String ERROR_ADD_ROOM_MESSAGE = "errorAddRoomMessage";
+	public static final String ROOM_ID = "roomId";
+	public static final String ROOM_TYPE_LIST = "roomTypeList";
+	public static final String ROOM = "room";
+	public static final String ROOM_ID_EXISTS_MESSAGE = "error.room_id_exists";
+	public static final String BAN = "ban";
+	public static final String REGULAR = "regular";
+	public static final String USER_LIST = "userList";
+	public static final String IN_DATE = "inDate";
+	public static final String OUT_DATE = "outDate";
+	public static final String REGISTRATION = "registration";
+	public static final String ERROR_MESSAGE = "errorMessage";
+	public static final String DATE_BEFORE_TODAY = "error.date_before_today";
+	public static final String IN_DATE_AFTER_OUT = "error.date_in_after_out";
+	public static final String BOOKING = "booking";
+	public static final String ROOM_IS_BOOKED_SUCCESSFUL = "label.room_booked";
+	public static final String ROOM_BOOKING_FAIL = "label.room_booking_fail";
 }

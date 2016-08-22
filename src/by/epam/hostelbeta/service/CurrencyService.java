@@ -6,14 +6,13 @@ import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.impl.CurrencyDAO;
 import by.epam.hostelbeta.domain.entity.Currency;
 
-
 public class CurrencyService {
 
 	public static List<Currency> getAllCurrency() throws ServiceException {
 		CurrencyDAO currencyDAO = new CurrencyDAO();
-		try{
+		try {
 			return currencyDAO.findAll();
-		}catch(DAOException e){
+		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}

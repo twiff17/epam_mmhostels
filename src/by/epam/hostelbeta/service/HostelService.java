@@ -1,11 +1,15 @@
 package by.epam.hostelbeta.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.impl.HostelDAO;
+import by.epam.hostelbeta.dao.impl.OrderDAO;
+import by.epam.hostelbeta.dao.impl.RoomDAO;
 import by.epam.hostelbeta.domain.dto.HostelDTO;
+import by.epam.hostelbeta.domain.dto.RoomDTO;
 import by.epam.hostelbeta.domain.entity.Hostel;
 
 public class HostelService {
@@ -43,19 +47,19 @@ public class HostelService {
 		}
 	}
 
-	public static boolean deleteHostel(long hostelId) throws ServiceException {
+	public static void deleteHostel(long hostelId) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
-			return hostelDAO.deleteHostel(hostelId);
+			hostelDAO.deleteHostel(hostelId);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}
-	
-	public static boolean addHostel(Hostel hostel) throws ServiceException{
+
+	public static void addHostel(Hostel hostel) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
-			return hostelDAO.addHostel(hostel);
+			hostelDAO.addHostel(hostel);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
@@ -70,12 +74,37 @@ public class HostelService {
 		}
 	}
 
-	public static boolean editHostel(Hostel hostel) throws ServiceException {
+	public static void editHostel(Hostel hostel) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
-			return hostelDAO.editHostel(hostel);
+			hostelDAO.editHostel(hostel);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
+	}
+
+	public static List<HostelDTO> searchByDateAndCountry(String country, LocalDate inDate, LocalDate outDate)
+			throws ServiceException {
+		HostelDAO hostelDAO = new HostelDAO();
+		RoomDAO roomDAO = new RoomDAO();
+		OrderDAO orderDAO = new OrderDAO();
+		List<HostelDTO> hostels = new ArrayList<HostelDTO>();
+		List<HostelDTO> resultHostels = new ArrayList<HostelDTO>();
+		try {
+			hostels = hostelDAO.findByCountry(country);
+			for (HostelDTO hostel : hostels) {
+				List<RoomDTO> rooms = roomDAO.findRoomsByHostelId(hostel.getHostelId());
+				for (RoomDTO room : rooms) {
+					if (!orderDAO.checkRoom(room, inDate, outDate)) {
+						resultHostels.add(hostel);
+						break;
+					}
+				}
+			}
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		
+		return resultHostels;
 	}
 }

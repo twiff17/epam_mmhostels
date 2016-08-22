@@ -68,10 +68,10 @@ public class ConnectionPool {
 		return connection;
 	}
 
-	public ConnectionWrapper retrieve() {
-		ConnectionWrapper connection = null;
+	public ConnectionDecorator retrieve() {
+		ConnectionDecorator connection = null;
 		try {
-			connection = new ConnectionWrapper(connections.take());
+			connection = new ConnectionDecorator(connections.take());
 			LOGGER.debug("Connectionn is token");
 		} catch (InterruptedException e) {
 			LOGGER.error("Error trying retrieve connection", e);

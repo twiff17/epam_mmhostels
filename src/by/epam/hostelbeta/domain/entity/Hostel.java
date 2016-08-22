@@ -10,6 +10,7 @@ public class Hostel {
 	private int standartPrice;
 	private String phone;
 	private String description;
+	private String imageName;
 	
 	public long getHostelId() {
 		return hostelId;
@@ -65,6 +66,12 @@ public class Hostel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getImageName() {
+		return imageName;
+	}
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,6 +82,7 @@ public class Hostel {
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (hostelId ^ (hostelId >>> 32));
+		result = prime * result + ((imageName == null) ? 0 : imageName.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + standartPrice;
@@ -130,6 +138,13 @@ public class Hostel {
 		if (hostelId != other.hostelId) {
 			return false;
 		}
+		if (imageName == null) {
+			if (other.imageName != null) {
+				return false;
+			}
+		} else if (!imageName.equals(other.imageName)) {
+			return false;
+		}
 		if (name == null) {
 			if (other.name != null) {
 				return false;
@@ -149,4 +164,6 @@ public class Hostel {
 		}
 		return true;
 	}
+	
+	
 }

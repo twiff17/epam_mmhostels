@@ -16,6 +16,6 @@ public class ServletListener implements ServletContextListener {
     }
 
     public void contextInitialized(ServletContextEvent arg0)  { 
+    	ConnectionPool.getInstance();
     }
-	
 }

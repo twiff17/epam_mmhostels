@@ -1,20 +1,15 @@
-function click_o_hotel() {
-	$('#o_hotel').addClass('active');
-	$('#o_ticket').removeClass('active');
-	$('#start').addClass('invisible');
-	$('#finish').addClass('invisible');
-	$('#type').addClass('invisible');
-	$('#hostelCity').removeClass('invisible');
-	$('#roomCount').removeClass('invisible');
+function click_o_price() {
+	$('#o_price').addClass('active');
+	$('#o_date').removeClass('active');
+	$('#form_by_date').addClass('invisible');
+	$('#form_by_price').removeClass('invisible');
+	
 }
-function click_o_ticket() {
-	$('#o_hotel').removeClass('active');
-	$('#o_ticket').addClass('active');
-	$('#hostelCity').addClass('invisible');
-	$('#roomCount').addClass('invisible');
-	$('#start').removeClass('invisible');
-	$('#finish').removeClass('invisible');
-	$('#type').removeClass('invisible');
+function click_o_date() {
+	$('#o_price').removeClass('active');
+	$('#o_date').addClass('active');
+	$('#form_by_price').addClass('invisible');
+	$('#form_by_date').removeClass('invisible');
 }
 
 $(document).ready(function() {
@@ -28,6 +23,22 @@ $(document).ready(function() {
 	});
 
 	PopUpHide(false);
+	PopUpTwoHide(false);
+	
+	var today = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+	var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 + 24 * 60 * 60 * 1000);
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+	var tomday = tomorrow.getDate();
+	var tommonth = tomorrow.getMonth() + 1;
+	var tomyear = tomorrow.getFullYear();
+	if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'-'+mm+'-'+dd;
+	if(tomday<10){tomday='0'+tomday} if(tommonth<10){tommonth='0'+tommonth} tomorrow = tomyear+'-'+tommonth+'-'+tomday;
+	$('#inDate').attr('value', today);
+	$('#outDate').attr('value', tomorrow);
+	$('#inDateSearch').attr('value', today);
+	$('#outDateSearch').attr('value', tomorrow);
 });
 function PopUpShow(mess) {
 	$("#message").html(mess);
@@ -36,7 +47,24 @@ function PopUpShow(mess) {
 function PopUpHide(reloadPage) {
 	$("#popup1").hide();
 	if (reloadPage) {
-		location.reload();
+		location.reload(true);
+	}
+}
+function PopUpTwoShow(hostelId, hostelName) {
+	document.getElementById("hostelId").value = hostelId;
+	document.getElementById("hostelName").value = hostelName;
+	$("#popup2").show();
+}
+function PopUpTwoHide(reloadPage) {
+	$("#popup2").hide();
+	if (reloadPage) {
+		location.reload(true);
+	}
+}
+function ErrorPopUpHide(reloadPage) {
+	$("#error_popup").hide();
+	if (reloadPage) {
+		location.reload(true);
 	}
 }
 function acceptOrder(orderId) {
@@ -99,17 +127,69 @@ function deleteHostel(hostelId) {
 		PopUpShow(data);
 	});
 }
-function addEditHostel() {
-	var msg = $('#hostel-form').serialize();
+function deleteRoom(hostelId, roomId) {
 	$.ajax({
-		type : 'POST',
-		url : 'AjaxController',
-		data : msg,
-		success : function(data) {
-			PopUpShow(data);
-		},
-		error : function(xhr, str) {
-			alert('Возникла ошибка: ' + xhr.responseCode);
+		url : "AjaxController",
+		method : "post",
+		data : {
+			hostelId : hostelId,
+			roomId : roomId,
+			command : "delete_room"
 		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
+}
+function banUser(userId) {
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			userId : userId,
+			command : "ban_user"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
+}
+function unBanUser(userId) {
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			userId : userId,
+			command : "unban_user"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
+}
+function addDiscountUser(userId) {
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			userId : userId,
+			command : "add_discount"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
+	});
+}
+function bookRoom(hostelId, roomId, inDate, outDate, price, booking) {
+	$.ajax({
+		url : "AjaxController",
+		method : "post",
+		data : {
+			hostelId : hostelId,
+			roomId : roomId,
+			inDate : inDate,
+			outDate : outDate,
+			price : price,
+			booking : booking,
+			command : "book_room"
+		}
+	}).done(function(data) {
+		PopUpShow(data);
 	});
 }

@@ -10,6 +10,7 @@ public class User {
 	private String email;
 	private String phone;
 	private boolean ban;
+	private boolean discount;
 
 	public long getUserId() {
 		return userId;
@@ -75,12 +76,22 @@ public class User {
 		this.phone = phone;
 	}
 
-	public boolean isBan() {
+	public boolean getBan() {
 		return ban;
 	}
 
 	public void setBan(boolean ban) {
 		this.ban = ban;
+	}
+
+	
+	
+	public boolean getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(boolean discount) {
+		this.discount = discount;
 	}
 
 	@Override
@@ -94,6 +105,7 @@ public class User {
 		result = prime * result + ((passport == null) ? 0 : passport.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result + (discount ? 1231 : 1237);
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
@@ -154,6 +166,9 @@ public class User {
 				return false;
 			}
 		} else if (!phone.equals(other.phone)) {
+			return false;
+		}
+		if (discount != other.discount) {
 			return false;
 		}
 		if (role == null) {

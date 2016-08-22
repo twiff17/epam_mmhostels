@@ -1,5 +1,9 @@
 package by.epam.hostelbeta.dao;
 
-public interface ICountryDAO {
+import java.util.List;
 
+import by.epam.hostelbeta.domain.entity.Country;
+
+public interface ICountryDAO {
+	List<Country> findAll() throws DAOException;
 }
