@@ -9,8 +9,8 @@ public class User {
 	private String passport;
 	private String email;
 	private String phone;
-	private boolean ban;
-	private boolean discount;
+	private String ban;
+	private String discount;
 
 	public long getUserId() {
 		return userId;
@@ -76,21 +76,19 @@ public class User {
 		this.phone = phone;
 	}
 
-	public boolean getBan() {
+	public String getBan() {
 		return ban;
 	}
 
-	public void setBan(boolean ban) {
+	public void setBan(String ban) {
 		this.ban = ban;
 	}
 
-	
-	
-	public boolean getDiscount() {
+	public String getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(boolean discount) {
+	public void setDiscount(String discount) {
 		this.discount = discount;
 	}
 
@@ -98,14 +96,14 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (ban ? 1231 : 1237);
+		result = prime * result + ((ban == null) ? 0 : ban.hashCode());
+		result = prime * result + ((discount == null) ? 0 : discount.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((fullname == null) ? 0 : fullname.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((passport == null) ? 0 : passport.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + (discount ? 1231 : 1237);
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
@@ -123,7 +121,18 @@ public class User {
 			return false;
 		}
 		User other = (User) obj;
-		if (ban != other.ban) {
+		if (ban == null) {
+			if (other.ban != null) {
+				return false;
+			}
+		} else if (!ban.equals(other.ban)) {
+			return false;
+		}
+		if (discount == null) {
+			if (other.discount != null) {
+				return false;
+			}
+		} else if (!discount.equals(other.discount)) {
 			return false;
 		}
 		if (email == null) {
@@ -166,9 +175,6 @@ public class User {
 				return false;
 			}
 		} else if (!phone.equals(other.phone)) {
-			return false;
-		}
-		if (discount != other.discount) {
 			return false;
 		}
 		if (role == null) {

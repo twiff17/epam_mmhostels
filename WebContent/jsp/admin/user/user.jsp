@@ -57,7 +57,7 @@
 									<td>${user.discount}</td>
 									<td>${user.role}</td>
 									<td><c:choose>
-											<c:when test="${user.ban}">
+											<c:when test="${user.ban eq 'Да'}">
 												<input type="button" class="icon-btn unban-btn"
 													onClick="unBanUser(${user.userId})">
 											</c:when>
@@ -66,7 +66,7 @@
 													onClick="banUser(${user.userId})">
 											</c:otherwise>
 										</c:choose></td>
-									<td><c:if test="${!user.discount}">
+									<td><c:if test="${user.discount eq 'Нет'}">
 											<input type="button" class="icon-btn discount-btn"
 												onClick="addDiscountUser(${user.userId})">
 										</c:if></td>

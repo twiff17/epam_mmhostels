@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="by.epam.hostelbeta.util.RandomHashGenerator" %>
 <!DOCTYPE html>
 
 <fmt:setLocale value="${locale}" />
@@ -58,6 +59,7 @@
 							<form id="hostel-form" action="Controller"
 								enctype="multipart/form-data" method="post" class="form">
 								<input type="hidden" name="command" value="add_hostel">
+								<input type="hidden" name="hash" value="${RandomHashGenerator.nextHash() }">
 						</c:otherwise>
 					</c:choose>
 					<div class="wrapper">

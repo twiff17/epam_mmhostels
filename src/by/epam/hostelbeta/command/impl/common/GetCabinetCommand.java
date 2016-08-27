@@ -20,17 +20,10 @@ public class GetCabinetCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		int page = 1;
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
-		if (request.getParameter(Parameters.PAGE_NUMBER) != null) {
-			page = Integer.parseInt(request.getParameter(Parameters.PAGE_NUMBER));
-		}
 		try {
-			int noOfPages = OrderService.getOrdersByUserId(Long.parseLong(request.getParameter(Parameters.USER_ID)),
-					page, orders);
+			orders = OrderService.getOrdersByUserId(Long.parseLong(request.getParameter(Parameters.USER_ID)));
 			request.setAttribute(Parameters.ORDER_LIST, orders);
-			request.setAttribute(Parameters.NO_OF_PAGES, noOfPages);
-			request.setAttribute(Parameters.CURRENT_PAGE, page);
 			request.getSession().setAttribute(Parameters.PAGE, CABINET);
 		} catch (ServiceException e) {
 			throw new CommandException(e);

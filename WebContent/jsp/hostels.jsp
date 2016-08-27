@@ -32,6 +32,9 @@
 					<h2>
 						<fmt:message key="label.our_hostels" />
 					</h2>
+					<c:if test="${empty hostelList}">
+						<br/><h2><fmt:message key="label.no_hostels" /></h2>
+					</c:if>
 					<c:forEach var="hostel" items="${hostelList}">
 						<div class='pad'>
 							<div class='wrapper under'>

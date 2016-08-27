@@ -474,3 +474,9 @@ span {
 .fullpayment-btn {
 	background: url(../images/fullpayment.png);
 }
+.cancel-btn {
+	background: url(../images/cancel.png);
+}
+.accept-btn {
+	background: url(../images/accept.png);
+}

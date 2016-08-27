@@ -6,100 +6,136 @@ import java.time.LocalDateTime;
 public class OrderDTO {
 	private long orderId;
 	private long userId;
+	private String userLogin;
 	private String hostelName;
 	private String country;
 	private String city;
 	private int roomId;
 	private String roomType;
 	private String status;
-	private boolean booking;
+	private String booking;
 	private double price;
 	private LocalDate inDate;
 	private LocalDate outDate;
 	private LocalDateTime orderTime;
+
 	public long getOrderId() {
 		return orderId;
 	}
+
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
+
 	public long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
+	public String getUserLogin() {
+		return userLogin;
+	}
+
+	public void setUserLogin(String userLogin) {
+		this.userLogin = userLogin;
+	}
+
 	public String getHostelName() {
 		return hostelName;
 	}
+
 	public void setHostelName(String hostelName) {
 		this.hostelName = hostelName;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public int getRoomId() {
 		return roomId;
 	}
+
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
+
 	public String getRoomType() {
 		return roomType;
 	}
+
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public boolean isBooking() {
-		return booking;
-	}
-	public void setBooking(boolean booking) {
-		this.booking = booking;
-	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	public LocalDate getInDate() {
 		return inDate;
 	}
+
 	public void setInDate(LocalDate inDate) {
 		this.inDate = inDate;
 	}
+
 	public LocalDate getOutDate() {
 		return outDate;
 	}
+
 	public void setOutDate(LocalDate outDate) {
 		this.outDate = outDate;
 	}
+
 	public LocalDateTime getOrderTime() {
 		return orderTime;
 	}
+
 	public void setOrderTime(LocalDateTime orderTime) {
 		this.orderTime = orderTime;
 	}
+
+	public String getBooking() {
+		return booking;
+	}
+
+	public void setBooking(String booking) {
+		this.booking = booking;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (booking ? 1231 : 1237);
+		result = prime * result + ((booking == null) ? 0 : booking.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((hostelName == null) ? 0 : hostelName.hashCode());
@@ -114,8 +150,10 @@ public class OrderDTO {
 		result = prime * result + ((roomType == null) ? 0 : roomType.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + (int) (userId ^ (userId >>> 32));
+		result = prime * result + ((userLogin == null) ? 0 : userLogin.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -128,7 +166,11 @@ public class OrderDTO {
 			return false;
 		}
 		OrderDTO other = (OrderDTO) obj;
-		if (booking != other.booking) {
+		if (booking == null) {
+			if (other.booking != null) {
+				return false;
+			}
+		} else if (!booking.equals(other.booking)) {
 			return false;
 		}
 		if (city == null) {
@@ -197,6 +239,13 @@ public class OrderDTO {
 			return false;
 		}
 		if (userId != other.userId) {
+			return false;
+		}
+		if (userLogin == null) {
+			if (other.userLogin != null) {
+				return false;
+			}
+		} else if (!userLogin.equals(other.userLogin)) {
 			return false;
 		}
 		return true;

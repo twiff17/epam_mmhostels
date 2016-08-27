@@ -30,6 +30,7 @@ import by.epam.hostelbeta.validator.HostelValidator;
 public class AddHostelCommand extends AbstractCommand {
 	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
 	private static final String HOSTEL_PATH = "path.page.hostel";
+	private static final String ENCODING = "UTF-8";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -48,22 +49,29 @@ public class AddHostelCommand extends AbstractCommand {
 					processUploadedFile(item, request, hostel);
 				}
 			}
+			if (request.getSession().getAttribute(Parameters.FORM_HASH) == null
+					|| !request.getSession().getAttribute(Parameters.FORM_HASH).equals(hostel.getHash())) {
+				if (HostelValidator.addValidate(hostel)) {
+					request.getSession().setAttribute(Parameters.FORM_HASH, hostel.getHash());
+					HostelService.addHostel(hostel);
 
-			if (HostelValidator.addValidate(hostel)) {
-				HostelService.addHostel(hostel);
+					List<Hostel> hostels = HostelService.getAllHostels();
+					request.setAttribute(Parameters.HOSTEL_LIST, hostels);
+					page = ConfigurationManager.getProperty(HOSTEL_PATH);
 
+				} else {
+					List<Country> countries = CountryService.getAllCountries();
+					List<Currency> currencyList = CurrencyService.getAllCurrency();
+					request.setAttribute(Parameters.COUNTRY_LIST, countries);
+					request.setAttribute(Parameters.CURRENCY_LIST, currencyList);
+					request.setAttribute(Parameters.ERROR_ADD_HOSTEL_MESSAGE,
+							locManager.getResourceBundle().getString(Parameters.INVALID_DATA));
+					page = ConfigurationManager.getProperty(HOSTEL_ADD_PATH);
+				}
+			} else {
 				List<Hostel> hostels = HostelService.getAllHostels();
 				request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 				page = ConfigurationManager.getProperty(HOSTEL_PATH);
-
-			} else {
-				List<Country> countries = CountryService.getAllCountries();
-				List<Currency> currencyList = CurrencyService.getAllCurrency();
-				request.setAttribute(Parameters.COUNTRY_LIST, countries);
-				request.setAttribute(Parameters.CURRENCY_LIST, currencyList);
-				request.setAttribute(Parameters.ERROR_ADD_HOSTEL_MESSAGE,
-						locManager.getResourceBundle().getString(Parameters.INVALID_DATA));
-				page = ConfigurationManager.getProperty(HOSTEL_ADD_PATH);
 			}
 		} catch (FileUploadException | ServiceException e) {
 			throw new CommandException(e);
@@ -91,7 +99,7 @@ public class AddHostelCommand extends AbstractCommand {
 		if (item.isFormField()) {
 			try {
 				String name = item.getFieldName();
-				String value = item.getString("UTF-8");
+				String value = item.getString(ENCODING);
 				switch (name) {
 				case Parameters.NAME:
 					hostel.setName(value);
@@ -117,6 +125,8 @@ public class AddHostelCommand extends AbstractCommand {
 				case Parameters.STANDART_PRICE:
 					hostel.setStandartPrice(Integer.parseInt(value));
 					break;
+				case Parameters.HASH:
+					hostel.setHash(value);
 				default:
 					break;
 				}

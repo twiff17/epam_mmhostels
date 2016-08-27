@@ -16,8 +16,8 @@ import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
 public class OrderDAO implements IOrderDAO {
-	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? ORDER BY `OrderTime` DESC LIMIT ?, ?";
-	private static final String SELECT_ALL_ORDERS = "SELECT * FROM `v_order_information` ORDER BY `OrderTime` DESC LIMIT ?, ?";
+	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? ORDER BY `OrderTime` DESC";
+	private static final String SELECT_ALL_ORDERS = "SELECT * FROM `v_order_information` ORDER BY `OrderTime` DESC";
 	private static final String REJECT_ORDER = "UPDATE `order` SET `Status` = 'Отклонен' WHERE `OrderId` = ?";
 	private static final String ACCEPT_ORDER = "UPDATE `order` SET `Status` = 'Принят' WHERE `OrderId` = ?";
 	private static final String CANCEL_ORDER = "UPDATE `order` SET `Status` = 'Отказ' WHERE `OrderId` = ?";
@@ -37,17 +37,17 @@ public class OrderDAO implements IOrderDAO {
 	private static final String PRICE = "Price";
 	private static final String ROOM_ID = "RoomId";
 	private static final String ORDER_ID = "OrderId";
+	private static final String USER_LOGIN = "UserLogin";
 
-	private int noOfRecords;
+	private static final String YES = "Да";
+	private static final String NO = "Нет";
 
-	public List<OrderDTO> findOrdersByUserId(long userId, int offset, int noOfRecords) throws DAOException {
+	public List<OrderDTO> findOrdersByUserId(long userId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 
 		try (PreparedStatement ps = connection.prepareStatement(SELECT_ORDERS_BY_USER_ID)) {
 			ps.setLong(1, userId);
-			ps.setInt(2, offset);
-			ps.setInt(3, noOfRecords);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -56,10 +56,6 @@ public class OrderDAO implements IOrderDAO {
 				orders.add(order);
 			}
 
-			rs = ps.executeQuery("SELECT FOUND_ROWS()");
-			if (rs.next()) {
-				this.noOfRecords = rs.getInt(1);
-			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
@@ -69,24 +65,17 @@ public class OrderDAO implements IOrderDAO {
 		return orders;
 	}
 
-	public List<OrderDTO> findAllOrders(int offset, int noOfRecords) throws DAOException {
+	public List<OrderDTO> findAllOrders() throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 
 		try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL_ORDERS)) {
-			ps.setInt(1, offset);
-			ps.setInt(2, noOfRecords);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 				OrderDTO order = new OrderDTO();
 				fillOrderDTO(rs, order);
 				orders.add(order);
-			}
-
-			rs = ps.executeQuery("SELECT FOUND_ROWS()");
-			if (rs.next()) {
-				this.noOfRecords = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -181,7 +170,11 @@ public class OrderDAO implements IOrderDAO {
 	private void fillOrderDTO(ResultSet rs, OrderDTO order) throws SQLException {
 		order.setOrderId(rs.getLong(ORDER_ID));
 		order.setUserId(rs.getLong(USER_ID));
-		order.setBooking(rs.getBoolean(BOOKING));
+		if (rs.getBoolean(BOOKING)) {
+			order.setBooking(YES);
+		} else {
+			order.setBooking(NO);
+		}
 		order.setCountry(rs.getString(COUNTRY));
 		order.setCity(rs.getString(CITY));
 		order.setHostelName(rs.getString(HOSTEL_NAME));
@@ -192,9 +185,6 @@ public class OrderDAO implements IOrderDAO {
 		order.setRoomId(rs.getInt(ROOM_ID));
 		order.setRoomType(rs.getString(ROOM_TYPE));
 		order.setStatus(rs.getString(STATUS));
-	}
-
-	public int getNoOfRecords() {
-		return noOfRecords;
+		order.setUserLogin(rs.getString(USER_LOGIN));
 	}
 }

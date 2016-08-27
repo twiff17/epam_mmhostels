@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.domain.entity;
 
 public class Hostel {
+	private String hash;
 	private long hostelId;
 	private String name;
 	private String country;
@@ -12,6 +13,12 @@ public class Hostel {
 	private String description;
 	private String imageName;
 	
+	public String getHash() {
+		return hash;
+	}
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
 	public long getHostelId() {
 		return hostelId;
 	}

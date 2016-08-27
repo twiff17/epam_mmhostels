@@ -21,15 +21,9 @@ public class GetOrdersCommand extends AbstractCommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
-		int page = 1;
-		if (request.getParameter(Parameters.PAGE_NUMBER) != null) {
-			page = Integer.parseInt(request.getParameter(Parameters.PAGE_NUMBER));
-		}
 		try {
-			int noOfPages = OrderService.getAllOrders(page, orders);
+			orders = OrderService.getAllOrders();
 			request.setAttribute(Parameters.ORDER_LIST, orders);
-			request.setAttribute(Parameters.NO_OF_PAGES, noOfPages);
-			request.setAttribute(Parameters.CURRENT_PAGE, page);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

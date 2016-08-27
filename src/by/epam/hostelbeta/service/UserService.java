@@ -3,7 +3,6 @@ package by.epam.hostelbeta.service;
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
-
 import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.impl.UserDAO;
 import by.epam.hostelbeta.domain.entity.User;

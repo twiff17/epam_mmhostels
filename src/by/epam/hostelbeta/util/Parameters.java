@@ -74,4 +74,6 @@ public class Parameters {
 	public static final String BOOKING = "booking";
 	public static final String ROOM_IS_BOOKED_SUCCESSFUL = "label.room_booked";
 	public static final String ROOM_BOOKING_FAIL = "label.room_booking_fail";
+	public static final String HASH = "hash";
+	public static final String FORM_HASH = "formHash";
 }

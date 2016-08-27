@@ -21,7 +21,7 @@ public class UserDAO implements IUserDAO {
 	private static final String BAN_USER = "UPDATE `user` SET `Ban` = 1 WHERE `UserId` = ?";
 	private static final String UNBAN_USER = "UPDATE `user` SET `Ban` = 0 WHERE `UserId` = ?";
 	private static final String ADD_DISCOUNT = "UPDATE `user` SET `Discount` = 1 WHERE `UserId` = ?";
-	
+
 	private static final String USER_ID = "UserId";
 	private static final String LOGIN = "Login";
 	private static final String ROLE = "Role";
@@ -34,7 +34,9 @@ public class UserDAO implements IUserDAO {
 
 	private static final String ROLE_CLIENT = "client";
 	private static final String ROLE_ADMIN = "admin";
-	
+
+	private static final String YES = "Да";
+	private static final String NO = "Нет";
 
 	public List<User> findAll() throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -175,8 +177,16 @@ public class UserDAO implements IUserDAO {
 		user.setEmail(rs.getString(EMAIL));
 		user.setPhone(rs.getString(PHONE));
 		user.setLogin(rs.getString(LOGIN));
-		user.setBan(rs.getBoolean(BAN));
-		user.setDiscount(rs.getBoolean(DISCOUNT));
+		if (rs.getBoolean(BAN)) {
+			user.setBan(YES);
+		} else {
+			user.setBan(NO);
+		}
+		if (rs.getBoolean(DISCOUNT)) {
+			user.setDiscount(YES);
+		} else {
+			user.setDiscount(NO);
+		}
 		boolean role = rs.getBoolean(ROLE);
 		if (!role) {
 			user.setRole(ROLE_CLIENT);
