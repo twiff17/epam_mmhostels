@@ -9,95 +9,74 @@ public class User {
 	private String passport;
 	private String email;
 	private String phone;
-	private String ban;
-	private String discount;
-
+	private boolean ban;
+	private boolean discount;
 	public long getUserId() {
 		return userId;
 	}
-
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-
 	public String getLogin() {
 		return login;
 	}
-
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getRole() {
 		return role;
 	}
-
 	public void setRole(String role) {
 		this.role = role;
 	}
-
 	public String getFullname() {
 		return fullname;
 	}
-
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
-
 	public String getPassport() {
 		return passport;
 	}
-
 	public void setPassport(String passport) {
 		this.passport = passport;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public String getBan() {
+	public boolean isBan() {
 		return ban;
 	}
-
-	public void setBan(String ban) {
+	public void setBan(boolean ban) {
 		this.ban = ban;
 	}
-
-	public String getDiscount() {
+	public boolean isDiscount() {
 		return discount;
 	}
-
-	public void setDiscount(String discount) {
+	public void setDiscount(boolean discount) {
 		this.discount = discount;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ban == null) ? 0 : ban.hashCode());
-		result = prime * result + ((discount == null) ? 0 : discount.hashCode());
+		result = prime * result + (ban ? 1231 : 1237);
+		result = prime * result + (discount ? 1231 : 1237);
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((fullname == null) ? 0 : fullname.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
@@ -108,7 +87,6 @@ public class User {
 		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -121,18 +99,10 @@ public class User {
 			return false;
 		}
 		User other = (User) obj;
-		if (ban == null) {
-			if (other.ban != null) {
-				return false;
-			}
-		} else if (!ban.equals(other.ban)) {
+		if (ban != other.ban) {
 			return false;
 		}
-		if (discount == null) {
-			if (other.discount != null) {
-				return false;
-			}
-		} else if (!discount.equals(other.discount)) {
+		if (discount != other.discount) {
 			return false;
 		}
 		if (email == null) {

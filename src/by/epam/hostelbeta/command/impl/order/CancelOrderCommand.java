@@ -17,8 +17,11 @@ public class CancelOrderCommand extends AbstractCommand {
 		String message;
 		try {
 			long orderId = Long.parseLong(request.getParameter(Parameters.ORDER_ID));
-			OrderService.cancelOrder(orderId);
-			message = locManager.getResourceBundle().getString(Parameters.OPERATION_SUCCESS);
+			if (OrderService.cancelOrder(orderId)) {
+				message = locManager.getResourceBundle().getString(Parameters.OPERATION_SUCCESS);
+			}else{
+				message = locManager.getResourceBundle().getString(Parameters.CANT_CANCEL_ORDER);
+			}
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
 		}

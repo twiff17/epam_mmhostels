@@ -53,8 +53,18 @@
 									<td>${user.email }</td>
 									<td>${user.passport }</td>
 									<td>${user.phone }</td>
-									<td>${user.ban}</td>
-									<td>${user.discount}</td>
+									<c:if test="${user.ban }">
+										<td><fmt:message key="label.yes" /></td>
+									</c:if>
+									<c:if test="${!user.ban }">
+										<td><fmt:message key="label.no" /></td>
+									</c:if>
+									<c:if test="${user.discount }">
+										<td><fmt:message key="label.yes" /></td>
+									</c:if>
+									<c:if test="${!user.discount }">
+										<td><fmt:message key="label.no" /></td>
+									</c:if>
 									<td>${user.role}</td>
 									<td><c:choose>
 											<c:when test="${user.ban eq 'Да'}">

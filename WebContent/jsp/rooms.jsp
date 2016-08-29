@@ -48,7 +48,7 @@
 							<c:forEach var="room" items="${roomList}">
 								<tr>
 									<td>${room.roomType }</td>
-									<td>${room.price }</td>
+									<td>${room.price}</td>
 									<td>${room.bedsNumber }</td>
 									<td><input type="button" class="icon-btn book-btn"
 										onClick="bookRoom(${room.hostelId}, ${room.roomId }, '${inDate}','${outDate}', ${room.price}, 1)"></td>
@@ -57,6 +57,10 @@
 								</tr>
 							</c:forEach>
 						</table>
+						<br />
+						<c:if test="${discount eq true }">
+							<b><fmt:message key="label.have_discount" /></b>
+						</c:if>
 					</div>
 				</article>
 			</section>

@@ -64,7 +64,12 @@
 										<td>${order.outDate}</td>
 										<td>${order.status}</td>
 										<td>${order.orderTime}</td>
-										<td>${order.booking}</td>
+										<c:if test="${order.booking }">
+											<td><fmt:message key="label.yes" /></td>
+										</c:if>
+										<c:if test="${!order.booking }">
+											<td><fmt:message key="label.no" /></td>
+										</c:if>
 										<td><c:if test="${order.status eq 'В обработке'}">
 												<input type="button" class="icon-btn delete-btn"
 													onClick="rejectOrder(${order.orderId})" value="">

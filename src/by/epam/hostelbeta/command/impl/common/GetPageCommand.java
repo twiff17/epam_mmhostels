@@ -12,6 +12,9 @@ import by.epam.hostelbeta.util.Parameters;
 
 public class GetPageCommand extends AbstractCommand {
 	private static final String SHORT_PATH = "path.page.";
+	private static final String NO_ACCESS_PATH = "path.page.noaccess";
+	private static final String ROLE_ADMIN = "admin";
+	private static final String ADMIN_PAGE = "admin";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -22,8 +25,13 @@ public class GetPageCommand extends AbstractCommand {
 					&& (pageName.equals(Parameters.LOGIN) || pageName.equals(Parameters.REGISTRATION))) {
 
 			} else {
-				page = ConfigurationManager.getProperty(SHORT_PATH + pageName);
-				request.getSession().setAttribute(Parameters.PAGE, pageName);
+				if (!ROLE_ADMIN.equals(request.getSession().getAttribute(Parameters.ROLE))
+						&& ADMIN_PAGE.equals(pageName)) {
+					page = ConfigurationManager.getProperty(NO_ACCESS_PATH);
+				} else {
+					page = ConfigurationManager.getProperty(SHORT_PATH + pageName);
+					request.getSession().setAttribute(Parameters.PAGE, pageName);
+				}
 			}
 		} catch (MissingResourceException e) {
 			throw new CommandException("Couldn't find page " + pageName, e);

@@ -23,6 +23,7 @@ public class OrderDAO implements IOrderDAO {
 	private static final String CANCEL_ORDER = "UPDATE `order` SET `Status` = 'Отказ' WHERE `OrderId` = ?";
 	private static final String CHECK_ROOM_AVAILABILITY = "SELECT `OrderId` FROM `order` WHERE `HostelId` = ? AND `RoomId` = ? AND (`InDate` <= ? AND `OutDate` >= ?) AND (`Status` = 'Принят' OR `Status` = 'В обработке')";
 	private static final String ADD_ORDER = "INSERT INTO `order` (`UserId`, `HostelId`, `RoomId`, `InDate`, `OutDate`, `Booking`, `Price`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String SELECT_ORDER_BY_ID = "SELECT * FROM `v_order_information` WHERE `OrderId` = ?";
 
 	private static final String USER_ID = "UserId";
 	private static final String HOSTEL_NAME = "HostelName";
@@ -38,9 +39,6 @@ public class OrderDAO implements IOrderDAO {
 	private static final String ROOM_ID = "RoomId";
 	private static final String ORDER_ID = "OrderId";
 	private static final String USER_LOGIN = "UserLogin";
-
-	private static final String YES = "Да";
-	private static final String NO = "Нет";
 
 	public List<OrderDTO> findOrdersByUserId(long userId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -167,14 +165,31 @@ public class OrderDAO implements IOrderDAO {
 		}
 	}
 
+	public OrderDTO findOrderById(long orderId) throws DAOException {
+		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
+		OrderDTO order = null;
+		try (PreparedStatement ps = connection.prepareStatement(SELECT_ORDER_BY_ID)) {
+			ps.setLong(1, orderId);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				order = new OrderDTO();
+				fillOrderDTO(rs, order);
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			connection.close();
+		}
+
+		return order;
+	}
+
 	private void fillOrderDTO(ResultSet rs, OrderDTO order) throws SQLException {
 		order.setOrderId(rs.getLong(ORDER_ID));
 		order.setUserId(rs.getLong(USER_ID));
-		if (rs.getBoolean(BOOKING)) {
-			order.setBooking(YES);
-		} else {
-			order.setBooking(NO);
-		}
+		order.setBooking(rs.getBoolean(BOOKING));
 		order.setCountry(rs.getString(COUNTRY));
 		order.setCity(rs.getString(CITY));
 		order.setHostelName(rs.getString(HOSTEL_NAME));

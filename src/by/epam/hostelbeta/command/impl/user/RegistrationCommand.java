@@ -43,6 +43,7 @@ public class RegistrationCommand extends AbstractCommand {
 					session.setAttribute(Parameters.LOGIN, user.getLogin());
 					request.getSession().setAttribute(Parameters.USER_ID, user.getUserId());
 					request.getSession().setAttribute(Parameters.BAN, false);
+					request.getSession().setAttribute(Parameters.DISCOUNT, false);
 					session.setAttribute(Parameters.ROLE, ROLE_CLIENT);
 					List<Hostel> hostels = HostelService.getPopularHostels();
 					request.setAttribute(Parameters.HOSTEL_LIST, hostels);

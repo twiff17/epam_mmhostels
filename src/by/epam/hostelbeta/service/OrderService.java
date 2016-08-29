@@ -1,5 +1,6 @@
 package by.epam.hostelbeta.service;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -47,16 +48,22 @@ public class OrderService {
 		}
 	}
 
-	public static void cancelOrder(long orderId) throws ServiceException {
+	public static boolean cancelOrder(long orderId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
-			orderDAO.cancelOrder(orderId);
+			OrderDTO order = orderDAO.findOrderById(orderId);
+			if (LocalDate.now().isAfter(order.getInDate()) || LocalDate.now().isEqual(order.getInDate())) {
+				return false;
+			} else {
+				orderDAO.cancelOrder(orderId);
+				return true;
+			}
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}
 
-	public static boolean bookRoom(Order order) throws ServiceException {
+	public static boolean bookRoom(Order order, boolean discount) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		RoomDAO roomDAO = new RoomDAO();
 		try {
@@ -64,6 +71,9 @@ public class OrderService {
 			if (!orderDAO.checkRoom(room, order.getInDate(), order.getOutDate())) {
 				long period = ChronoUnit.DAYS.between(order.getInDate(), order.getOutDate());
 				double price = period * room.getPrice();
+				if (discount) {
+					price = price * 0.9;
+				}
 				order.setPrice(price);
 				orderDAO.bookRoom(order);
 				return true;

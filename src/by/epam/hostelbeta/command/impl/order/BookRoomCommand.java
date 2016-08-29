@@ -26,15 +26,18 @@ public class BookRoomCommand extends AbstractCommand {
 			int booking = Integer.parseInt(request.getParameter(Parameters.BOOKING));
 			long hostelId = Long.parseLong(request.getParameter(Parameters.HOSTEL_ID));
 			int roomId = Integer.parseInt(request.getParameter(Parameters.ROOM_ID));
-
+			long userId = (long)request.getSession().getAttribute(Parameters.USER_ID);
+			boolean discount = (boolean) request.getSession().getAttribute(Parameters.DISCOUNT);
+			
+			
 			order.setHostelId(hostelId);
 			order.setRoomId(roomId);
 			order.setInDate(inDate);
 			order.setOutDate(outDate);
-			order.setUserId((long)request.getSession().getAttribute(Parameters.USER_ID));
+			order.setUserId(userId);
 			order.setBooking(booking);
 
-			if (OrderService.bookRoom(order)) {
+			if (OrderService.bookRoom(order, discount)) {
 				message = locManager.getResourceBundle().getString(Parameters.ROOM_IS_BOOKED_SUCCESSFUL);
 			} else {
 				message = locManager.getResourceBundle().getString(Parameters.ROOM_BOOKING_FAIL);

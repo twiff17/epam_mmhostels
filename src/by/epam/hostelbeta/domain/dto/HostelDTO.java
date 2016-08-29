@@ -13,6 +13,7 @@ public class HostelDTO {
 	private int maxPrice;
 	private String roomTypes;
 	private String imageName;
+	
 	public long getHostelId() {
 		return hostelId;
 	}

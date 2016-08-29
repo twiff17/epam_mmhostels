@@ -32,8 +32,8 @@ public class LoginCommand extends AbstractCommand {
 				request.getSession().setAttribute(Parameters.USER_ID, user.getUserId());
 				request.getSession().setAttribute(Parameters.LOGIN, user.getLogin());
 				request.getSession().setAttribute(Parameters.ROLE, user.getRole());
-				request.getSession().setAttribute(Parameters.BAN, user.getBan());
-				request.getSession().setAttribute(Parameters.REGULAR, user.getDiscount());
+				request.getSession().setAttribute(Parameters.BAN, user.isBan());
+				request.getSession().setAttribute(Parameters.DISCOUNT, user.isDiscount());
 				List<Hostel> hostels = HostelService.getPopularHostels();
 				request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 				request.getSession().setAttribute(Parameters.PAGE, HOME);

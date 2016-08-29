@@ -76,4 +76,6 @@ public class Parameters {
 	public static final String ROOM_BOOKING_FAIL = "label.room_booking_fail";
 	public static final String HASH = "hash";
 	public static final String FORM_HASH = "formHash";
+	public static final String DISCOUNT = "discount";
+	public static final String CANT_CANCEL_ORDER = "error.cant_cancel_order";
 }

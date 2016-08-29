@@ -14,6 +14,7 @@ public class Order {
 	private LocalDate outDate;
 	private int booking;
 	private double price;
+	
 	public long getOrderId() {
 		return orderId;
 	}
