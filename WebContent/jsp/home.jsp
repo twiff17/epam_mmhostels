@@ -86,10 +86,12 @@
 				<input type="hidden" id="hostelId" name="hostelId"> <input
 					type="hidden" id="hostelName" name="hostelName">
 				<fmt:message key="label.in_date" />
-				(*) <input type="date" class="marg1" required id="inDate" name="inDate">
+				(*) <input type="date" class="marg1"
+					style="border: 1px solid black;" required id="inDate" name="inDate">
 				<br />
 				<fmt:message key="label.out_date" />
-				(*) <input type="date" class="marg1" required id=outDate name="outDate">
+				(*) <input type="date" class="marg1"
+					style="border: 1px solid black;" required id=outDate name="outDate">
 				<br /> <input type="submit" class="details-btn"
 					value="<fmt:message
 					key="label.send" />"> <br />

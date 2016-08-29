@@ -33,7 +33,10 @@
 						<fmt:message key="label.our_hostels" />
 					</h2>
 					<c:if test="${empty hostelList}">
-						<br/><h2><fmt:message key="label.no_hostels" /></h2>
+						<br />
+						<h2>
+							<fmt:message key="label.no_hostels" />
+						</h2>
 					</c:if>
 					<c:forEach var="hostel" items="${hostelList}">
 						<div class='pad'>
@@ -114,20 +117,23 @@
 				<input type="hidden" id="hostelId" name="hostelId"> <input
 					type="hidden" id="hostelName" name="hostelName">
 				<fmt:message key="label.in_date" />
-				(*) <input type="date" class="marg1" required id="inDate" name="inDate">
+				(*) <input type="date" class="marg1"
+					style="border: 1px solid black;" required id="inDate" name="inDate">
 				<br />
 				<fmt:message key="label.out_date" />
-				(*) <input type="date" class="marg1" required id="outDate" name="outDate">
-				<br /> <input type="submit" class="details-btn"
-					value="<fmt:message
-					key="label.send" />"> <br />
+				(*) <input type="date" class="marg1"
+					style="border: 1px solid black;" required id="outDate"
+					name="outDate"> <br /> <input type="submit"
+					class="details-btn" value="<fmt:message
+					key="label.send" />">
+				<br />
 			</form>
 			<br> <a href="javascript:PopUpTwoHide(true)"><fmt:message
 					key="menu.close_window" /></a>
 		</div>
 	</div>
-	<c:if test="${not empty errorMessage}">>
-	<div class="b-popup" id="error_popup" style="z-index: 10">
+	<c:if test="${not empty errorMessage}">
+		<div class="b-popup" id="error_popup" style="z-index: 10">
 			<div class="b-popup-content">
 				<span id="message">${errorMessage}</span> <br> <br> <a
 					href="javascript:ErrorPopUpHide(false)"><fmt:message

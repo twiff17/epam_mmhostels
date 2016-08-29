@@ -12,6 +12,7 @@ import by.epam.hostelbeta.command.impl.hostel.GetHostelEditCommand;
 import by.epam.hostelbeta.command.impl.hostel.GetHostelsAdminCommand;
 import by.epam.hostelbeta.command.impl.hostel.GetHostelsCommand;
 import by.epam.hostelbeta.command.impl.hostel.SearchByDateCommand;
+import by.epam.hostelbeta.command.impl.hostel.SearchByPriceCommand;
 import by.epam.hostelbeta.command.impl.order.AcceptOrderCommand;
 import by.epam.hostelbeta.command.impl.order.BookRoomCommand;
 import by.epam.hostelbeta.command.impl.order.CancelOrderCommand;
@@ -67,6 +68,7 @@ public enum CommandEnum {
 	ADD_DISCOUNT(new AddDiscountCommand()),
 	BOOK_ROOM(new BookRoomCommand()),
 	SEARCH_BY_DATE(new SearchByDateCommand()),
+	SEARCH_BY_PRICE(new SearchByPriceCommand()),
 	GET_FREE_ROOMS(new GetFreeRoomsCommand());
 	
 	ICommand command;

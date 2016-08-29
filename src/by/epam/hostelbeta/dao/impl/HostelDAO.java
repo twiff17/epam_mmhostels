@@ -23,7 +23,8 @@ public class HostelDAO implements IHostelDAO {
 	private static final String ADD_HOSTEL = "INSERT INTO `hostel`(`Name`, `Country`, `City`, `Address`, `Currency`, `StandartPrice`, `Phone`, `Description`, `ImageName`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String EDIT_HOSTEL = "UPDATE `hostel` SET `Name` = ?, `Country` = ?, `City` = ?, `Address` = ?, `Currency` = ?, `StandartPrice` = ?, `Phone` = ?, `Description` = ? WHERE `HostelId` = ?";
 	private static final String SELECT_HOSTELS_BY_COUNTRY = "SELECT * FROM `v_hostel_information` WHERE `Country` LIKE ?";
-
+	private static final String SELECT_HOSTELS_BY_PRICE = "SELECT * FROM `v_hostel_information` WHERE `Country` LIKE ? and (`MinPriceBYN` BETWEEN ? and ?)";
+	
 	private static final String HOSTEL_ID = "HostelId";
 	private static final String NAME = "Name";
 	private static final String COUNTRY = "Country";
@@ -213,6 +214,31 @@ public class HostelDAO implements IHostelDAO {
 		return hostels;
 	}
 
+	public List<HostelDTO> findHostelsByPrice(String country, int minPrice, int maxPrice) throws DAOException {
+		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
+		ArrayList<HostelDTO> hostels = new ArrayList<HostelDTO>();
+		try (PreparedStatement ps = connection.prepareStatement(SELECT_HOSTELS_BY_PRICE)) {
+			ps.setString(1, "%" + country + "%");
+			ps.setInt(2, minPrice);
+			ps.setInt(3, maxPrice);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				HostelDTO hostel = new HostelDTO();
+				fillHostelDto(rs, hostel);
+				hostels.add(hostel);
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			connection.close();
+		}
+
+		return hostels;
+	}
+	
 	private void fillHostel(ResultSet rs, Hostel hostel) throws SQLException {
 		hostel.setHostelId(rs.getLong(HOSTEL_ID));
 		hostel.setImageName(rs.getString(IMAGE_NAME));

@@ -107,4 +107,13 @@ public class HostelService {
 		
 		return resultHostels;
 	}
+
+	public static List<HostelDTO> searchByPriceAndCountry(String country, int minPrice, int maxPrice) throws ServiceException {
+		HostelDAO hostelDAO = new HostelDAO();
+		try{
+			return hostelDAO.findHostelsByPrice(country, minPrice, maxPrice);
+		}catch(DAOException e){
+			throw new ServiceException(e);
+		}
+	}
 }

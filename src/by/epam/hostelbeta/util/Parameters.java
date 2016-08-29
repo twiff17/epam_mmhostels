@@ -78,4 +78,7 @@ public class Parameters {
 	public static final String FORM_HASH = "formHash";
 	public static final String DISCOUNT = "discount";
 	public static final String CANT_CANCEL_ORDER = "error.cant_cancel_order";
+	public static final String MIN_PRICE = "minPrice";
+	public static final String MAX_PRICE = "maxPrice";
+	public static final String INVALID_PRICES = "error.invalid_prices";
 }
