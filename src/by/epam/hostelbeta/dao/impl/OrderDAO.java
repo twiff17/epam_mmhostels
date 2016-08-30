@@ -39,6 +39,7 @@ public class OrderDAO implements IOrderDAO {
 	private static final String ROOM_ID = "RoomId";
 	private static final String ORDER_ID = "OrderId";
 	private static final String USER_LOGIN = "UserLogin";
+	private static final String USER_EMAIL = "UserEmail";
 
 	public List<OrderDTO> findOrdersByUserId(long userId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -201,5 +202,6 @@ public class OrderDAO implements IOrderDAO {
 		order.setRoomType(rs.getString(ROOM_TYPE));
 		order.setStatus(rs.getString(STATUS));
 		order.setUserLogin(rs.getString(USER_LOGIN));
+		order.setUserEmail(rs.getString(USER_EMAIL));
 	}
 }

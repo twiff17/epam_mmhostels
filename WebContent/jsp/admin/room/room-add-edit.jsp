@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="by.epam.hostelbeta.util.RandomHashGenerator" %>
 <!DOCTYPE html>
 
 <fmt:setLocale value="${locale}" />
@@ -56,6 +57,7 @@
 							</c:when>
 							<c:otherwise>
 								<input type="hidden" name="command" value="add_room">
+								<input type="hidden" name="hash" value="${RandomHashGenerator.nextHash() }">
 							</c:otherwise>
 						</c:choose>
 

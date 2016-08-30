@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.command.CommandEnum;
+import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
@@ -35,8 +36,8 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String command = httpRequest.getParameter(Parameters.COMMAND);
-		String role = (String) httpRequest.getSession().getAttribute(Parameters.ROLE);
-		if (!ROLE_ADMIN.equals(role) && adminCommands.contains(command.toUpperCase())) {
+		User user = (User) httpRequest.getSession().getAttribute(Parameters.SESSION_USER);
+		if (user != null && !ROLE_ADMIN.equals(user.getRole()) && adminCommands.contains(command.toUpperCase())) {
 			httpRequest.getRequestDispatcher(ConfigurationManager.getProperty(NO_ACCESS_PATH)).forward(httpRequest,
 					httpResponse);
 		} else {

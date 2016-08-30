@@ -29,11 +29,7 @@ public class LoginCommand extends AbstractCommand {
 		try {
 			User user = UserService.checkLoginPassword(login, password);
 			if (user != null) {
-				request.getSession().setAttribute(Parameters.USER_ID, user.getUserId());
-				request.getSession().setAttribute(Parameters.LOGIN, user.getLogin());
-				request.getSession().setAttribute(Parameters.ROLE, user.getRole());
-				request.getSession().setAttribute(Parameters.BAN, user.isBan());
-				request.getSession().setAttribute(Parameters.DISCOUNT, user.isDiscount());
+				request.getSession().setAttribute(Parameters.SESSION_USER, user);
 				List<Hostel> hostels = HostelService.getPopularHostels();
 				request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 				request.getSession().setAttribute(Parameters.PAGE, HOME);

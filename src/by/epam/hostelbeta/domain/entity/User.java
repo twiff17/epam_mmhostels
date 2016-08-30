@@ -11,66 +11,87 @@ public class User {
 	private String phone;
 	private boolean ban;
 	private boolean discount;
+
 	public long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getRole() {
 		return role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
+
 	public String getFullname() {
 		return fullname;
 	}
+
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
+
 	public String getPassport() {
 		return passport;
 	}
+
 	public void setPassport(String passport) {
 		this.passport = passport;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public boolean isBan() {
 		return ban;
 	}
+
 	public void setBan(boolean ban) {
 		this.ban = ban;
 	}
+
 	public boolean isDiscount() {
 		return discount;
 	}
+
 	public void setDiscount(boolean discount) {
 		this.discount = discount;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,6 +108,7 @@ public class User {
 		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

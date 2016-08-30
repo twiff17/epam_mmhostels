@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.command.AbstractCommand;
 import by.epam.hostelbeta.command.CommandException;
+import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
@@ -21,12 +22,11 @@ public class GetPageCommand extends AbstractCommand {
 		String pageName = request.getParameter(Parameters.PAGE);
 		String page = null;
 		try {
-			if (request.getSession().getAttribute(Parameters.ROLE) != null
-					&& (pageName.equals(Parameters.LOGIN) || pageName.equals(Parameters.REGISTRATION))) {
+			User user = (User) request.getSession().getAttribute(Parameters.SESSION_USER);
+			if (user != null && (pageName.equals(Parameters.LOGIN) || pageName.equals(Parameters.REGISTRATION))) {
 
 			} else {
-				if (!ROLE_ADMIN.equals(request.getSession().getAttribute(Parameters.ROLE))
-						&& ADMIN_PAGE.equals(pageName)) {
+				if (user != null && !ROLE_ADMIN.equals(user.getRole()) && ADMIN_PAGE.equals(pageName)) {
 					page = ConfigurationManager.getProperty(NO_ACCESS_PATH);
 				} else {
 					page = ConfigurationManager.getProperty(SHORT_PATH + pageName);

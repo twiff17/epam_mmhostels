@@ -23,7 +23,7 @@ public class RegistrationCommand extends AbstractCommand {
 	private static final String REGISTRATION_PATH = "path.page.registration";
 	private static final String HOME = "home";
 	private static final String HOME_PATH = "path.page.home";
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String page = null;
@@ -35,29 +35,36 @@ public class RegistrationCommand extends AbstractCommand {
 		user.setFullname(request.getParameter(Parameters.FULLNAME));
 		user.setPassport(request.getParameter(Parameters.PASSPORT));
 		user.setPhone(request.getParameter(Parameters.PHONE));
+		String hash = request.getParameter(Parameters.HASH);
 		try {
-			if (UserValidator.validate(user)) {
-				user = UserService.signUp(user);
-				if (user != null) {
-					HttpSession session = request.getSession();
-					session.setAttribute(Parameters.LOGIN, user.getLogin());
-					request.getSession().setAttribute(Parameters.USER_ID, user.getUserId());
-					request.getSession().setAttribute(Parameters.BAN, false);
-					request.getSession().setAttribute(Parameters.DISCOUNT, false);
-					session.setAttribute(Parameters.ROLE, ROLE_CLIENT);
-					List<Hostel> hostels = HostelService.getPopularHostels();
-					request.setAttribute(Parameters.HOSTEL_LIST, hostels);
-					request.getSession().setAttribute(Parameters.PAGE, HOME);
-					page = ConfigurationManager.getProperty(HOME_PATH);
+			if (request.getSession().getAttribute(Parameters.FORM_HASH) == null
+					|| !request.getSession().getAttribute(Parameters.FORM_HASH).equals(hash)) {
+				if (UserValidator.validate(user)) {
+					user = UserService.signUp(user);
+					if (user != null) {
+						HttpSession session = request.getSession();
+						user.setRole(ROLE_CLIENT);
+						session.setAttribute(Parameters.FORM_HASH, hash);
+						session.setAttribute(Parameters.SESSION_USER, user);
+						List<Hostel> hostels = HostelService.getPopularHostels();
+						request.setAttribute(Parameters.HOSTEL_LIST, hostels);
+						request.getSession().setAttribute(Parameters.PAGE, HOME);
+						page = ConfigurationManager.getProperty(HOME_PATH);
+					} else {
+						request.setAttribute(Parameters.ERROR_REGISTRATION_MESSAGE,
+								locManager.getResourceBundle().getString(Parameters.LOGIN_EXISTS_MESSAGE));
+						page = ConfigurationManager.getProperty(REGISTRATION_PATH);
+					}
 				} else {
 					request.setAttribute(Parameters.ERROR_REGISTRATION_MESSAGE,
-							locManager.getResourceBundle().getString(Parameters.LOGIN_EXISTS_MESSAGE));
+							locManager.getResourceBundle().getString(Parameters.INVALID_DATA));
 					page = ConfigurationManager.getProperty(REGISTRATION_PATH);
 				}
 			} else {
-				request.setAttribute(Parameters.ERROR_REGISTRATION_MESSAGE,
-						locManager.getResourceBundle().getString(Parameters.INVALID_DATA));
-				page = ConfigurationManager.getProperty(REGISTRATION_PATH);
+				List<Hostel> hostels = HostelService.getPopularHostels();
+				request.setAttribute(Parameters.HOSTEL_LIST, hostels);
+				request.getSession().setAttribute(Parameters.PAGE, HOME);
+				page = ConfigurationManager.getProperty(HOME_PATH);
 			}
 		} catch (ServiceException e) {
 			throw new CommandException(e);

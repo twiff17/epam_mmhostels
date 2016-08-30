@@ -60,17 +60,17 @@
 									<br> <i> ${hostel.description }</i> <br />
 								</p>
 								<c:choose>
-									<c:when test="${role eq 'client' and ban eq false}">
+									<c:when test="${sessionUser.role eq 'client' and sessionUser.ban eq false}">
 										<input type="button" class="details-btn"
 											onClick="PopUpTwoShow(${hostel.hostelId},'${hostel.name }')"
 											value="<fmt:message key="label.book" />">
 									</c:when>
-									<c:when test="${role eq 'client' and ban eq true}">
+									<c:when test="${sessionUser.role eq 'client' and sessionUser.ban eq true}">
 										<input class="details-btn" type="button"
 											value="<fmt:message key="label.book" />"
 											onClick="PopUpShow('<fmt:message key="label.you_banned" />')">
 									</c:when>
-									<c:when test="${role eq 'admin'}">
+									<c:when test="${sessionUser.role eq 'admin'}">
 
 									</c:when>
 									<c:otherwise>

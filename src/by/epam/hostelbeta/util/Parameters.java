@@ -81,4 +81,6 @@ public class Parameters {
 	public static final String MIN_PRICE = "minPrice";
 	public static final String MAX_PRICE = "maxPrice";
 	public static final String INVALID_PRICES = "error.invalid_prices";
+	public static final String MAIL = "mail";
+	public static final String SESSION_USER = "sessionUser";
 }

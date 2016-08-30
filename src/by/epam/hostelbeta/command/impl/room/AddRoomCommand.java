@@ -36,28 +36,37 @@ public class AddRoomCommand extends AbstractCommand {
 			room.setBedsNumber(Integer.parseInt(request.getParameter(Parameters.BEDS_NUMBER)));
 			room.setRoomType(Integer.parseInt(request.getParameter(Parameters.ROOM_TYPE)));
 
-			if (RoomValidator.validate(room)) {
-				if (RoomService.addRoom(room)) {
-					List<RoomDTO> rooms = RoomService.getAllRooms();
-					request.setAttribute(Parameters.ROOM_LIST, rooms);
-					page = ConfigurationManager.getProperty(ROOM_PATH);
+			String hash = request.getParameter(Parameters.HASH);
+			if (request.getSession().getAttribute(Parameters.FORM_HASH) == null
+					|| !request.getSession().getAttribute(Parameters.FORM_HASH).equals(hash)) {
+				if (RoomValidator.validate(room)) {
+					if (RoomService.addRoom(room)) {
+						request.getSession().setAttribute(Parameters.FORM_HASH, hash);
+						List<RoomDTO> rooms = RoomService.getAllRooms();
+						request.setAttribute(Parameters.ROOM_LIST, rooms);
+						page = ConfigurationManager.getProperty(ROOM_PATH);
+					} else {
+						List<Hostel> hostels = HostelService.getAllHostels();
+						List<RoomType> roomTypes = RoomTypeService.getAllTypes();
+						request.setAttribute(Parameters.HOSTEL_LIST, hostels);
+						request.setAttribute(Parameters.ROOM_TYPE_LIST, roomTypes);
+						request.setAttribute(Parameters.ERROR_ADD_ROOM_MESSAGE,
+								locManager.getResourceBundle().getString(Parameters.ROOM_ID_EXISTS_MESSAGE));
+						page = ConfigurationManager.getProperty(ROOM_ADD_PATH);
+					}
 				} else {
 					List<Hostel> hostels = HostelService.getAllHostels();
 					List<RoomType> roomTypes = RoomTypeService.getAllTypes();
 					request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 					request.setAttribute(Parameters.ROOM_TYPE_LIST, roomTypes);
 					request.setAttribute(Parameters.ERROR_ADD_ROOM_MESSAGE,
-							locManager.getResourceBundle().getString(Parameters.ROOM_ID_EXISTS_MESSAGE));
+							locManager.getResourceBundle().getString(Parameters.INVALID_DATA));
 					page = ConfigurationManager.getProperty(ROOM_ADD_PATH);
 				}
 			} else {
-				List<Hostel> hostels = HostelService.getAllHostels();
-				List<RoomType> roomTypes = RoomTypeService.getAllTypes();
-				request.setAttribute(Parameters.HOSTEL_LIST, hostels);
-				request.setAttribute(Parameters.ROOM_TYPE_LIST, roomTypes);
-				request.setAttribute(Parameters.ERROR_ADD_ROOM_MESSAGE,
-						locManager.getResourceBundle().getString(Parameters.INVALID_DATA));
-				page = ConfigurationManager.getProperty(ROOM_ADD_PATH);
+				List<RoomDTO> rooms = RoomService.getAllRooms();
+				request.setAttribute(Parameters.ROOM_LIST, rooms);
+				page = ConfigurationManager.getProperty(ROOM_PATH);
 			}
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);

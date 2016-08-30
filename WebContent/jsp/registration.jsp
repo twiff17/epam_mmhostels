@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="by.epam.hostelbeta.util.RandomHashGenerator" %>
 <fmt:setLocale value="${locale}" />
 <fmt:setBundle basename="pagecontent" />
 
@@ -33,6 +34,7 @@
 					<form method="post" action="Controller" class="form"
 						id="registrationForm">
 						<input type="hidden" name="command" value="registration">
+						<input type="hidden" name="hash" value="${RandomHashGenerator.nextHash() }">
 						<div>
 							<div class="wrapper">
 								<fmt:message key="label.login" />

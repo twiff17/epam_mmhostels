@@ -65,7 +65,7 @@
 								</c:forEach>
 							</table>
 							<br />
-							<c:if test="${discount eq true }">
+							<c:if test="${sessionUser.discount eq true }">
 								<b><fmt:message key="label.have_discount" /></b>
 							</c:if>
 						</div>

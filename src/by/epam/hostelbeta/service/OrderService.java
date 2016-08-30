@@ -84,4 +84,13 @@ public class OrderService {
 			throw new ServiceException(e);
 		}
 	}
+
+	public static OrderDTO getOrderById(long orderId) throws ServiceException {
+		OrderDAO orderDAO = new OrderDAO();
+		try{
+			return orderDAO.findOrderById(orderId);
+		}catch(DAOException e){
+			throw new ServiceException(e);
+		}
+	}
 }
