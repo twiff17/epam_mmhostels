@@ -17,15 +17,17 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class GetHostelEditCommand extends AbstractCommand{
-private static final String HOSTEL_ADD_PAGE = "path.page.hostel-add";
-	
+public class GetHostelEditCommand extends AbstractCommand {
+	private static final String HOSTEL_ADD_PAGE = "path.page.hostel-add";
+	private static final String ADMIN = "admin";
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
 			Hostel hostel = HostelService.getHostelById(Long.parseLong(request.getParameter(Parameters.HOSTEL_ID)));
 			List<Country> countries = CountryService.getAllCountries();
 			List<Currency> currencyList = CurrencyService.getAllCurrency();
+			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.COUNTRY_LIST, countries);
 			request.setAttribute(Parameters.CURRENCY_LIST, currencyList);
 			request.setAttribute(Parameters.HOSTEL, hostel);

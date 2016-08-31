@@ -15,11 +15,13 @@ import by.epam.hostelbeta.util.Parameters;
 
 public class GetUsersCommand extends AbstractCommand {
 	private static final String USER_PATH = "path.page.user";
+	private static final String ADMIN = "admin";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
 			List<User> users = UserService.getAllUsers();
+			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.USER_LIST, users);
 		} catch (ServiceException e) {
 			throw new CommandException(e);

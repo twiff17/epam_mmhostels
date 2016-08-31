@@ -22,7 +22,7 @@ public class RoomDAO implements IRoomDAO {
 	private static final String SELECT_ROOM_BY_ID = "SELECT * FROM `room` WHERE `HostelId` = ? AND `RoomId` = ?";
 	private static final String EDIT_ROOM = "UPDATE `room` SET `RoomType` = ?, `BedsNumber` = ? WHERE `HostelId` = ? AND `RoomId` = ?";
 	private static final String SELECT_ROOM_DTO_BY_ID = "SELECT `HostelId`, `RoomId`, `Name` as `HostelName`, `RoomType`, `BYNPrice` as `Price`, `BedsNumber` FROM `v_room_information` WHERE `HostelId` = ? AND `RoomId` = ?";
-	
+
 	private static final String HOSTEL_ID = "HostelId";
 	private static final String ROOM_ID = "RoomId";
 	private static final String ROOM_TYPE = "RoomType";
@@ -187,7 +187,7 @@ public class RoomDAO implements IRoomDAO {
 		}
 		return room;
 	}
-	
+
 	private void fillRoomDTO(ResultSet rs, RoomDTO room) throws SQLException {
 		room.setHostelName(rs.getString(HOSTEL_NAME));
 		room.setHostelId(rs.getLong(HOSTEL_ID));

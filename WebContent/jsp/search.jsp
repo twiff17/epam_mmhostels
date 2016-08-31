@@ -50,8 +50,8 @@
 			<div class='wrapper'>
 				<fmt:message key="label.min_price" />(*)
 				<input type="text"
-					title="<fmt:message key="form_title.integer" />" value="0"
-					pattern="[1-9][0-9]*" name='minPrice' required style='width: 100%;'>
+					title="<fmt:message key="form_title.integer_zero" />" value="0"
+					pattern="[0-9][0-9]*" name='minPrice' required style='width: 100%;'>
 			</div>
 
 			<div class='wrapper'>

@@ -5,30 +5,39 @@ public class Room {
 	private long roomId;
 	private int roomType;
 	private int bedsNumber;
+
 	public long getHostelId() {
 		return hostelId;
 	}
+
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
 	}
+
 	public long getRoomId() {
 		return roomId;
 	}
+
 	public void setRoomId(long roomId) {
 		this.roomId = roomId;
 	}
+
 	public int getRoomType() {
 		return roomType;
 	}
+
 	public void setRoomType(int roomType) {
 		this.roomType = roomType;
 	}
+
 	public int getBedsNumber() {
 		return bedsNumber;
 	}
+
 	public void setBedsNumber(int bedsNumber) {
 		this.bedsNumber = bedsNumber;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -39,6 +48,7 @@ public class Room {
 		result = prime * result + roomType;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

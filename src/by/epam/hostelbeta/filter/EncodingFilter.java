@@ -9,23 +9,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter("/Controller")
+@WebFilter(urlPatterns = { "/Controller", "/AjaxController" })
 public class EncodingFilter implements Filter {
 	private static final String ENCODING = "UTF-8";
-	
+
 	public EncodingFilter() {
 	}
-	
+
 	public void destroy() {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		String encoding = request.getCharacterEncoding();
-		if (!ENCODING.equalsIgnoreCase(encoding)){
-			request.setCharacterEncoding(ENCODING);
-			response.setCharacterEncoding(ENCODING);
-		}
+		request.setCharacterEncoding(ENCODING);
+		response.setCharacterEncoding(ENCODING);
 		chain.doFilter(request, response);
 	}
 

@@ -10,7 +10,7 @@ import by.epam.hostelbeta.service.UserService;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class UnbanUserCommand extends AbstractCommand{
+public class UnbanUserCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

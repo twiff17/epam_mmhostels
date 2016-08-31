@@ -14,67 +14,87 @@ public class Order {
 	private LocalDate outDate;
 	private int booking;
 	private double price;
-	
+
 	public long getOrderId() {
 		return orderId;
 	}
+
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
+
 	public long getHostelId() {
 		return hostelId;
 	}
+
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
 	}
+
 	public long getRoomId() {
 		return roomId;
 	}
+
 	public void setRoomId(long roomId) {
 		this.roomId = roomId;
 	}
+
 	public long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
 	public LocalDateTime getOrderTime() {
 		return orderTime;
 	}
+
 	public void setOrderTime(LocalDateTime orderTime) {
 		this.orderTime = orderTime;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public LocalDate getInDate() {
 		return inDate;
 	}
+
 	public void setInDate(LocalDate inDate) {
 		this.inDate = inDate;
 	}
+
 	public LocalDate getOutDate() {
 		return outDate;
 	}
+
 	public void setOutDate(LocalDate outDate) {
 		this.outDate = outDate;
 	}
+
 	public int getBooking() {
 		return booking;
 	}
+
 	public void setBooking(int booking) {
 		this.booking = booking;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,6 +113,7 @@ public class Order {
 		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

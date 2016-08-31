@@ -31,6 +31,10 @@ public class AddHostelCommand extends AbstractCommand {
 	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
 	private static final String HOSTEL_PATH = "path.page.hostel";
 	private static final String ENCODING = "UTF-8";
+	private static final String PNG_FORMAT = ".png";
+	private static final String JPG_FORMAT = ".jpg";
+	private static final String GIF_FORMAT = ".gif";
+	private static final String HOSTELS_IMAGES_PATH = "/images/hostels";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -81,10 +85,10 @@ public class AddHostelCommand extends AbstractCommand {
 
 	private void processUploadedFile(FileItem item, HttpServletRequest request, Hostel hostel) throws CommandException {
 		File uploadedFile = null;
-		String path = request.getServletContext().getRealPath("/images/hostels");
+		String path = request.getServletContext().getRealPath(HOSTELS_IMAGES_PATH);
 		hostel.setImageName(item.getName());
 		String format = item.getName().substring(item.getName().lastIndexOf("."));
-		if (format.equals(".png") || format.equals(".jpg") || format.equals(".gif")) {
+		if (format.equals(PNG_FORMAT) || format.equals(JPG_FORMAT) || format.equals(GIF_FORMAT)) {
 			uploadedFile = new File(path + "/" + item.getName());
 			try {
 				uploadedFile.createNewFile();

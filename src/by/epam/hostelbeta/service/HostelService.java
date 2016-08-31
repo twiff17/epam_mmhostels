@@ -104,15 +104,16 @@ public class HostelService {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-		
+
 		return resultHostels;
 	}
 
-	public static List<HostelDTO> searchByPriceAndCountry(String country, int minPrice, int maxPrice) throws ServiceException {
+	public static List<HostelDTO> searchByPriceAndCountry(String country, int minPrice, int maxPrice)
+			throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
-		try{
+		try {
 			return hostelDAO.findHostelsByPrice(country, minPrice, maxPrice);
-		}catch(DAOException e){
+		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}

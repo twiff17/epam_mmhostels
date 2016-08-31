@@ -12,73 +12,95 @@ public class Hostel {
 	private String phone;
 	private String description;
 	private String imageName;
-	
+
 	public String getHash() {
 		return hash;
 	}
+
 	public void setHash(String hash) {
 		this.hash = hash;
 	}
+
 	public long getHostelId() {
 		return hostelId;
 	}
+
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getCurrency() {
 		return currency;
 	}
+
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
+
 	public int getStandartPrice() {
 		return standartPrice;
 	}
+
 	public void setStandartPrice(int standartPrice) {
 		this.standartPrice = standartPrice;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getImageName() {
 		return imageName;
 	}
+
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,6 +117,7 @@ public class Hostel {
 		result = prime * result + standartPrice;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -171,6 +194,5 @@ public class Hostel {
 		}
 		return true;
 	}
-	
-	
+
 }

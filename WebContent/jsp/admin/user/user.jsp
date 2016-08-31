@@ -66,17 +66,21 @@
 										<td><fmt:message key="label.no" /></td>
 									</c:if>
 									<td>${user.role}</td>
-									<td><c:choose>
-											<c:when test="${user.ban eq true}">
-												<input type="button" class="icon-btn unban-btn"
-													onClick="unBanUser(${user.userId})">
-											</c:when>
-											<c:otherwise>
-												<input type="button" class="icon-btn ban-btn"
-													onClick="banUser(${user.userId})">
-											</c:otherwise>
-										</c:choose></td>
-									<td><c:if test="${user.discount eq false}">
+									<td><c:if test="${user.role eq 'client' }">
+											<c:choose>
+												<c:when test="${user.ban eq true}">
+													<input type="button" class="icon-btn unban-btn"
+														onClick="unBanUser(${user.userId})">
+												</c:when>
+												<c:otherwise>
+													<input type="button" class="icon-btn ban-btn"
+														onClick="banUser(${user.userId})">
+												</c:otherwise>
+											</c:choose>
+										</c:if></td>
+
+									<td><c:if
+											test="${user.discount eq false and user.role eq 'client'}">
 											<input type="button" class="icon-btn discount-btn"
 												onClick="addDiscountUser(${user.userId})">
 										</c:if></td>

@@ -15,11 +15,13 @@ import by.epam.hostelbeta.util.Parameters;
 
 public class GetRoomsAdminCommand extends AbstractCommand{
 	private static final String ROOM_PATH = "path.page.room";
+	private static final String ADMIN = "admin";
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
 			List<RoomDTO> rooms = RoomService.getAllRooms();
+			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.ROOM_LIST, rooms);
 		} catch (ServiceException e) {
 			throw new CommandException(e);

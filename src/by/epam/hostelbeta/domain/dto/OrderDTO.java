@@ -19,96 +19,127 @@ public class OrderDTO {
 	private LocalDate inDate;
 	private LocalDate outDate;
 	private LocalDateTime orderTime;
+
 	public long getOrderId() {
 		return orderId;
 	}
+
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
+
 	public long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
 	public String getUserLogin() {
 		return userLogin;
 	}
+
 	public void setUserLogin(String userLogin) {
 		this.userLogin = userLogin;
 	}
+
 	public String getUserEmail() {
 		return userEmail;
 	}
+
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+
 	public String getHostelName() {
 		return hostelName;
 	}
+
 	public void setHostelName(String hostelName) {
 		this.hostelName = hostelName;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public int getRoomId() {
 		return roomId;
 	}
+
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
+
 	public String getRoomType() {
 		return roomType;
 	}
+
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public boolean isBooking() {
 		return booking;
 	}
+
 	public void setBooking(boolean booking) {
 		this.booking = booking;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	public LocalDate getInDate() {
 		return inDate;
 	}
+
 	public void setInDate(LocalDate inDate) {
 		this.inDate = inDate;
 	}
+
 	public LocalDate getOutDate() {
 		return outDate;
 	}
+
 	public void setOutDate(LocalDate outDate) {
 		this.outDate = outDate;
 	}
+
 	public LocalDateTime getOrderTime() {
 		return orderTime;
 	}
+
 	public void setOrderTime(LocalDateTime orderTime) {
 		this.orderTime = orderTime;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -132,6 +163,7 @@ public class OrderDTO {
 		result = prime * result + ((userLogin == null) ? 0 : userLogin.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

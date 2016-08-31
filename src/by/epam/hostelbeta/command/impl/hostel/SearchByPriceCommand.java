@@ -23,11 +23,14 @@ public class SearchByPriceCommand extends AbstractCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
 		String country = request.getParameter(Parameters.COUNTRY);
-		int minPrice = Integer.parseInt((request.getParameter(Parameters.MIN_PRICE)));
-		int maxPrice = Integer.parseInt((request.getParameter(Parameters.MAX_PRICE)));
+
 		request.setAttribute(Parameters.PAGE, HOSTELS);
 		try {
+			int minPrice = Integer.parseInt((request.getParameter(Parameters.MIN_PRICE)));
+			int maxPrice = Integer.parseInt((request.getParameter(Parameters.MAX_PRICE)));
+
 			if (maxPrice > minPrice) {
+				request.setAttribute(Parameters.IS_SEARCH, true);
 				List<HostelDTO> hostels = HostelService.searchByPriceAndCountry(country, minPrice, maxPrice);
 				request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 			} else {
@@ -39,7 +42,7 @@ public class SearchByPriceCommand extends AbstractCommand {
 				request.setAttribute(Parameters.ERROR_MESSAGE,
 						locManager.getResourceBundle().getString(Parameters.INVALID_PRICES));
 			}
-		} catch (ServiceException e) {
+		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
 		}
 		return ConfigurationManager.getProperty(HOSTELS_PATH);

@@ -37,7 +37,8 @@ public class SecurityFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String command = httpRequest.getParameter(Parameters.COMMAND);
 		User user = (User) httpRequest.getSession().getAttribute(Parameters.SESSION_USER);
-		if (user != null && !ROLE_ADMIN.equals(user.getRole()) && adminCommands.contains(command.toUpperCase())) {
+		if ((user == null && adminCommands.contains(command.toUpperCase())) || (user != null
+				&& !ROLE_ADMIN.equals(user.getRole()) && adminCommands.contains(command.toUpperCase()))) {
 			httpRequest.getRequestDispatcher(ConfigurationManager.getProperty(NO_ACCESS_PATH)).forward(httpRequest,
 					httpResponse);
 		} else {

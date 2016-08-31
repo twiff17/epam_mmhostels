@@ -24,6 +24,11 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
 public class BookRoomCommand extends AbstractCommand {
+	private static final String HOSTEL = "hostel";
+	private static final String IN_DATE = "inDate";
+	private static final String OUT_DATE = "outDate";
+	private static final String LOGIN = "login";
+	private static final String MESSAGE_SUBJECT = "«а€вка на бронирование в очереди на обработку.";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -51,7 +56,7 @@ public class BookRoomCommand extends AbstractCommand {
 
 			if (OrderService.bookRoom(order, discount)) {
 				Hostel hostel = HostelService.getHostelById(hostelId);
-				sendMail(request, hostel, order , user);
+				sendMail(request, hostel, order, user);
 				message = locManager.getResourceBundle().getString(Parameters.ROOM_IS_BOOKED_SUCCESSFUL);
 			} else {
 				message = locManager.getResourceBundle().getString(Parameters.ROOM_BOOKING_FAIL);
@@ -70,12 +75,11 @@ public class BookRoomCommand extends AbstractCommand {
 		properties.load(context.getResourceAsStream(filename));
 		ST message;
 		message = new ST(MailMessageTemplate.bookRoomMessage);
-		message.add("inDate", order.getInDate());
-		message.add("outDate", order.getOutDate());
-		message.add("login", user.getLogin());
-		message.add("hostel", hostel.getName());
-		MailThread mailOperator = new MailThread(user.getEmail(), "«а€вка на бронирование в очереди на обработку.",
-				message.render(), properties);
+		message.add(IN_DATE, order.getInDate());
+		message.add(OUT_DATE, order.getOutDate());
+		message.add(LOGIN, user.getLogin());
+		message.add(HOSTEL, hostel.getName());
+		MailThread mailOperator = new MailThread(user.getEmail(), MESSAGE_SUBJECT, message.render(), properties);
 
 		mailOperator.start();
 	}

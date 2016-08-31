@@ -17,12 +17,14 @@ import by.epam.hostelbeta.util.Parameters;
 
 public class GetRoomAddCommand extends AbstractCommand {
 	private static final String ROOM_ADD_PAGE = "path.page.room-add";
+	private static final String ADMIN = "admin";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
 			List<Hostel> hostels = HostelService.getAllHostels();
 			List<RoomType> roomTypes = RoomTypeService.getAllTypes();
+			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 			request.setAttribute(Parameters.ROOM_TYPE_LIST, roomTypes);
 		} catch (ServiceException e) {

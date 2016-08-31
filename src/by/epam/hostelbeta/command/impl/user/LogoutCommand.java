@@ -1,6 +1,5 @@
 package by.epam.hostelbeta.command.impl.user;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +14,10 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class LogoutCommand extends AbstractCommand{
+public class LogoutCommand extends AbstractCommand {
 	private static final String HOME = "home";
 	private static final String HOME_PATH = "path.page.home";
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String locale = (String) request.getSession().getAttribute(Parameters.LOCALE);

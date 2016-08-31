@@ -7,42 +7,55 @@ public class RoomDTO {
 	private String roomType;
 	private double price;
 	private int bedsNumber;
+
 	public int getRoomId() {
 		return roomId;
 	}
+
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
+
 	public long getHostelId() {
 		return hostelId;
 	}
+
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
 	}
+
 	public String getHostelName() {
 		return hostelName;
 	}
+
 	public void setHostelName(String hostelName) {
 		this.hostelName = hostelName;
 	}
+
 	public String getRoomType() {
 		return roomType;
 	}
+
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	public int getBedsNumber() {
 		return bedsNumber;
 	}
+
 	public void setBedsNumber(int bedsNumber) {
 		this.bedsNumber = bedsNumber;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,6 +70,7 @@ public class RoomDTO {
 		result = prime * result + ((roomType == null) ? 0 : roomType.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

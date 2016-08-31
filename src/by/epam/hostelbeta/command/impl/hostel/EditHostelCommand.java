@@ -22,6 +22,7 @@ import by.epam.hostelbeta.validator.HostelValidator;
 public class EditHostelCommand extends AbstractCommand {
 	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
 	private static final String HOSTEL_PATH = "path.page.hostel";
+	private static final String ADMIN = "admin";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -29,7 +30,7 @@ public class EditHostelCommand extends AbstractCommand {
 
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
 		Hostel hostel = new Hostel();
-
+		request.setAttribute(Parameters.PAGE, ADMIN);
 		try {
 			hostel.setHostelId(Long.parseLong(request.getParameter(Parameters.HOSTEL_ID)));
 			hostel.setName(request.getParameter(Parameters.NAME));

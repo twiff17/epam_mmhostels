@@ -13,79 +13,103 @@ public class HostelDTO {
 	private int maxPrice;
 	private String roomTypes;
 	private String imageName;
-	
+
 	public long getHostelId() {
 		return hostelId;
 	}
+
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public String getCurrency() {
 		return currency;
 	}
+
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public int getMinPrice() {
 		return minPrice;
 	}
+
 	public void setMinPrice(int minPrice) {
 		this.minPrice = minPrice;
 	}
+
 	public int getMaxPrice() {
 		return maxPrice;
 	}
+
 	public void setMaxPrice(int maxPrice) {
 		this.maxPrice = maxPrice;
 	}
+
 	public String getRoomTypes() {
 		return roomTypes;
 	}
+
 	public void setRoomTypes(String roomTypes) {
 		this.roomTypes = roomTypes;
 	}
+
 	public String getImageName() {
 		return imageName;
 	}
+
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,6 +128,7 @@ public class HostelDTO {
 		result = prime * result + ((roomTypes == null) ? 0 : roomTypes.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -190,6 +215,5 @@ public class HostelDTO {
 		}
 		return true;
 	}
-	
-	
+
 }

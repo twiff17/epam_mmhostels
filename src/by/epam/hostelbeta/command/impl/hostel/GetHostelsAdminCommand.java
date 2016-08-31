@@ -13,13 +13,15 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class GetHostelsAdminCommand extends AbstractCommand{
+public class GetHostelsAdminCommand extends AbstractCommand {
 	private static final String HOSTEL_PATH = "path.page.hostel";
-	
+	private static final String ADMIN = "admin";
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
 			List<Hostel> hostels = HostelService.getAllHostels();
+			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 		} catch (ServiceException e) {
 			throw new CommandException(e);

@@ -83,4 +83,5 @@ public class Parameters {
 	public static final String INVALID_PRICES = "error.invalid_prices";
 	public static final String MAIL = "mail";
 	public static final String SESSION_USER = "sessionUser";
+	public static final String IS_SEARCH = "isSearch";
 }

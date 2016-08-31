@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.room;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class GetFreeRoomsCommand extends AbstractCommand {
 				}
 				page = ConfigurationManager.getProperty(HOSTELS_PATH);
 			}
-		} catch (ServiceException | NumberFormatException e) {
+		} catch (ServiceException | NumberFormatException | DateTimeParseException e) {
 			throw new CommandException(e);
 		}
 		return page;

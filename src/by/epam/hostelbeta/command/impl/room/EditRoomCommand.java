@@ -20,7 +20,7 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.RoomValidator;
 
-public class EditRoomCommand extends AbstractCommand{
+public class EditRoomCommand extends AbstractCommand {
 	private static final String ROOM_PATH = "path.page.room";
 	private static final String ROOM_ADD_PATH = "path.page.room-add";
 
@@ -34,13 +34,13 @@ public class EditRoomCommand extends AbstractCommand{
 			room.setRoomId(Long.parseLong(request.getParameter(Parameters.ROOM_ID)));
 			room.setBedsNumber(Integer.parseInt(request.getParameter(Parameters.BEDS_NUMBER)));
 			room.setRoomType(Integer.parseInt(request.getParameter(Parameters.ROOM_TYPE)));
-			
-			if(RoomValidator.validate(room)){
+
+			if (RoomValidator.validate(room)) {
 				RoomService.editRoom(room);
 				List<RoomDTO> rooms = RoomService.getAllRooms();
 				request.setAttribute(Parameters.ROOM_LIST, rooms);
 				page = ConfigurationManager.getProperty(ROOM_PATH);
-			}else{
+			} else {
 				List<Hostel> hostels = HostelService.getAllHostels();
 				List<RoomType> roomTypes = RoomTypeService.getAllTypes();
 				request.setAttribute(Parameters.HOSTEL_LIST, hostels);

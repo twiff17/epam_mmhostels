@@ -4,24 +4,31 @@ public class RoomType {
 	private int roomTypeId;
 	private String name;
 	private double coeff;
+
 	public int getRoomTypeId() {
 		return roomTypeId;
 	}
+
 	public void setRoomTypeId(int roomTypeId) {
 		this.roomTypeId = roomTypeId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public double getCoeff() {
 		return coeff;
 	}
+
 	public void setCoeff(double coeff) {
 		this.coeff = coeff;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -33,6 +40,7 @@ public class RoomType {
 		result = prime * result + roomTypeId;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

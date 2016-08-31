@@ -14,20 +14,22 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-public class GetOrdersCommand extends AbstractCommand{
+public class GetOrdersCommand extends AbstractCommand {
 
 	private static final String ORDERS_PATH = "path.page.order";
+	private static final String ADMIN = "admin";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 		try {
 			orders = OrderService.getAllOrders();
+			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.ORDER_LIST, orders);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}
 		return ConfigurationManager.getProperty(ORDERS_PATH);
 	}
-	
+
 }

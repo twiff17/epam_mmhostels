@@ -21,7 +21,7 @@ import by.epam.hostelbeta.util.Parameters;
 @MultipartConfig
 public class AjaxController extends HttpServlet {
 	static final Logger LOGGER = LogManager.getLogger(AjaxController.class);
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public AjaxController() {
@@ -38,7 +38,8 @@ public class AjaxController extends HttpServlet {
 		processRequest(request, response);
 	}
 
-	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String message = "";
 		try {
 			ICommand command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));

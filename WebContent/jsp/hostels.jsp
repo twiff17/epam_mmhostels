@@ -29,9 +29,18 @@
 			<section id="content">
 				<%@include file="search.jsp"%>
 				<article class="col2">
-					<h2>
-						<fmt:message key="label.our_hostels" />
-					</h2>
+					<c:if test="${not empty isSearch}">
+						<br />
+						<h2>
+							<fmt:message key="label.search_label" />
+						</h2>
+					</c:if>
+					<c:if test="${empty isSearch}">
+						<br />
+						<h2>
+							<fmt:message key="label.our_hostels" />
+						</h2>
+					</c:if>
 					<c:if test="${empty hostelList}">
 						<br />
 						<h2>
@@ -60,12 +69,14 @@
 									<br> <i> ${hostel.description }</i> <br />
 								</p>
 								<c:choose>
-									<c:when test="${sessionUser.role eq 'client' and sessionUser.ban eq false}">
+									<c:when
+										test="${sessionUser.role eq 'client' and sessionUser.ban eq false}">
 										<input type="button" class="details-btn"
 											onClick="PopUpTwoShow(${hostel.hostelId},'${hostel.name }')"
 											value="<fmt:message key="label.book" />">
 									</c:when>
-									<c:when test="${sessionUser.role eq 'client' and sessionUser.ban eq true}">
+									<c:when
+										test="${sessionUser.role eq 'client' and sessionUser.ban eq true}">
 										<input class="details-btn" type="button"
 											value="<fmt:message key="label.book" />"
 											onClick="PopUpShow('<fmt:message key="label.you_banned" />')">

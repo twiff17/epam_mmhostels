@@ -17,7 +17,7 @@ public class MailSessionCreator {
 		smtpPort = configProperties.getProperty("mail.smtp.port");
 		userName = configProperties.getProperty("mail.user.name");
 		userPassword = configProperties.getProperty("mail.user.password");
-		
+
 		sessionProperties = new Properties();
 		sessionProperties.setProperty("mail.transport.protocol", "smtp");
 		sessionProperties.setProperty("mail.host", smtpHost);

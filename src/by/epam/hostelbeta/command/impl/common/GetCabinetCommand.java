@@ -25,10 +25,8 @@ public class GetCabinetCommand extends AbstractCommand {
 			orders = OrderService.getOrdersByUserId(Long.parseLong(request.getParameter(Parameters.USER_ID)));
 			request.setAttribute(Parameters.ORDER_LIST, orders);
 			request.getSession().setAttribute(Parameters.PAGE, CABINET);
-		} catch (ServiceException e) {
+		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
-		} catch (NumberFormatException e) {
-			throw new CommandException("Inorrect UserId value", e);
 		}
 
 		return ConfigurationManager.getProperty(CABINET_PATH);

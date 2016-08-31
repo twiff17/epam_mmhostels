@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.hostel;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +26,15 @@ public class SearchByDateCommand extends AbstractCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
 		String country = request.getParameter(Parameters.COUNTRY);
-		LocalDate inDate = LocalDate.parse(request.getParameter(Parameters.IN_DATE));
-		LocalDate outDate = LocalDate.parse(request.getParameter(Parameters.OUT_DATE));
+
 		request.setAttribute(Parameters.PAGE, HOSTELS);
 		try {
+			LocalDate inDate = LocalDate.parse(request.getParameter(Parameters.IN_DATE));
+			LocalDate outDate = LocalDate.parse(request.getParameter(Parameters.OUT_DATE));
+
 			int validationResult = OrderValidator.dateValidate(inDate, outDate);
 			if (validationResult == 0) {
+				request.setAttribute(Parameters.IS_SEARCH, true);
 				List<HostelDTO> hostels = HostelService.searchByDateAndCountry(country, inDate, outDate);
 				request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 			} else {
@@ -47,7 +51,7 @@ public class SearchByDateCommand extends AbstractCommand {
 							locManager.getResourceBundle().getString(Parameters.DATE_BEFORE_TODAY));
 				}
 			}
-		} catch (ServiceException e) {
+		} catch (ServiceException | DateTimeParseException e) {
 			throw new CommandException(e);
 		}
 		return ConfigurationManager.getProperty(HOSTELS_PATH);

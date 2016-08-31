@@ -1,7 +1,7 @@
 package by.epam.hostelbeta.command;
 
 @SuppressWarnings("serial")
-public class CommandException extends Exception{
+public class CommandException extends Exception {
 	public CommandException() {
 		super();
 	}

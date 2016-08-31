@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 public class MailThread extends Thread {
 	static final Logger LOGGER = LogManager.getLogger(MailThread.class);
-	
+
 	private MimeMessage message;
 	private String sendToEmail;
 	private String mailSubject;
@@ -32,7 +32,7 @@ public class MailThread extends Thread {
 	private void init() {
 		Session mailSession = (new MailSessionCreator(properties)).createSession();
 		mailSession.setDebug(true);
-		
+
 		message = new MimeMessage(mailSession);
 		try {
 			message.setSubject(mailSubject);

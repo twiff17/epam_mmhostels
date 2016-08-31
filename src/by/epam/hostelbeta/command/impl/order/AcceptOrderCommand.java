@@ -20,6 +20,13 @@ import by.epam.hostelbeta.util.Parameters;
 import org.stringtemplate.v4.*;
 
 public class AcceptOrderCommand extends AbstractCommand {
+	private static final String PRICE = "price";
+	private static final String HOSTEL = "hostel";
+	private static final String IN_DATE = "inDate";
+	private static final String OUT_DATE = "outDate";
+	private static final String LOGIN = "login";
+	private static final String MESSAGE_SUBJECT = "Заявка на бронирование принята";
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
@@ -48,14 +55,13 @@ public class AcceptOrderCommand extends AbstractCommand {
 			message = new ST(MailMessageTemplate.acceptMessageBooking);
 		} else {
 			message = new ST(MailMessageTemplate.acceptMessageFullpayment);
-			message.add("price", order.getPrice());
+			message.add(PRICE, order.getPrice());
 		}
-		message.add("login", order.getUserLogin());
-		message.add("hostel", order.getHostelName());
-		message.add("inDate", order.getInDate());
-		message.add("outDate", order.getOutDate());
-		MailThread mailOperator = new MailThread(order.getUserEmail(), "Заявка на бронирование принята",
-				message.render(), properties);
+		message.add(LOGIN, order.getUserLogin());
+		message.add(HOSTEL, order.getHostelName());
+		message.add(IN_DATE, order.getInDate());
+		message.add(OUT_DATE, order.getOutDate());
+		MailThread mailOperator = new MailThread(order.getUserEmail(), MESSAGE_SUBJECT, message.render(), properties);
 
 		mailOperator.start();
 	}
