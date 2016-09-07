@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.user;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,7 @@ public class LoginCommand extends AbstractCommand {
 	private static final String LOGIN_PATH = "path.page.login";
 	private static final String HOME = "home";
 	private static final String HOME_PATH = "path.page.home";
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String page = null;
@@ -42,6 +43,8 @@ public class LoginCommand extends AbstractCommand {
 			}
 		} catch (ServiceException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path in properties file", e);
 		}
 		return page;
 	}

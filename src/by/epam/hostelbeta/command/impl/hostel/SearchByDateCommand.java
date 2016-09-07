@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,10 +52,12 @@ public class SearchByDateCommand extends AbstractCommand {
 							locManager.getResourceBundle().getString(Parameters.DATE_BEFORE_TODAY));
 				}
 			}
+			return ConfigurationManager.getProperty(HOSTELS_PATH);
 		} catch (ServiceException | DateTimeParseException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + HOSTELS_PATH, e);
 		}
-		return ConfigurationManager.getProperty(HOSTELS_PATH);
 	}
 
 }

@@ -2,6 +2,7 @@ package by.epam.hostelbeta.command.impl.order;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.MissingResourceException;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -29,6 +30,7 @@ public class BookRoomCommand extends AbstractCommand {
 	private static final String OUT_DATE = "outDate";
 	private static final String LOGIN = "login";
 	private static final String MESSAGE_SUBJECT = "«а€вка на бронирование в очереди на обработку.";
+	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -64,6 +66,8 @@ public class BookRoomCommand extends AbstractCommand {
 
 		} catch (ServiceException | IOException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			message = PROPERTY_NO_FOUND;
 		}
 		return message;
 	}

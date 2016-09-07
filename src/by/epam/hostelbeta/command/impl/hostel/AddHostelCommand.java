@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -79,6 +80,8 @@ public class AddHostelCommand extends AbstractCommand {
 			}
 		} catch (FileUploadException | ServiceException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path in properties file", e);
 		}
 		return page;
 	}

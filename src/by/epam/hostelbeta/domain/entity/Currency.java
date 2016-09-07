@@ -2,6 +2,7 @@ package by.epam.hostelbeta.domain.entity;
 
 public class Currency {
 	private String code;
+	private int currencyId;
 	private String name;
 
 	public String getCode() {
@@ -10,6 +11,14 @@ public class Currency {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public int getCurrencyId() {
+		return currencyId;
+	}
+
+	public void setCurrencyId(int currencyId) {
+		this.currencyId = currencyId;
 	}
 
 	public String getName() {
@@ -25,6 +34,7 @@ public class Currency {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + currencyId;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -48,6 +58,9 @@ public class Currency {
 		} else if (!code.equals(other.code)) {
 			return false;
 		}
+		if (currencyId != other.currencyId) {
+			return false;
+		}
 		if (name == null) {
 			if (other.name != null) {
 				return false;
@@ -57,4 +70,5 @@ public class Currency {
 		}
 		return true;
 	}
+
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <article class="col1">
 	<h2>
@@ -20,7 +21,19 @@
 
 			<div class='wrapper' id='country'>
 				<fmt:message key="table.hostel.country" />
-				(*) <input type="text" name="country" required style="width: 100%">
+				(*)<select style='width: 100%;' name="country" class="input">
+					<c:forEach var="country" items="${countryList}">
+						<c:choose>
+							<c:when
+								test="${not empty hostel and hostel.country eq country.name}">
+								<option selected value="${country.name}">${country.name}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${country.name}">${country.name}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</select>
 			</div>
 
 			<div class='wrapper'>
@@ -43,22 +56,34 @@
 				value="search_by_price">
 
 			<div class='wrapper' id='country'>
-				<fmt:message key="table.hostel.country" />(*)
-				<input type="text" name="country" required style="width: 100%">
+				<fmt:message key="table.hostel.country" />
+				(*) <select style='width: 100%;' name="country" class="input">
+					<c:forEach var="country" items="${countryList}">
+						<c:choose>
+							<c:when
+								test="${not empty hostel and hostel.country eq country.name}">
+								<option selected value="${country.name}">${country.name}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${country.name}">${country.name}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</select>
 			</div>
 
 			<div class='wrapper'>
-				<fmt:message key="label.min_price" />(*)
-				<input type="text"
+				<fmt:message key="label.min_price" />
+				(*) <input type="text"
 					title="<fmt:message key="form_title.integer_zero" />" value="0"
 					pattern="[0-9][0-9]*" name='minPrice' required style='width: 100%;'>
 			</div>
 
 			<div class='wrapper'>
-				<fmt:message key="label.max_price" />(*)
-				<input type="text" title="<fmt:message key="form_title.integer" />" value="0"
-					pattern="[1-9][0-9]*" name='maxPrice' required
-					style='width: 100%;'>
+				<fmt:message key="label.max_price" />
+				(*) <input type="text"
+					title="<fmt:message key="form_title.integer" />" value="0"
+					pattern="[1-9][0-9]*" name='maxPrice' required style='width: 100%;'>
 			</div>
 
 			<input type='submit' class='button' style='cursor: pointer;'

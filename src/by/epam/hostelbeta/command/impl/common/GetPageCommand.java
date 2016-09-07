@@ -26,7 +26,8 @@ public class GetPageCommand extends AbstractCommand {
 			if (user != null && (pageName.equals(Parameters.LOGIN) || pageName.equals(Parameters.REGISTRATION))) {
 
 			} else {
-				if (user != null && !ROLE_ADMIN.equals(user.getRole()) && ADMIN_PAGE.equals(pageName)) {
+				if ((user == null && ADMIN_PAGE.equals(pageName))
+						|| (user != null && !ROLE_ADMIN.equals(user.getRole()) && ADMIN_PAGE.equals(pageName))) {
 					page = ConfigurationManager.getProperty(NO_ACCESS_PATH);
 				} else {
 					page = ConfigurationManager.getProperty(SHORT_PATH + pageName);

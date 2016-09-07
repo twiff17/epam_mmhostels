@@ -19,4 +19,6 @@ public interface IRoomDAO {
 	void editRoom(Room room) throws DAOException;
 
 	boolean checkRoomId(long hostelId, long roomId) throws DAOException;
+
+	RoomDTO findRoomDTOById(long hostelId, long roomId) throws DAOException;
 }

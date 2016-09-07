@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.hostel;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +17,9 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
 public class GetHostelAddCommand extends AbstractCommand {
-	private static final String HOSTEL_ADD_PAGE = "path.page.hostel-add";
+	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
 	private static final String ADMIN = "admin";
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
@@ -27,10 +28,13 @@ public class GetHostelAddCommand extends AbstractCommand {
 			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.COUNTRY_LIST, countries);
 			request.setAttribute(Parameters.CURRENCY_LIST, currencyList);
+			return ConfigurationManager.getProperty(HOSTEL_ADD_PATH);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + HOSTEL_ADD_PATH, e);
 		}
-		return ConfigurationManager.getProperty(HOSTEL_ADD_PAGE);
+
 	}
 
 }

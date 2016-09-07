@@ -14,7 +14,7 @@ public class RoomTypeService {
 		try {
 			roomTypes = roomTypeDAO.findAllRoomTypes();
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("RoomTypeService Error getting all room types!", e);
 		}
 		return roomTypes;
 	}

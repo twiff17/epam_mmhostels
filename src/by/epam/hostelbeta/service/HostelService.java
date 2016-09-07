@@ -21,7 +21,7 @@ public class HostelService {
 		try {
 			hostels = hostelDAO.findPopularHostels();
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error getting popular hostels!", e);
 		}
 		return hostels;
 	}
@@ -34,7 +34,7 @@ public class HostelService {
 			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / RECORDS_PER_PAGE);
 			return noOfPages;
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error getting all hostels by pages!", e);
 		}
 	}
 
@@ -43,7 +43,7 @@ public class HostelService {
 		try {
 			return hostelDAO.findAllHostels();
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error getting all hostels!", e);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class HostelService {
 		try {
 			hostelDAO.deleteHostel(hostelId);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error in deleteHostel method!", e);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class HostelService {
 		try {
 			hostelDAO.addHostel(hostel);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error adding hostel!", e);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class HostelService {
 		try {
 			return hostelDAO.findHostelById(hostelId);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error getting hostel by id!", e);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class HostelService {
 		try {
 			hostelDAO.editHostel(hostel);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error editing hostel!", e);
 		}
 	}
 
@@ -102,7 +102,7 @@ public class HostelService {
 				}
 			}
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error searching by date and country!", e);
 		}
 
 		return resultHostels;
@@ -114,7 +114,7 @@ public class HostelService {
 		try {
 			return hostelDAO.findHostelsByPrice(country, minPrice, maxPrice);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("HostelService Error searching by price and country!", e);
 		}
 	}
 }

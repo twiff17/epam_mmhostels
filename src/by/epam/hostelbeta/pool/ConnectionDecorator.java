@@ -26,5 +26,6 @@ public class ConnectionDecorator {
 
 	public void close() {
 		ConnectionPool.getInstance().putback(connection);
+		connection = null;
 	}
 }

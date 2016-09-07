@@ -18,6 +18,6 @@ public class ChangeLocaleCommand extends AbstractCommand {
 		HttpSession session = request.getSession();
 		session.setAttribute(Parameters.LOCALE, locale);
 		session.setAttribute(Parameters.LOCALE_MANAGER, localeManager);
-		return new String();
+		return null;
 	}
 }

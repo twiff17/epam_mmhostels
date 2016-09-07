@@ -66,7 +66,7 @@
 						<fmt:message key="table.hostel.name" />
 						(*): <input type="text" name="name" value="${hostel.name}"
 							title="<fmt:message key="form_title.hostel_name" />" required
-							pattern="[А-Я]{1}[А-Яа-я ]+" maxlength="30" class="input">
+							pattern="[А-Я]{1}[А-Яа-я \\-,]+" maxlength="30" class="input">
 						<br />
 					</div>
 

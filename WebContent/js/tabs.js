@@ -12,8 +12,49 @@ function click_o_date() {
 	$('#form_by_date').removeClass('invisible');
 }
 
+function scroll_to_elem(elem, speed) {
+	if (document.getElementById(elem)) {
+		var destination = jQuery('#' + elem).offset().top;
+		jQuery("html,body").animate({
+			scrollTop : destination
+		}, speed);
+	}
+}
+
 $(document).ready(
 		function() {
+			$(window).scroll(function() {
+				if ($(this).scrollTop() < 120) {
+					$('.button-down').fadeIn();
+				} else {
+					$('.button-down').fadeOut();
+				}
+			});
+
+			$('.button-down').click(function() {
+				$('body,html').animate({
+					scrollTop : jQuery('#content').offset().top
+				}, 700);
+				return false;
+			});
+
+			$('.button-down').hover(function() {
+				$(this).animate({
+					'opacity' : '0.8',
+				}).css({
+					'background-color' : '#660033',
+					'color' : '#f5f5f5'
+				});
+			}, function() {
+				$(this).animate({
+					'opacity' : '0.6'
+				}).css({
+					'background' : 'none',
+					'color' : '#660033'
+				});
+				;
+			});
+
 			$("#loginInput").blur(function() {
 				$.post('AjaxController', {
 					command : "check_login",

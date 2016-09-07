@@ -1,5 +1,7 @@
 package by.epam.hostelbeta.dao.impl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,7 +49,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error finding rooms by hostel id!", e);
 		} finally {
 			connection.close();
 		}
@@ -68,7 +70,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error finding all rooms!", e);
 		} finally {
 			connection.close();
 		}
@@ -84,7 +86,7 @@ public class RoomDAO implements IRoomDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error in deleteHostel method!", e);
 		} finally {
 			connection.close();
 		}
@@ -101,7 +103,7 @@ public class RoomDAO implements IRoomDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error adding room!", e);
 		} finally {
 			connection.close();
 		}
@@ -122,7 +124,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error finding room by id!", e);
 		} finally {
 			connection.close();
 		}
@@ -140,7 +142,7 @@ public class RoomDAO implements IRoomDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error editing room!", e);
 		} finally {
 			connection.close();
 		}
@@ -159,7 +161,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error checking room id!", e);
 		} finally {
 			connection.close();
 		}
@@ -181,7 +183,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("RoomDAO Error finding roomDTO by id!", e);
 		} finally {
 			connection.close();
 		}
@@ -193,7 +195,7 @@ public class RoomDAO implements IRoomDAO {
 		room.setHostelId(rs.getLong(HOSTEL_ID));
 		room.setRoomId(rs.getInt(ROOM_ID));
 		room.setBedsNumber(rs.getInt(BEDS_NUMBER));
-		room.setPrice(rs.getDouble(PRICE));
+		room.setPrice(round(rs.getDouble(PRICE), 2));
 		room.setRoomType(rs.getString(ROOM_TYPE));
 	}
 
@@ -202,5 +204,14 @@ public class RoomDAO implements IRoomDAO {
 		room.setHostelId(rs.getLong(HOSTEL_ID));
 		room.setRoomId(rs.getLong(ROOM_ID));
 		room.setRoomType(rs.getInt(ROOM_TYPE));
+	}
+
+	private double round(double value, int places) {
+		if (places < 0)
+			throw new IllegalArgumentException();
+
+		BigDecimal bd = new BigDecimal(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
 	}
 }

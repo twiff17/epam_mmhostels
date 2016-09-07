@@ -2,6 +2,7 @@ package by.epam.hostelbeta.command.impl.hostel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,10 +43,12 @@ public class SearchByPriceCommand extends AbstractCommand {
 				request.setAttribute(Parameters.ERROR_MESSAGE,
 						locManager.getResourceBundle().getString(Parameters.INVALID_PRICES));
 			}
+			return ConfigurationManager.getProperty(HOSTELS_PATH);
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + HOSTELS_PATH, e);
 		}
-		return ConfigurationManager.getProperty(HOSTELS_PATH);
 	}
 
 }

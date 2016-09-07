@@ -1,5 +1,7 @@
 package by.epam.hostelbeta.command.impl.order;
 
+import java.util.MissingResourceException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +13,8 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
 public class CancelOrderCommand extends AbstractCommand {
+	private static final String PROPERTY_NO_FOUND = "???not_found???";
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
@@ -24,6 +28,8 @@ public class CancelOrderCommand extends AbstractCommand {
 			}
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
+		} catch(MissingResourceException e){
+			message = PROPERTY_NO_FOUND;
 		}
 		return message;
 	}

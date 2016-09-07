@@ -2,6 +2,7 @@ package by.epam.hostelbeta.command.impl.order;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +27,13 @@ public class GetOrdersCommand extends AbstractCommand {
 			orders = OrderService.getAllOrders();
 			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.ORDER_LIST, orders);
+			return ConfigurationManager.getProperty(ORDERS_PATH);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + ORDERS_PATH, e);
 		}
-		return ConfigurationManager.getProperty(ORDERS_PATH);
+
 	}
 
 }

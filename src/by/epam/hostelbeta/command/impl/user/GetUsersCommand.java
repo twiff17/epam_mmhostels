@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.user;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,10 +24,12 @@ public class GetUsersCommand extends AbstractCommand {
 			List<User> users = UserService.getAllUsers();
 			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.USER_LIST, users);
+			return ConfigurationManager.getProperty(USER_PATH);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + USER_PATH, e);
 		}
-		return ConfigurationManager.getProperty(USER_PATH);
 	}
 
 }

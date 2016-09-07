@@ -18,13 +18,12 @@ import by.epam.hostelbeta.command.ICommand;
 import by.epam.hostelbeta.command.impl.hostel.AddHostelCommand;
 import by.epam.hostelbeta.util.Parameters;
 
+@SuppressWarnings("serial")
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	static final Logger LOGGER = LogManager.getLogger(Controller.class);
 
 	private static final String ERROR_PATH = "path.page.error";
-
-	private static final long serialVersionUID = 1L;
 
 	public Controller() {
 		super();
@@ -51,6 +50,7 @@ public class Controller extends HttpServlet {
 				command = CommandFactory.getInstance().getCommand(request.getParameter(Parameters.COMMAND));
 			}
 			page = command.execute(request, response);
+			command.fillCountryList(request);
 		} catch (CommandException e) {
 			LOGGER.error(e);
 			request.setAttribute(Parameters.ERROR_STACKTRACE, e);

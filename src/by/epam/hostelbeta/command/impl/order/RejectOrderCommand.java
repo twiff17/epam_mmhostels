@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.order;
 
 import java.io.IOException;
+import java.util.MissingResourceException;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -25,6 +26,7 @@ public class RejectOrderCommand extends AbstractCommand {
 	private static final String OUT_DATE = "outDate";
 	private static final String LOGIN = "login";
 	private static final String MESSAGE_SUBJECT = "Заявка на бронирование отклонена";
+	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -40,6 +42,8 @@ public class RejectOrderCommand extends AbstractCommand {
 			message = locManager.getResourceBundle().getString(Parameters.OPERATION_SUCCESS);
 		} catch (ServiceException | NumberFormatException | IOException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			message = PROPERTY_NO_FOUND;
 		}
 		return message;
 	}

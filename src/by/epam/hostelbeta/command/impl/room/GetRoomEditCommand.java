@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.room;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,10 +36,13 @@ public class GetRoomEditCommand extends AbstractCommand {
 			request.setAttribute(Parameters.HOSTEL_LIST, hostels);
 			request.setAttribute(Parameters.ROOM_TYPE_LIST, roomTypes);
 			request.setAttribute(Parameters.ROOM, room);
+			return ConfigurationManager.getProperty(ROOM_ADD_PAGE);
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + ROOM_ADD_PAGE, e);
 		}
-		return ConfigurationManager.getProperty(ROOM_ADD_PAGE);
+
 	}
 
 }

@@ -15,7 +15,7 @@ public class UserService {
 		try {
 			user = userDAO.findByLoginAndPassword(enterLogin, encryptedPassword);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("UserService error checking login and password!", e);
 		}
 		return user;
 	}
@@ -26,7 +26,7 @@ public class UserService {
 		try {
 			isLoginExists = userDAO.checkLogin(login);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("UserService error checking login availability!", e);
 		}
 		return isLoginExists;
 	}
@@ -41,7 +41,7 @@ public class UserService {
 				return null;
 			}
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("UserService error signing up!", e);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class UserService {
 		try {
 			return userDAO.findAll();
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("UserService error getting all users!", e);
 		}
 	}
 
@@ -59,7 +59,7 @@ public class UserService {
 		try {
 			userDAO.banUser(userId);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("UserService error banning user!", e);
 		}
 	}
 
@@ -68,7 +68,7 @@ public class UserService {
 		try {
 			userDAO.unbanUser(userId);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("UserService error unbanning!", e);
 		}
 	}
 
@@ -77,7 +77,7 @@ public class UserService {
 		try {
 			userDAO.addDiscount(userId);
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException("UserService error adding discount!", e);
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package by.epam.hostelbeta.command.impl.user;
 
+import java.util.MissingResourceException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +13,7 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
 public class UnbanUserCommand extends AbstractCommand {
+	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -22,6 +25,8 @@ public class UnbanUserCommand extends AbstractCommand {
 			message = locManager.getResourceBundle().getString(Parameters.OPERATION_SUCCESS);
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			message = PROPERTY_NO_FOUND;
 		}
 		return message;
 	}

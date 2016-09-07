@@ -1,8 +1,7 @@
 package by.epam.hostelbeta.command.impl.common;
 
-
-
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +17,9 @@ import by.epam.hostelbeta.util.Parameters;
 public class EmptyCommand extends AbstractCommand {
 	private static final String HOME = "home";
 	private static final String HOME_PATH = "path.page.home";
-	
+
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException{
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
 			List<Hostel> hostels = HostelService.getPopularHostels();
 			request.setAttribute(Parameters.HOSTEL_LIST, hostels);
@@ -28,6 +27,8 @@ public class EmptyCommand extends AbstractCommand {
 			return ConfigurationManager.getProperty(HOME_PATH);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + HOME_PATH, e);
 		}
 	}
 }

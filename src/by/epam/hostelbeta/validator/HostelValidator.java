@@ -3,10 +3,14 @@ package by.epam.hostelbeta.validator;
 import by.epam.hostelbeta.domain.entity.Hostel;
 
 public class HostelValidator {
-	private static final String NAME_REGEXP = "[Р-п]{1}[Р-пр-џ ]+";
+	private static final String NAME_REGEXP = "[Р-п]{1}[Р-пр-џ \\-,]+";
 	private static final String PHONE_REGEXP = "^\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}$";
 	private static final String CITY_REGEXP = "[Р-п]{1}[Р-пр-џ ]+";
 	private static final String ADDRESS_REGEXP = ".{5,70}";
+
+	private static final String PNG_FORMAT = ".png";
+	private static final String JPG_FORMAT = ".jpg";
+	private static final String GIF_FORMAT = ".gif";
 
 	public static boolean addValidate(Hostel hostel) {
 		if (hostel.getAddress() == null || hostel.getCity() == null || hostel.getCountry() == null
@@ -18,7 +22,7 @@ public class HostelValidator {
 		}
 
 		String format = hostel.getImageName().substring(hostel.getImageName().lastIndexOf("."));
-		if (!format.equals(".png") && !format.equals(".jpg") && !format.equals(".gif")) {
+		if (!PNG_FORMAT.equals(format) && !JPG_FORMAT.equals(format) && !GIF_FORMAT.equals(format)) {
 			return false;
 		}
 

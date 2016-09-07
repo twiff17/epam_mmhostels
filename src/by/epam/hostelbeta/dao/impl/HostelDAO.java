@@ -55,7 +55,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error finding popular hostels!", e);
 		} finally {
 			connection.close();
 		}
@@ -82,7 +82,7 @@ public class HostelDAO implements IHostelDAO {
 				this.noOfRecords = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error finding all hostels by pages!", e);
 		} finally {
 			connection.close();
 		}
@@ -104,7 +104,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error finding all hostels!", e);
 		} finally {
 			connection.close();
 		}
@@ -120,7 +120,7 @@ public class HostelDAO implements IHostelDAO {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error in deleteHostel method!", e);
 		} finally {
 			connection.close();
 		}
@@ -141,7 +141,7 @@ public class HostelDAO implements IHostelDAO {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error adding hostel!", e);
 		} finally {
 			connection.close();
 		}
@@ -161,7 +161,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error finding hostel by id!", e);
 		} finally {
 			connection.close();
 		}
@@ -185,7 +185,7 @@ public class HostelDAO implements IHostelDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error editing hostel!", e);
 		} finally {
 			connection.close();
 		}
@@ -206,7 +206,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error finding hostels by country!", e);
 		} finally {
 			connection.close();
 		}
@@ -231,7 +231,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("HostelDAO Error finding hostels by price!", e);
 		} finally {
 			connection.close();
 		}

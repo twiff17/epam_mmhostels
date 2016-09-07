@@ -19,4 +19,8 @@ public interface IHostelDAO {
 	Hostel findHostelById(long hostelId) throws DAOException;
 
 	void editHostel(Hostel hostel) throws DAOException;
+
+	List<HostelDTO> findByCountry(String country) throws DAOException;
+
+	List<HostelDTO> findHostelsByPrice(String country, int minPrice, int maxPrice) throws DAOException;
 }

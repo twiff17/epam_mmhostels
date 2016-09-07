@@ -16,13 +16,13 @@ import by.epam.hostelbeta.config.DBConfig;
 public class ConnectionPool {
 	static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
+	private static final int POOL_SIZE = 20;
+
 	private static AtomicBoolean isCreated = new AtomicBoolean();
 	private static Lock lock = new ReentrantLock();
-
 	private static ConnectionPool instance;
 
 	private ArrayBlockingQueue<Connection> connections;
-	private static final int POOL_SIZE = 20;
 
 	private ConnectionPool() {
 		try {
@@ -47,7 +47,7 @@ public class ConnectionPool {
 				lock.lock();
 				if (instance == null) {
 					instance = new ConnectionPool();
-					isCreated.set(true);
+					isCreated.getAndSet(true);
 				}
 			} finally {
 				lock.unlock();
@@ -88,15 +88,20 @@ public class ConnectionPool {
 		}
 	}
 
-	public void close() {
-		for (Connection connection : connections) {
+	public void closePool() {
+		while (connections != null && connections.size() > 0) {
 			try {
+				Connection connection = connections.take();
 				if (connection != null) {
 					connection.close();
 				}
-			} catch (SQLException e) {
+			} catch (SQLException | InterruptedException e) {
 				LOGGER.error("Error closing connection", e);
 			}
 		}
+	}
+
+	public int getSize() {
+		return connections.size();
 	}
 }

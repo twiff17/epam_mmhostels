@@ -44,7 +44,7 @@
 								<tr>
 									<td><fmt:message key="label.city" /></td>
 									<td><fmt:message key="table.hostel.name" /></td>
-									<td><fmt:message key="label.room_type" /></td>
+									<td><fmt:message key="table.room.number" /></td>
 									<td><fmt:message key="label.price" /></td>
 									<td><fmt:message key="label.in_date" /></td>
 									<td><fmt:message key="label.out_date" /></td>
@@ -59,7 +59,7 @@
 									<tr>
 										<td>${order.city}</td>
 										<td>${order.hostelName }</td>
-										<td>${order.roomType }</td>
+										<td>${order.roomId }</td>
 										<td>${order.price }</td>
 										<td>${order.inDate }</td>
 										<td>${order.outDate}</td>

@@ -8,6 +8,7 @@ public class OrderDTO {
 	private long userId;
 	private String userLogin;
 	private String userEmail;
+	private long hostelId;
 	private String hostelName;
 	private String country;
 	private String city;
@@ -50,6 +51,14 @@ public class OrderDTO {
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+
+	public long getHostelId() {
+		return hostelId;
+	}
+
+	public void setHostelId(long hostelId) {
+		this.hostelId = hostelId;
 	}
 
 	public String getHostelName() {
@@ -147,6 +156,7 @@ public class OrderDTO {
 		result = prime * result + (booking ? 1231 : 1237);
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + (int) (hostelId ^ (hostelId >>> 32));
 		result = prime * result + ((hostelName == null) ? 0 : hostelName.hashCode());
 		result = prime * result + ((inDate == null) ? 0 : inDate.hashCode());
 		result = prime * result + (int) (orderId ^ (orderId >>> 32));
@@ -191,6 +201,9 @@ public class OrderDTO {
 				return false;
 			}
 		} else if (!country.equals(other.country)) {
+			return false;
+		}
+		if (hostelId != other.hostelId) {
 			return false;
 		}
 		if (hostelName == null) {

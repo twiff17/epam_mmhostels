@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.room;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,6 +71,8 @@ public class AddRoomCommand extends AbstractCommand {
 			}
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path in properties file", e);
 		}
 		return page;
 	}

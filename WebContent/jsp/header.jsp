@@ -8,6 +8,13 @@
 <fmt:setLocale value="${locale}" />
 <fmt:setBundle basename="pagecontent" />
 <header>
+	<!-- input class="scroll" type="button"
+		onClick="scroll_to_elem('content',700)" value=""-->
+	<!--  div id="scroll_bar" class="test">
+		<nobr>go up</nobr>
+	</div-->
+
+	<div class="button-down">↓ <fmt:message key="label.down"></fmt:message></div>
 	<div class="wrapper">
 		<h1>
 			<img src="images/logo.png">

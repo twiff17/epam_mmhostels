@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.common;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +27,8 @@ public class GetHomeCommand extends AbstractCommand {
 			return ConfigurationManager.getProperty(HOME_PATH);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
+		} catch (MissingResourceException e) {
+			throw new CommandException("Couldn't find page path " + HOME_PATH, e);
 		}
 	}
 }

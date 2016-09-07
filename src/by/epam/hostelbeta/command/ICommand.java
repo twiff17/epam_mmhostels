@@ -5,4 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface ICommand {
 	String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException;
+
+	void fillCountryList(HttpServletRequest request) throws CommandException;
 }

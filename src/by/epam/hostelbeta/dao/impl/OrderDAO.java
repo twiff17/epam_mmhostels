@@ -24,6 +24,8 @@ public class OrderDAO implements IOrderDAO {
 	private static final String CHECK_ROOM_AVAILABILITY = "SELECT `OrderId` FROM `order` WHERE `HostelId` = ? AND `RoomId` = ? AND (`InDate` <= ? AND `OutDate` >= ?) AND (`Status` = 'Принят' OR `Status` = 'В обработке')";
 	private static final String ADD_ORDER = "INSERT INTO `order` (`UserId`, `HostelId`, `RoomId`, `InDate`, `OutDate`, `Booking`, `Price`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String SELECT_ORDER_BY_ID = "SELECT * FROM `v_order_information` WHERE `OrderId` = ?";
+	private static final String SELECT_ORDERS_BY_HOSTEL_ID = "SELECT * FROM `v_order_information` WHERE `HostelId` = ?";
+	private static final String SELECT_ORDERS_BY_ROOM_ID = "SELECT * FROM `v_order_information` WHERE `HostelId` = ? AND `RoomId` = ?";
 
 	private static final String USER_ID = "UserId";
 	private static final String HOSTEL_NAME = "HostelName";
@@ -56,7 +58,7 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error finding orders by user id!", e);
 		} finally {
 			connection.close();
 		}
@@ -77,7 +79,7 @@ public class OrderDAO implements IOrderDAO {
 				orders.add(order);
 			}
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error finding all orders!", e);
 		} finally {
 			connection.close();
 		}
@@ -92,7 +94,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error rejecting order!", e);
 		} finally {
 			connection.close();
 		}
@@ -105,7 +107,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error accepting order!", e);
 		} finally {
 			connection.close();
 		}
@@ -118,7 +120,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error canceling order!", e);
 		} finally {
 			connection.close();
 		}
@@ -130,7 +132,7 @@ public class OrderDAO implements IOrderDAO {
 			ps.setLong(1, room.getHostelId());
 			ps.setLong(2, room.getRoomId());
 			ps.setDate(3, java.sql.Date.valueOf(outDate));
-			ps.setDate(4, java.sql.Date.valueOf(outDate));
+			ps.setDate(4, java.sql.Date.valueOf(inDate));
 
 			ResultSet rs = ps.executeQuery();
 
@@ -141,7 +143,7 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error checking room's availability!", e);
 		} finally {
 			connection.close();
 		}
@@ -160,7 +162,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error booking room!", e);
 		} finally {
 			connection.close();
 		}
@@ -179,12 +181,59 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("OrderDAO Error finding order by id!", e);
 		} finally {
 			connection.close();
 		}
 
 		return order;
+	}
+
+	public List<OrderDTO> findOrdersByHostelId(long hostelId) throws DAOException {
+		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
+		List<OrderDTO> orders = new ArrayList<OrderDTO>();
+
+		try (PreparedStatement ps = connection.prepareStatement(SELECT_ORDERS_BY_HOSTEL_ID)) {
+			ps.setLong(1, hostelId);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				OrderDTO order = new OrderDTO();
+				fillOrderDTO(rs, order);
+				orders.add(order);
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException("OrderDAO Error finding orders by hostel id!", e);
+		} finally {
+			connection.close();
+		}
+
+		return orders;
+	}
+
+	public List<OrderDTO> findOrdersByRoomId(long hostelId, long roomId) throws DAOException {
+		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
+		List<OrderDTO> orders = new ArrayList<OrderDTO>();
+
+		try (PreparedStatement ps = connection.prepareStatement(SELECT_ORDERS_BY_ROOM_ID)) {
+			ps.setLong(1, hostelId);
+			ps.setLong(2, roomId);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				OrderDTO order = new OrderDTO();
+				fillOrderDTO(rs, order);
+				orders.add(order);
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException("OrderDAO Error finding orders by room id!", e);
+		} finally {
+			connection.close();
+		}
+
+		return orders;
 	}
 
 	private void fillOrderDTO(ResultSet rs, OrderDTO order) throws SQLException {
