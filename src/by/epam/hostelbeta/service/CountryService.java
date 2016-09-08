@@ -12,7 +12,7 @@ public class CountryService {
 		try {
 			return countryDAO.findAll();
 		} catch (DAOException e) {
-			throw new ServiceException("CountryService Error getting all countries!", e);
+			throw new ServiceException(e);
 		}
 	}
 }

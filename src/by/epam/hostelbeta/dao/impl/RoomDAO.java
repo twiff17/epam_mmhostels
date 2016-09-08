@@ -1,7 +1,5 @@
 package by.epam.hostelbeta.dao.impl;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,16 +12,18 @@ import by.epam.hostelbeta.dao.IRoomDAO;
 import by.epam.hostelbeta.domain.dto.RoomDTO;
 import by.epam.hostelbeta.domain.entity.Room;
 import by.epam.hostelbeta.pool.ConnectionPool;
+import by.epam.hostelbeta.util.DoubleRoundUtil;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
 public class RoomDAO implements IRoomDAO {
 	private static final String SELECT_ROOMS_BY_HOSTEL_ID = "SELECT `HostelId`, `RoomId`, `Name` as `HostelName`, `RoomType`, `BYNPrice` as `Price`, `BedsNumber` FROM `v_room_information` WHERE `HostelId` = ?";
 	private static final String SELECT_ALL_ROOMS = "SELECT `HostelId`, `RoomId`, `Name` as `HostelName`, `RoomType`, `BYNPrice` as `Price`, `BedsNumber` FROM `v_room_information`";
-	private static final String DELETE_ROOM = "DELETE FROM `room` WHERE `HostelId` = ? AND `RoomId` = ?";
+	private static final String DELETE_ROOM = "UPDATE `room` SET `IsDeleted` = 1 WHERE `HostelId` = ? AND `RoomId` = ?";
 	private static final String ADD_ROOM = "INSERT INTO `room` (`HostelId`, `RoomId`, `RoomType`, `BedsNumber`) VALUES(?, ?, ?, ?)";
-	private static final String SELECT_ROOM_BY_ID = "SELECT * FROM `room` WHERE `HostelId` = ? AND `RoomId` = ?";
+	private static final String SELECT_ROOM_BY_ID = "SELECT * FROM `room` WHERE `HostelId` = ? AND `RoomId` = ? AND `IsDeleted` = 0";
 	private static final String EDIT_ROOM = "UPDATE `room` SET `RoomType` = ?, `BedsNumber` = ? WHERE `HostelId` = ? AND `RoomId` = ?";
 	private static final String SELECT_ROOM_DTO_BY_ID = "SELECT `HostelId`, `RoomId`, `Name` as `HostelName`, `RoomType`, `BYNPrice` as `Price`, `BedsNumber` FROM `v_room_information` WHERE `HostelId` = ? AND `RoomId` = ?";
+	private static final String DELETE_ROOMS_BY_HOSTEL_ID = "UPDATE `room` SET `IsDeleted` = 1 WHERE `HostelId` = ?";
 
 	private static final String HOSTEL_ID = "HostelId";
 	private static final String ROOM_ID = "RoomId";
@@ -49,7 +49,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error finding rooms by hostel id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -70,14 +70,14 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error finding all rooms!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
 		return rooms;
 	}
 
-	public void deleteHostel(long hostelId, long roomId) throws DAOException {
+	public void deleteRoom(long hostelId, long roomId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 
 		try (PreparedStatement ps = connection.prepareStatement(DELETE_ROOM)) {
@@ -86,7 +86,7 @@ public class RoomDAO implements IRoomDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error in deleteHostel method!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -103,7 +103,7 @@ public class RoomDAO implements IRoomDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error adding room!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -124,7 +124,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error finding room by id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -142,7 +142,7 @@ public class RoomDAO implements IRoomDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error editing room!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -161,7 +161,7 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error checking room id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -183,11 +183,25 @@ public class RoomDAO implements IRoomDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("RoomDAO Error finding roomDTO by id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
 		return room;
+	}
+
+	public void deleteRoomsByHostelId(long hostelId) throws DAOException {
+		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
+
+		try (PreparedStatement ps = connection.prepareStatement(DELETE_ROOMS_BY_HOSTEL_ID)) {
+			ps.setLong(1, hostelId);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			connection.close();
+		}
 	}
 
 	private void fillRoomDTO(ResultSet rs, RoomDTO room) throws SQLException {
@@ -195,7 +209,7 @@ public class RoomDAO implements IRoomDAO {
 		room.setHostelId(rs.getLong(HOSTEL_ID));
 		room.setRoomId(rs.getInt(ROOM_ID));
 		room.setBedsNumber(rs.getInt(BEDS_NUMBER));
-		room.setPrice(round(rs.getDouble(PRICE), 2));
+		room.setPrice(DoubleRoundUtil.round(rs.getDouble(PRICE), 2));
 		room.setRoomType(rs.getString(ROOM_TYPE));
 	}
 
@@ -204,14 +218,5 @@ public class RoomDAO implements IRoomDAO {
 		room.setHostelId(rs.getLong(HOSTEL_ID));
 		room.setRoomId(rs.getLong(ROOM_ID));
 		room.setRoomType(rs.getInt(ROOM_TYPE));
-	}
-
-	private double round(double value, int places) {
-		if (places < 0)
-			throw new IllegalArgumentException();
-
-		BigDecimal bd = new BigDecimal(value);
-		bd = bd.setScale(places, RoundingMode.HALF_UP);
-		return bd.doubleValue();
 	}
 }

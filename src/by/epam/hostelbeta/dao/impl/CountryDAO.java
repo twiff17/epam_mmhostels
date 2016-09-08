@@ -30,7 +30,7 @@ public class CountryDAO implements ICountryDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("CountryDAO Error in findAll method!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}

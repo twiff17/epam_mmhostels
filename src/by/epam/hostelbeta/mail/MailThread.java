@@ -49,6 +49,7 @@ public class MailThread extends Thread {
 		init();
 		try {
 			Transport.send(message);
+			LOGGER.info("Message is sent successfully");
 		} catch (MessagingException e) {
 			LOGGER.error("Error sending message " + e);
 		}

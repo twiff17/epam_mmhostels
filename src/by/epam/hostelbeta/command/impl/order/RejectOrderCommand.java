@@ -1,6 +1,7 @@
 package by.epam.hostelbeta.command.impl.order;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
@@ -17,35 +18,38 @@ import by.epam.hostelbeta.mail.MailMessageTemplate;
 import by.epam.hostelbeta.mail.MailThread;
 import by.epam.hostelbeta.service.OrderService;
 import by.epam.hostelbeta.service.ServiceException;
-import by.epam.hostelbeta.util.LocaleManager;
+import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
 public class RejectOrderCommand extends AbstractCommand {
+	private static final String ORDERS_PATH = "path.page.order";
+	private static final String ADMIN = "admin";
+
 	private static final String HOSTEL = "hostel";
 	private static final String IN_DATE = "inDate";
 	private static final String OUT_DATE = "outDate";
 	private static final String LOGIN = "login";
 	private static final String MESSAGE_SUBJECT = "Заявка на бронирование отклонена";
-	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
-		String message;
 		try {
+			System.out.println(request.getParameter("cause"));
 			long orderId = Long.parseLong(request.getParameter(Parameters.ORDER_ID));
-			OrderService.rejectOrder(orderId);
 			OrderDTO order = OrderService.getOrderById(orderId);
+			OrderService.rejectOrder(orderId);
+
+			List<OrderDTO> orders = OrderService.getAllOrders();
+			request.setAttribute(Parameters.PAGE, ADMIN);
+			request.setAttribute(Parameters.ORDER_LIST, orders);
 
 			sendMail(request, order);
-
-			message = locManager.getResourceBundle().getString(Parameters.OPERATION_SUCCESS);
+			return ConfigurationManager.getProperty(ORDERS_PATH);
 		} catch (ServiceException | NumberFormatException | IOException e) {
 			throw new CommandException(e);
 		} catch (MissingResourceException e) {
-			message = PROPERTY_NO_FOUND;
+			throw new CommandException("Couldn't find page path " + ORDERS_PATH, e);
 		}
-		return message;
 	}
 
 	private void sendMail(HttpServletRequest request, OrderDTO order) throws IOException {

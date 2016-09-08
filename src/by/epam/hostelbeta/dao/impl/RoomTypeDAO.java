@@ -32,7 +32,7 @@ public class RoomTypeDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("RoomTypeDAO Error finding all room types!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}

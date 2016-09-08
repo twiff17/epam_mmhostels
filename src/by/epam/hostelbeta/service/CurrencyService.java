@@ -13,7 +13,7 @@ public class CurrencyService {
 		try {
 			return currencyDAO.findAll();
 		} catch (DAOException e) {
-			throw new ServiceException("CurrencyService Error getting all currency!", e);
+			throw new ServiceException(e);
 		}
 	}
 

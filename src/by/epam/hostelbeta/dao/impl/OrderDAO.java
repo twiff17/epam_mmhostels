@@ -58,7 +58,7 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error finding orders by user id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -79,7 +79,7 @@ public class OrderDAO implements IOrderDAO {
 				orders.add(order);
 			}
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error finding all orders!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -94,7 +94,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error rejecting order!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -107,7 +107,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error accepting order!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -120,7 +120,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error canceling order!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -143,7 +143,7 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error checking room's availability!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -162,7 +162,7 @@ public class OrderDAO implements IOrderDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error booking room!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -181,7 +181,7 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error finding order by id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -204,7 +204,7 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error finding orders by hostel id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -228,7 +228,7 @@ public class OrderDAO implements IOrderDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("OrderDAO Error finding orders by room id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}

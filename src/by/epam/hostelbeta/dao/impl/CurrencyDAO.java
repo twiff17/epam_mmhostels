@@ -35,7 +35,7 @@ public class CurrencyDAO implements ICurrencyDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("CurrencyDAO Error in findAll method", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -53,7 +53,7 @@ public class CurrencyDAO implements ICurrencyDAO {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DAOException("CurrencyDAO Error inserting currency rate!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}

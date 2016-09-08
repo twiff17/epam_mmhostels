@@ -47,7 +47,7 @@
 							</tr>
 							<c:forEach var="hostel" items="${hostelList}">
 								<tr>
-									<td>${hostel.name }</td>
+									<td><b>${hostel.name }</b></td>
 									<td>${hostel.phone }</td>
 									<td>${hostel.country }</td>
 									<td>${hostel.city }</td>

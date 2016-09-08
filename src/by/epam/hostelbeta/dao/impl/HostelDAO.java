@@ -15,11 +15,11 @@ import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
 public class HostelDAO implements IHostelDAO {
-	private static final String SELECT_POPULAR_HOSTELS = "SELECT * from `hostel` join `order` on `hostel`.HostelId = `order`.HostelId GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5";
+	private static final String SELECT_POPULAR_HOSTELS = "SELECT * from `hostel` join `order` on (`hostel`.HostelId = `order`.HostelId AND `hostel`.`IsDeleted` = 0) GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5";
 	private static final String SELECT_ALL_HOSTELS_BY_PAGES = "SELECT SQL_CALC_FOUND_ROWS * FROM `v_hostel_information` LIMIT ?, ?";
-	private static final String SELECT_ALL_HOSTELS = "SELECT * FROM `hostel`";
-	private static final String SELECT_HOSTEL_BY_ID = "SELECT * FROM `hostel` WHERE `HostelId` = ?";
-	private static final String DELETE_HOSTEL = "DELETE FROM `hostel` WHERE `HostelId` = ?";
+	private static final String SELECT_ALL_HOSTELS = "SELECT * FROM `hostel` WHERE `IsDeleted` = 0";
+	private static final String SELECT_HOSTEL_BY_ID = "SELECT * FROM `hostel` WHERE `HostelId` = ? AND `IsDeleted` = 0";
+	private static final String DELETE_HOSTEL = "UPDATE `hostel` SET `IsDeleted` = 1 WHERE `HostelId` = ?";
 	private static final String ADD_HOSTEL = "INSERT INTO `hostel`(`Name`, `Country`, `City`, `Address`, `Currency`, `StandartPrice`, `Phone`, `Description`, `ImageName`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String EDIT_HOSTEL = "UPDATE `hostel` SET `Name` = ?, `Country` = ?, `City` = ?, `Address` = ?, `Currency` = ?, `StandartPrice` = ?, `Phone` = ?, `Description` = ? WHERE `HostelId` = ?";
 	private static final String SELECT_HOSTELS_BY_COUNTRY = "SELECT * FROM `v_hostel_information` WHERE `Country` LIKE ?";
@@ -55,7 +55,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error finding popular hostels!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -82,7 +82,7 @@ public class HostelDAO implements IHostelDAO {
 				this.noOfRecords = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error finding all hostels by pages!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -104,7 +104,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error finding all hostels!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -120,7 +120,7 @@ public class HostelDAO implements IHostelDAO {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error in deleteHostel method!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -141,7 +141,7 @@ public class HostelDAO implements IHostelDAO {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error adding hostel!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -161,7 +161,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error finding hostel by id!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -185,7 +185,7 @@ public class HostelDAO implements IHostelDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error editing hostel!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -206,7 +206,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error finding hostels by country!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -231,7 +231,7 @@ public class HostelDAO implements IHostelDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("HostelDAO Error finding hostels by price!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}

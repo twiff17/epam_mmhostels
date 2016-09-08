@@ -17,7 +17,7 @@ public class RoomService {
 		try {
 			rooms = roomDAO.findRoomsByHostelId(hostelId);
 		} catch (DAOException e) {
-			throw new ServiceException("RoomService Error getting rooms by hostel id!", e);
+			throw new ServiceException(e);
 		}
 		return rooms;
 	}
@@ -28,7 +28,7 @@ public class RoomService {
 		try {
 			rooms = roomDAO.findAllRooms();
 		} catch (DAOException e) {
-			throw new ServiceException("RoomService Error getting all rooms!", e);
+			throw new ServiceException(e);
 		}
 		return rooms;
 	}
@@ -36,9 +36,9 @@ public class RoomService {
 	public static void deleteRoom(long hostelId, long roomId) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
 		try {
-			roomDAO.deleteHostel(hostelId, roomId);
+			roomDAO.deleteRoom(hostelId, roomId);
 		} catch (DAOException e) {
-			throw new ServiceException("RoomService Error in delete room method!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class RoomService {
 				return false;
 			}
 		} catch (DAOException e) {
-			throw new ServiceException("RoomService Error adding room!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class RoomService {
 		try {
 			return roomDAO.findRoomById(hostelId, roomId);
 		} catch (DAOException e) {
-			throw new ServiceException("RoomService Error getting room by id!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class RoomService {
 		try {
 			roomDAO.editRoom(room);
 		} catch (DAOException e) {
-			throw new ServiceException("RoomService Error editing room!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -88,7 +88,7 @@ public class RoomService {
 				}
 			}
 		} catch (DAOException e) {
-			throw new ServiceException("RoomService Error getting free rooms!", e);
+			throw new ServiceException(e);
 		}
 		return freeRooms;
 	}

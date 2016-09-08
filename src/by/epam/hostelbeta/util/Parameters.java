@@ -84,4 +84,7 @@ public class Parameters {
 	public static final String MAIL = "mail";
 	public static final String SESSION_USER = "sessionUser";
 	public static final String IS_SEARCH = "isSearch";
+	public static final String CANT_DELETE_HOSTEL = "error.cant_delete_hostel";
+	public static final String CANT_DELETE_ROOM = "error.cant_delete_room";
+	public static final String CANT_REJECT_ORDER = "error.cant_reject_order";
 }

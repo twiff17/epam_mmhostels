@@ -49,7 +49,7 @@ public class UserDAO implements IUserDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("UserDAO Error finding all users!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -72,7 +72,7 @@ public class UserDAO implements IUserDAO {
 				fillUser(rs, user);
 			}
 		} catch (SQLException e) {
-			throw new DAOException("UserDAO Error finding user by login and password!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -98,7 +98,7 @@ public class UserDAO implements IUserDAO {
 				user.setUserId(rs.getLong(1));
 			}
 		} catch (SQLException e) {
-			throw new DAOException("UserDAO Error inserting user!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -119,7 +119,7 @@ public class UserDAO implements IUserDAO {
 				return false;
 			}
 		} catch (SQLException e) {
-			throw new DAOException("UserDAO Error checking login availability!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -133,7 +133,7 @@ public class UserDAO implements IUserDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("UserDAO Error banning user!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -147,7 +147,7 @@ public class UserDAO implements IUserDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("UserDAO Error unbanning user!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}
@@ -161,7 +161,7 @@ public class UserDAO implements IUserDAO {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new DAOException("UserDAO Error adding discount!", e);
+			throw new DAOException(e);
 		} finally {
 			connection.close();
 		}

@@ -10,7 +10,7 @@ public interface IRoomDAO {
 
 	List<RoomDTO> findAllRooms() throws DAOException;
 
-	void deleteHostel(long hostelId, long roomId) throws DAOException;
+	void deleteRoom(long hostelId, long roomId) throws DAOException;
 
 	void addRoom(Room room) throws DAOException;
 

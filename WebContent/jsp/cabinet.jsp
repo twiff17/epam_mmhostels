@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="by.epam.hostelbeta.util.LocalDateCompareUtil"%>
 <!DOCTYPE html>
 
 <fmt:setLocale value="${locale}" />
@@ -72,7 +73,7 @@
 											<td><fmt:message key="label.no" /></td>
 										</c:if>
 										<td><c:if
-												test="${order.status eq 'В обработке' or order.status eq 'Принят'}">
+												test="${(order.status eq 'В обработке' or order.status eq 'Принят') and !LocalDateCompareUtil.isAfterCurrentDate(order.getInDate())}">
 												<input type="button" class="icon-btn cancel-btn"
 													onClick="cancelOrder(${order.orderId})" value="">
 											</c:if></td>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="by.epam.hostelbeta.util.LocalDateCompareUtil"%>
 <!DOCTYPE html>
 
 <fmt:setLocale value="${locale}" />
@@ -39,7 +40,7 @@
 						</h2>
 					</c:if>
 					<c:if test="${not empty orderList }">
-						<div class="table pad_left_top">
+						<div class="table pad_left_top" style="padding-left: 6px;">
 							<table>
 								<tr>
 									<td><fmt:message key="label.client" /></td>
@@ -70,11 +71,13 @@
 										<c:if test="${!order.booking }">
 											<td><fmt:message key="label.no" /></td>
 										</c:if>
-										<td><c:if test="${order.status eq 'В обработке'}">
+										<td><c:if
+												test="${(order.status eq 'В обработке' or order.status eq 'Принят') and !LocalDateCompareUtil.isAfterCurrentDate(order.getInDate())}">
 												<input type="button" class="icon-btn delete-btn"
-													onClick="rejectOrder(${order.orderId})" value="">
+													onClick="PopUpRejectShow(${order.orderId})" value="">
 											</c:if></td>
-										<td><c:if test="${order.status eq 'В обработке'}">
+										<td><c:if
+												test="${order.status eq 'В обработке' and !LocalDateCompareUtil.isAfterCurrentDate(order.getInDate())}">
 												<input type="button" class="icon-btn accept-btn"
 													onClick="acceptOrder(${order.orderId})" value="">
 											</c:if></td>
@@ -90,5 +93,24 @@
 		<div class="block"></div>
 	</div>
 	<%@include file="../../footer.jsp"%>
+	<div class="b-popup" id="reject_popup" style="z-index: 10">
+		<div class="b-popup-content">
+			<span>Укажите причину отклонения заказа</span> <br>
+			<form action="Controller" method="post">
+				<input type="hidden" name="command" value="reject_order"> <input
+					type="hidden" id="orderId" name="orderId"> Причина (*) <select
+					class="marg1" style="border: 1px solid black;" name="cause"
+					required>
+					<option>ыв</option>
+					<option>цйвй</option>
+					<option>йвйайай</option>
+				</select> <input type="submit" class="details-btn"
+					value="<fmt:message
+					key="label.send" />"> <br />
+			</form>
+			<br> <a href="javascript:PopUpRejectHide(true)"><fmt:message
+					key="menu.close_window" /></a>
+		</div>
+	</div>
 </body>
 </html>

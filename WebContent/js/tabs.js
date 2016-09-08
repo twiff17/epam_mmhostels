@@ -66,6 +66,7 @@ $(document).ready(
 
 			PopUpHide(false);
 			PopUpTwoHide(false);
+			PopUpRejectHide(false);
 
 			var today = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 			var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000
@@ -112,6 +113,16 @@ function PopUpTwoShow(hostelId, hostelName) {
 }
 function PopUpTwoHide(reloadPage) {
 	$("#popup2").hide();
+	if (reloadPage) {
+		location.reload(true);
+	}
+}
+function PopUpRejectShow(orderId) {
+	document.getElementById("orderId").value = orderId;
+	$("#reject_popup").show();
+}
+function PopUpRejectHide(reloadPage) {
+	$("#reject_popup").hide();
 	if (reloadPage) {
 		location.reload(true);
 	}

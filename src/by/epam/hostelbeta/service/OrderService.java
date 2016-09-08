@@ -17,7 +17,7 @@ public class OrderService {
 		try {
 			return orderDAO.findOrdersByUserId(userId);
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error getting orders by user id!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -26,7 +26,7 @@ public class OrderService {
 		try {
 			return orderDAO.findAllOrders();
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error getting all orders!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class OrderService {
 		try {
 			orderDAO.rejectOrder(orderId);
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error rejecting order!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -44,7 +44,7 @@ public class OrderService {
 		try {
 			orderDAO.acceptOrder(orderId);
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error accepting order!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -59,7 +59,7 @@ public class OrderService {
 				return true;
 			}
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error canceling order!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class OrderService {
 				return false;
 			}
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error booking room!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class OrderService {
 		try {
 			return orderDAO.findOrderById(orderId);
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error getting order by id!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -99,7 +99,7 @@ public class OrderService {
 		try {
 			return orderDAO.findOrdersByHostelId(hostelId);
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error getting orders by hostel id!", e);
+			throw new ServiceException(e);
 		}
 	}
 
@@ -108,7 +108,7 @@ public class OrderService {
 		try {
 			return orderDAO.findOrdersByRoomId(hostelId, roomId);
 		} catch (DAOException e) {
-			throw new ServiceException("OrderService Error getting orders by room id!", e);
+			throw new ServiceException(e);
 		}
 	}
 }
