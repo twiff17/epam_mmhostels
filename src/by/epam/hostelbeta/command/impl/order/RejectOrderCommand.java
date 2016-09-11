@@ -21,20 +21,46 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RejectOrderCommand.
+ */
 public class RejectOrderCommand extends AbstractCommand {
+	
+	/** The Constant ORDERS_PATH. */
 	private static final String ORDERS_PATH = "path.page.order";
+	
+	/** The Constant ADMIN. */
 	private static final String ADMIN = "admin";
 
-	private static final String HOSTEL = "hostel";
-	private static final String IN_DATE = "inDate";
-	private static final String OUT_DATE = "outDate";
-	private static final String LOGIN = "login";
-	private static final String MESSAGE_SUBJECT = "Заявка на бронирование отклонена";
+	/** The Constant STATUS_ACCEPTED. */
+	private static final String STATUS_ACCEPTED = "Принят";
 
+	/** The Constant HOSTEL. */
+	private static final String HOSTEL = "hostel";
+	
+	/** The Constant IN_DATE. */
+	private static final String IN_DATE = "inDate";
+	
+	/** The Constant OUT_DATE. */
+	private static final String OUT_DATE = "outDate";
+	
+	/** The Constant LOGIN. */
+	private static final String LOGIN = "login";
+	
+	/** The Constant MESSAGE_SUBJECT. */
+	private static final String MESSAGE_SUBJECT = "Заявка на бронирование отклонена";
+	
+	/** The Constant CAUSE. */
+	private static final String CAUSE = "cause";
+
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
-			System.out.println(request.getParameter("cause"));
+			String cause = request.getParameter(Parameters.CAUSE);
 			long orderId = Long.parseLong(request.getParameter(Parameters.ORDER_ID));
 			OrderDTO order = OrderService.getOrderById(orderId);
 			OrderService.rejectOrder(orderId);
@@ -43,7 +69,7 @@ public class RejectOrderCommand extends AbstractCommand {
 			request.setAttribute(Parameters.PAGE, ADMIN);
 			request.setAttribute(Parameters.ORDER_LIST, orders);
 
-			sendMail(request, order);
+			sendMail(request, order, cause);
 			return ConfigurationManager.getProperty(ORDERS_PATH);
 		} catch (ServiceException | NumberFormatException | IOException e) {
 			throw new CommandException(e);
@@ -52,17 +78,28 @@ public class RejectOrderCommand extends AbstractCommand {
 		}
 	}
 
-	private void sendMail(HttpServletRequest request, OrderDTO order) throws IOException {
+	/**
+	 * Send mail.
+	 *
+	 * @param request the request
+	 * @param order the order
+	 * @param cause the cause
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	private void sendMail(HttpServletRequest request, OrderDTO order, String cause) throws IOException {
 		Properties properties = new Properties();
 		ServletContext context = request.getServletContext();
 		String filename = context.getInitParameter(Parameters.MAIL);
 		properties.load(context.getResourceAsStream(filename));
-		ST message;
-		message = new ST(MailMessageTemplate.rejectOrderMessage);
+		ST message = new ST(MailMessageTemplate.rejectBookingOrderMessage);
+		if (!order.isBooking() && STATUS_ACCEPTED.equals(order.getStatus())) {
+			message = new ST(MailMessageTemplate.rejectFullpaymentOrderMessage);
+		}
 		message.add(LOGIN, order.getUserLogin());
 		message.add(HOSTEL, order.getHostelName());
 		message.add(IN_DATE, order.getInDate());
 		message.add(OUT_DATE, order.getOutDate());
+		message.add(CAUSE, cause);
 		MailThread mailOperator = new MailThread(order.getUserEmail(), MESSAGE_SUBJECT, message.render(), properties);
 
 		mailOperator.start();

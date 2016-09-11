@@ -15,13 +15,27 @@ import by.epam.hostelbeta.dao.impl.CurrencyDAO;
 import by.epam.hostelbeta.domain.entity.Currency;
 import by.epam.hostelbeta.domain.entity.CurrencyRate;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CurrencyRateUpdater.
+ */
 public class CurrencyRateUpdater extends TimerTask {
+	
+	/** The Constant LOGGER. */
 	static final Logger LOGGER = LogManager.getLogger(CurrencyRateUpdater.class);
+	
+	/** The currency DAO. */
 	private CurrencyDAO currencyDAO = new CurrencyDAO();
 
+	/** The Constant CURRENCY_OFFICIAL_RATE. */
 	private static final String CURRENCY_OFFICIAL_RATE = "Cur_OfficialRate";
+	
+	/** The Constant CURRENCY_SCALE. */
 	private static final String CURRENCY_SCALE = "Cur_Scale";
 
+	/* (non-Javadoc)
+	 * @see java.util.TimerTask#run()
+	 */
 	@Override
 	public void run() {
 		JSONObject jsonCurrency = null;

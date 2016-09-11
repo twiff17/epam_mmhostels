@@ -6,9 +6,18 @@ import org.junit.Test;
 
 import by.epam.hostelbeta.domain.entity.Hostel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HostelValidatorTest.
+ */
 public class HostelValidatorTest {
+	
+	/** The hostel. */
 	private Hostel hostel = new Hostel();
 
+	/**
+	 * Fill hostel.
+	 */
 	@Before
 	public void fillHostel() {
 		hostel.setAddress("Карастояновой 22а");
@@ -23,6 +32,9 @@ public class HostelValidatorTest {
 		hostel.setStandartPrice(23);
 	}
 
+	/**
+	 * Adds the validate test.
+	 */
 	@Test
 	public void addValidateTest() {
 		assertTrue(HostelValidator.addValidate(hostel));

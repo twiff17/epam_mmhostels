@@ -13,28 +13,69 @@ import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserDAO.
+ */
 public class UserDAO implements IUserDAO {
+	
+	/** The Constant SELECT_ALL_USERS. */
 	private static final String SELECT_ALL_USERS = "SELECT * FROM user";
+	
+	/** The Constant SELECT_USER_BY_LOGIN_PASSWORD. */
 	private static final String SELECT_USER_BY_LOGIN_PASSWORD = "SELECT * FROM `user` WHERE Login = ? AND Password = ?";
+	
+	/** The Constant INSERT_USER. */
 	private static final String INSERT_USER = "INSERT INTO `user`(Login, Password, Fullname, Passport, Email, Phone) VALUES(?, ?, ?, ?, ?, ?)";
+	
+	/** The Constant SELECT_USER_BY_LOGIN. */
 	private static final String SELECT_USER_BY_LOGIN = "SELECT `UserId` FROM `user` WHERE Login = ?";
+	
+	/** The Constant BAN_USER. */
 	private static final String BAN_USER = "UPDATE `user` SET `Ban` = 1 WHERE `UserId` = ?";
+	
+	/** The Constant UNBAN_USER. */
 	private static final String UNBAN_USER = "UPDATE `user` SET `Ban` = 0 WHERE `UserId` = ?";
+	
+	/** The Constant ADD_DISCOUNT. */
 	private static final String ADD_DISCOUNT = "UPDATE `user` SET `Discount` = 1 WHERE `UserId` = ?";
 
+	/** The Constant USER_ID. */
 	private static final String USER_ID = "UserId";
+	
+	/** The Constant LOGIN. */
 	private static final String LOGIN = "Login";
+	
+	/** The Constant ROLE. */
 	private static final String ROLE = "Role";
+	
+	/** The Constant FULLNAME. */
 	private static final String FULLNAME = "Fullname";
+	
+	/** The Constant PASSPORT. */
 	private static final String PASSPORT = "Passport";
+	
+	/** The Constant EMAIL. */
 	private static final String EMAIL = "Email";
+	
+	/** The Constant PHONE. */
 	private static final String PHONE = "Phone";
+	
+	/** The Constant BAN. */
 	private static final String BAN = "Ban";
+	
+	/** The Constant DISCOUNT. */
 	private static final String DISCOUNT = "Discount";
 
+	/** The Constant ROLE_CLIENT. */
 	private static final String ROLE_CLIENT = "client";
+	
+	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "admin";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IUserDAO#findAll()
+	 */
 	public List<User> findAll() throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		List<User> users = new ArrayList<User>();
@@ -57,6 +98,9 @@ public class UserDAO implements IUserDAO {
 		return users;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IUserDAO#findByLoginAndPassword(java.lang.String, java.lang.String)
+	 */
 	public User findByLoginAndPassword(String login, String password) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		User user = null;
@@ -80,6 +124,9 @@ public class UserDAO implements IUserDAO {
 		return user;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IUserDAO#insertUser(by.epam.hostelbeta.domain.entity.User)
+	 */
 	public User insertUser(User user) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 
@@ -106,6 +153,9 @@ public class UserDAO implements IUserDAO {
 		return user;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IUserDAO#checkLogin(java.lang.String)
+	 */
 	public boolean checkLogin(String login) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 
@@ -125,6 +175,9 @@ public class UserDAO implements IUserDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IUserDAO#banUser(long)
+	 */
 	public void banUser(long userId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 
@@ -139,6 +192,9 @@ public class UserDAO implements IUserDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IUserDAO#unbanUser(long)
+	 */
 	public void unbanUser(long userId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 
@@ -153,6 +209,9 @@ public class UserDAO implements IUserDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IUserDAO#addDiscount(long)
+	 */
 	public void addDiscount(long userId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 
@@ -167,6 +226,13 @@ public class UserDAO implements IUserDAO {
 		}
 	}
 
+	/**
+	 * Fill user.
+	 *
+	 * @param rs the rs
+	 * @param user the user
+	 * @throws SQLException the SQL exception
+	 */
 	private void fillUser(ResultSet rs, User user) throws SQLException {
 		user.setUserId(rs.getLong(USER_ID));
 		user.setFullname(rs.getString(FULLNAME));

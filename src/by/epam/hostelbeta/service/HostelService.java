@@ -12,9 +12,21 @@ import by.epam.hostelbeta.domain.dto.HostelDTO;
 import by.epam.hostelbeta.domain.dto.RoomDTO;
 import by.epam.hostelbeta.domain.entity.Hostel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HostelService.
+ */
 public class HostelService {
+	
+	/** The Constant RECORDS_PER_PAGE. */
 	private static final int RECORDS_PER_PAGE = 5;
 
+	/**
+	 * Gets the popular hostels.
+	 *
+	 * @return the popular hostels
+	 * @throws ServiceException the service exception
+	 */
 	public static List<Hostel> getPopularHostels() throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		List<Hostel> hostels = new ArrayList<Hostel>();
@@ -26,6 +38,14 @@ public class HostelService {
 		return hostels;
 	}
 
+	/**
+	 * Gets the all hostels.
+	 *
+	 * @param pageNumber the page number
+	 * @param hostels the hostels
+	 * @return the all hostels
+	 * @throws ServiceException the service exception
+	 */
 	public static int getAllHostels(int pageNumber, List<HostelDTO> hostels) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
@@ -38,6 +58,12 @@ public class HostelService {
 		}
 	}
 
+	/**
+	 * Gets the all hostels.
+	 *
+	 * @return the all hostels
+	 * @throws ServiceException the service exception
+	 */
 	public static List<Hostel> getAllHostels() throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
@@ -47,6 +73,12 @@ public class HostelService {
 		}
 	}
 
+	/**
+	 * Delete hostel.
+	 *
+	 * @param hostelId the hostel id
+	 * @throws ServiceException the service exception
+	 */
 	public static void deleteHostel(long hostelId) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		RoomDAO roomDAO = new RoomDAO();
@@ -58,6 +90,12 @@ public class HostelService {
 		}
 	}
 
+	/**
+	 * Adds the hostel.
+	 *
+	 * @param hostel the hostel
+	 * @throws ServiceException the service exception
+	 */
 	public static void addHostel(Hostel hostel) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
@@ -67,6 +105,13 @@ public class HostelService {
 		}
 	}
 
+	/**
+	 * Gets the hostel by id.
+	 *
+	 * @param hostelId the hostel id
+	 * @return the hostel by id
+	 * @throws ServiceException the service exception
+	 */
 	public static Hostel getHostelById(long hostelId) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
@@ -76,6 +121,12 @@ public class HostelService {
 		}
 	}
 
+	/**
+	 * Edits the hostel.
+	 *
+	 * @param hostel the hostel
+	 * @throws ServiceException the service exception
+	 */
 	public static void editHostel(Hostel hostel) throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
 		try {
@@ -85,6 +136,15 @@ public class HostelService {
 		}
 	}
 
+	/**
+	 * Search by date and country.
+	 *
+	 * @param country the country
+	 * @param inDate the in date
+	 * @param outDate the out date
+	 * @return the list
+	 * @throws ServiceException the service exception
+	 */
 	public static List<HostelDTO> searchByDateAndCountry(String country, LocalDate inDate, LocalDate outDate)
 			throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();
@@ -110,6 +170,15 @@ public class HostelService {
 		return resultHostels;
 	}
 
+	/**
+	 * Search by price and country.
+	 *
+	 * @param country the country
+	 * @param minPrice the min price
+	 * @param maxPrice the max price
+	 * @return the list
+	 * @throws ServiceException the service exception
+	 */
 	public static List<HostelDTO> searchByPriceAndCountry(String country, int minPrice, int maxPrice)
 			throws ServiceException {
 		HostelDAO hostelDAO = new HostelDAO();

@@ -15,12 +15,24 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DeleteHostelCommand.
+ */
 public class DeleteHostelCommand extends AbstractCommand {
+	
+	/** The Constant PROPERTY_NO_FOUND. */
 	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
+	/** The Constant STATUS_IN_PROCESSING. */
 	private static final String STATUS_IN_PROCESSING = "В обработке";
+	
+	/** The Constant STATUS_ACCEPTED. */
 	private static final String STATUS_ACCEPTED = "Принят";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);

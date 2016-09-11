@@ -19,10 +19,21 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.OrderValidator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SearchByDateCommand.
+ */
 public class SearchByDateCommand extends AbstractCommand {
+	
+	/** The Constant HOSTELS_PATH. */
 	private static final String HOSTELS_PATH = "path.page.hostels";
+	
+	/** The Constant HOSTELS. */
 	private static final String HOSTELS = "hostels";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);

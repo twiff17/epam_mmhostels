@@ -24,14 +24,33 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BookRoomCommand.
+ */
 public class BookRoomCommand extends AbstractCommand {
+	
+	/** The Constant HOSTEL. */
 	private static final String HOSTEL = "hostel";
+	
+	/** The Constant IN_DATE. */
 	private static final String IN_DATE = "inDate";
+	
+	/** The Constant OUT_DATE. */
 	private static final String OUT_DATE = "outDate";
+	
+	/** The Constant LOGIN. */
 	private static final String LOGIN = "login";
+	
+	/** The Constant MESSAGE_SUBJECT. */
 	private static final String MESSAGE_SUBJECT = "«а€вка на бронирование в очереди на обработку.";
+	
+	/** The Constant PROPERTY_NO_FOUND. */
 	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String message = null;
@@ -72,6 +91,15 @@ public class BookRoomCommand extends AbstractCommand {
 		return message;
 	}
 
+	/**
+	 * Send mail.
+	 *
+	 * @param request the request
+	 * @param hostel the hostel
+	 * @param order the order
+	 * @param user the user
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private void sendMail(HttpServletRequest request, Hostel hostel, Order order, User user) throws IOException {
 		Properties properties = new Properties();
 		ServletContext context = request.getServletContext();

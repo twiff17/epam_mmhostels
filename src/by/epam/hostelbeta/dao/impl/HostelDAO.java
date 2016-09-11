@@ -14,33 +14,84 @@ import by.epam.hostelbeta.domain.entity.Hostel;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HostelDAO.
+ */
 public class HostelDAO implements IHostelDAO {
+	
+	/** The Constant SELECT_POPULAR_HOSTELS. */
 	private static final String SELECT_POPULAR_HOSTELS = "SELECT * from `hostel` join `order` on (`hostel`.HostelId = `order`.HostelId AND `hostel`.`IsDeleted` = 0) GROUP BY `hostel`.`HostelId` ORDER BY COUNT(`order`.`OrderId`) DESC LIMIT 5";
+	
+	/** The Constant SELECT_ALL_HOSTELS_BY_PAGES. */
 	private static final String SELECT_ALL_HOSTELS_BY_PAGES = "SELECT SQL_CALC_FOUND_ROWS * FROM `v_hostel_information` LIMIT ?, ?";
+	
+	/** The Constant SELECT_ALL_HOSTELS. */
 	private static final String SELECT_ALL_HOSTELS = "SELECT * FROM `hostel` WHERE `IsDeleted` = 0";
+	
+	/** The Constant SELECT_HOSTEL_BY_ID. */
 	private static final String SELECT_HOSTEL_BY_ID = "SELECT * FROM `hostel` WHERE `HostelId` = ? AND `IsDeleted` = 0";
+	
+	/** The Constant DELETE_HOSTEL. */
 	private static final String DELETE_HOSTEL = "UPDATE `hostel` SET `IsDeleted` = 1 WHERE `HostelId` = ?";
+	
+	/** The Constant ADD_HOSTEL. */
 	private static final String ADD_HOSTEL = "INSERT INTO `hostel`(`Name`, `Country`, `City`, `Address`, `Currency`, `StandartPrice`, `Phone`, `Description`, `ImageName`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	/** The Constant EDIT_HOSTEL. */
 	private static final String EDIT_HOSTEL = "UPDATE `hostel` SET `Name` = ?, `Country` = ?, `City` = ?, `Address` = ?, `Currency` = ?, `StandartPrice` = ?, `Phone` = ?, `Description` = ? WHERE `HostelId` = ?";
+	
+	/** The Constant SELECT_HOSTELS_BY_COUNTRY. */
 	private static final String SELECT_HOSTELS_BY_COUNTRY = "SELECT * FROM `v_hostel_information` WHERE `Country` LIKE ?";
+	
+	/** The Constant SELECT_HOSTELS_BY_PRICE. */
 	private static final String SELECT_HOSTELS_BY_PRICE = "SELECT * FROM `v_hostel_information` WHERE `Country` LIKE ? and (`MinPriceBYN` BETWEEN ? and ?)";
 
+	/** The Constant HOSTEL_ID. */
 	private static final String HOSTEL_ID = "HostelId";
+	
+	/** The Constant NAME. */
 	private static final String NAME = "Name";
+	
+	/** The Constant COUNTRY. */
 	private static final String COUNTRY = "Country";
+	
+	/** The Constant CITY. */
 	private static final String CITY = "City";
+	
+	/** The Constant ADDRESS. */
 	private static final String ADDRESS = "Address";
+	
+	/** The Constant CURRENCY. */
 	private static final String CURRENCY = "Currency";
+	
+	/** The Constant PHONE. */
 	private static final String PHONE = "Phone";
+	
+	/** The Constant DESCRIPTION. */
 	private static final String DESCRIPTION = "Description";
+	
+	/** The Constant MIN_PRICE. */
 	private static final String MIN_PRICE = "MinPrice";
+	
+	/** The Constant MAX_PRICE. */
 	private static final String MAX_PRICE = "MaxPrice";
+	
+	/** The Constant ROOM_TYPES. */
 	private static final String ROOM_TYPES = "RoomTypes";
+	
+	/** The Constant STANDART_PRICE. */
 	private static final String STANDART_PRICE = "StandartPrice";
+	
+	/** The Constant IMAGE_NAME. */
 	private static final String IMAGE_NAME = "ImageName";
 
+	/** The no of records. */
 	private int noOfRecords;
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#findPopularHostels()
+	 */
 	public List<Hostel> findPopularHostels() throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		ArrayList<Hostel> hostels = new ArrayList<Hostel>();
@@ -62,6 +113,9 @@ public class HostelDAO implements IHostelDAO {
 		return hostels;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#findAllHostels(int, int)
+	 */
 	public List<HostelDTO> findAllHostels(int offset, int noOfRecords) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		ArrayList<HostelDTO> hostels = new ArrayList<HostelDTO>();
@@ -90,6 +144,9 @@ public class HostelDAO implements IHostelDAO {
 		return hostels;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#findAllHostels()
+	 */
 	public List<Hostel> findAllHostels() throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		ArrayList<Hostel> hostels = new ArrayList<Hostel>();
@@ -112,6 +169,9 @@ public class HostelDAO implements IHostelDAO {
 		return hostels;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#deleteHostel(long)
+	 */
 	public void deleteHostel(long hostelId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		try (PreparedStatement ps = connection.prepareStatement(DELETE_HOSTEL)) {
@@ -126,6 +186,9 @@ public class HostelDAO implements IHostelDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#addHostel(by.epam.hostelbeta.domain.entity.Hostel)
+	 */
 	public void addHostel(Hostel hostel) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		try (PreparedStatement ps = connection.prepareStatement(ADD_HOSTEL)) {
@@ -147,6 +210,9 @@ public class HostelDAO implements IHostelDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#findHostelById(long)
+	 */
 	public Hostel findHostelById(long hostelId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		Hostel hostel = null;
@@ -169,6 +235,9 @@ public class HostelDAO implements IHostelDAO {
 		return hostel;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#editHostel(by.epam.hostelbeta.domain.entity.Hostel)
+	 */
 	public void editHostel(Hostel hostel) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		try (PreparedStatement ps = connection.prepareStatement(EDIT_HOSTEL)) {
@@ -191,6 +260,9 @@ public class HostelDAO implements IHostelDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#findByCountry(java.lang.String)
+	 */
 	public List<HostelDTO> findByCountry(String country) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		ArrayList<HostelDTO> hostels = new ArrayList<HostelDTO>();
@@ -214,6 +286,9 @@ public class HostelDAO implements IHostelDAO {
 		return hostels;
 	}
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.dao.IHostelDAO#findHostelsByPrice(java.lang.String, int, int)
+	 */
 	public List<HostelDTO> findHostelsByPrice(String country, int minPrice, int maxPrice) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
 		ArrayList<HostelDTO> hostels = new ArrayList<HostelDTO>();
@@ -239,6 +314,13 @@ public class HostelDAO implements IHostelDAO {
 		return hostels;
 	}
 
+	/**
+	 * Fill hostel.
+	 *
+	 * @param rs the rs
+	 * @param hostel the hostel
+	 * @throws SQLException the SQL exception
+	 */
 	private void fillHostel(ResultSet rs, Hostel hostel) throws SQLException {
 		hostel.setHostelId(rs.getLong(HOSTEL_ID));
 		hostel.setImageName(rs.getString(IMAGE_NAME));
@@ -252,6 +334,13 @@ public class HostelDAO implements IHostelDAO {
 		hostel.setDescription(rs.getString(DESCRIPTION));
 	}
 
+	/**
+	 * Fill hostel dto.
+	 *
+	 * @param rs the rs
+	 * @param hostelDto the hostel dto
+	 * @throws SQLException the SQL exception
+	 */
 	private void fillHostelDto(ResultSet rs, HostelDTO hostelDto) throws SQLException {
 		hostelDto.setHostelId(rs.getLong(HOSTEL_ID));
 		hostelDto.setImageName(rs.getString(IMAGE_NAME));
@@ -267,6 +356,11 @@ public class HostelDAO implements IHostelDAO {
 		hostelDto.setMaxPrice(rs.getInt(MAX_PRICE));
 	}
 
+	/**
+	 * Gets the no of records.
+	 *
+	 * @return the no of records
+	 */
 	public int getNoOfRecords() {
 		return noOfRecords;
 	}

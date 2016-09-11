@@ -9,8 +9,15 @@ import by.epam.hostelbeta.command.CommandException;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ChangeLocaleCommand.
+ */
 public class ChangeLocaleCommand extends AbstractCommand {
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String locale = request.getParameter(Parameters.LOCALE);

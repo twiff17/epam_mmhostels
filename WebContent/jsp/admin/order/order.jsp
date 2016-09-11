@@ -40,7 +40,7 @@
 						</h2>
 					</c:if>
 					<c:if test="${not empty orderList }">
-						<div class="table pad_left_top" style="padding-left: 6px;">
+						<div class="table pad_left_top" style="padding-left: 4px;">
 							<table>
 								<tr>
 									<td><fmt:message key="label.client" /></td>
@@ -95,15 +95,17 @@
 	<%@include file="../../footer.jsp"%>
 	<div class="b-popup" id="reject_popup" style="z-index: 10">
 		<div class="b-popup-content">
-			<span>Укажите причину отклонения заказа</span> <br>
+			<span><fmt:message key="label.enter_cause" /></span> <br>
 			<form action="Controller" method="post">
 				<input type="hidden" name="command" value="reject_order"> <input
-					type="hidden" id="orderId" name="orderId"> Причина (*) <select
-					class="marg1" style="border: 1px solid black;" name="cause"
-					required>
-					<option>ыв</option>
-					<option>цйвй</option>
-					<option>йвйайай</option>
+					type="hidden" id="orderId" name="orderId">
+				<fmt:message key="label.cause" />
+				(*) <select class="marg1" style="border: 1px solid black;"
+					name="cause" required>
+					<option>хостел больше не работает</option>
+					<option>в хостеле проводится ремонт</option>
+					<option>места уже заняты</option>
+					<option>в хостеле проходят санитарные работы</option>
 				</select> <input type="submit" class="details-btn"
 					value="<fmt:message
 					key="label.send" />"> <br />

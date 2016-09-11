@@ -15,10 +15,21 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetHostelsCommand.
+ */
 public class GetHostelsCommand extends AbstractCommand {
+	
+	/** The Constant HOSTELS. */
 	private static final String HOSTELS = "hostels";
+	
+	/** The Constant HOSTELS_PATH. */
 	private static final String HOSTELS_PATH = "path.page.hostels";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		List<HostelDTO> hostels = new ArrayList<HostelDTO>();

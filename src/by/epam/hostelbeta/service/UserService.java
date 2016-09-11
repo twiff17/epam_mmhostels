@@ -7,7 +7,20 @@ import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.impl.UserDAO;
 import by.epam.hostelbeta.domain.entity.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserService.
+ */
 public class UserService {
+	
+	/**
+	 * Check login password.
+	 *
+	 * @param enterLogin the enter login
+	 * @param enterPassword the enter password
+	 * @return the user
+	 * @throws ServiceException the service exception
+	 */
 	public static User checkLoginPassword(String enterLogin, String enterPassword) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		User user = null;
@@ -20,6 +33,13 @@ public class UserService {
 		return user;
 	}
 
+	/**
+	 * Check login.
+	 *
+	 * @param login the login
+	 * @return true, if successful
+	 * @throws ServiceException the service exception
+	 */
 	public static boolean checkLogin(String login) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		boolean isLoginExists = false;
@@ -31,6 +51,13 @@ public class UserService {
 		return isLoginExists;
 	}
 
+	/**
+	 * Sign up.
+	 *
+	 * @param user the user
+	 * @return the user
+	 * @throws ServiceException the service exception
+	 */
 	public static User signUp(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
@@ -45,6 +72,12 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * Gets the all users.
+	 *
+	 * @return the all users
+	 * @throws ServiceException the service exception
+	 */
 	public static List<User> getAllUsers() throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
@@ -54,6 +87,12 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * Ban user.
+	 *
+	 * @param userId the user id
+	 * @throws ServiceException the service exception
+	 */
 	public static void banUser(long userId) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
@@ -63,6 +102,12 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * Unban user.
+	 *
+	 * @param userId the user id
+	 * @throws ServiceException the service exception
+	 */
 	public static void unbanUser(long userId) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
@@ -72,6 +117,12 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * Adds the discount.
+	 *
+	 * @param userId the user id
+	 * @throws ServiceException the service exception
+	 */
 	public static void addDiscount(long userId) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {

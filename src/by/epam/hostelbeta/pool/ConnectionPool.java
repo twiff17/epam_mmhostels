@@ -13,17 +13,33 @@ import org.apache.logging.log4j.Logger;
 
 import by.epam.hostelbeta.config.DBConfig;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConnectionPool.
+ */
 public class ConnectionPool {
+	
+	/** The Constant LOGGER. */
 	static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
+	/** The Constant POOL_SIZE. */
 	private static final int POOL_SIZE = 20;
 
+	/** The is created. */
 	private static AtomicBoolean isCreated = new AtomicBoolean();
+	
+	/** The lock. */
 	private static Lock lock = new ReentrantLock();
+	
+	/** The instance. */
 	private static ConnectionPool instance;
 
+	/** The connections. */
 	private ArrayBlockingQueue<Connection> connections;
 
+	/**
+	 * Instantiates a new connection pool.
+	 */
 	private ConnectionPool() {
 		try {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -41,6 +57,11 @@ public class ConnectionPool {
 		}
 	}
 
+	/**
+	 * Gets the single instance of ConnectionPool.
+	 *
+	 * @return single instance of ConnectionPool
+	 */
 	public static ConnectionPool getInstance() {
 		if (!isCreated.get()) {
 			try {
@@ -56,6 +77,11 @@ public class ConnectionPool {
 		return instance;
 	}
 
+	/**
+	 * Gets the connection.
+	 *
+	 * @return the connection
+	 */
 	private Connection getConnection() {
 		Connection connection = null;
 		try {
@@ -68,6 +94,11 @@ public class ConnectionPool {
 		return connection;
 	}
 
+	/**
+	 * Retrieve.
+	 *
+	 * @return the connection decorator
+	 */
 	public ConnectionDecorator retrieve() {
 		ConnectionDecorator connection = null;
 		try {
@@ -79,6 +110,11 @@ public class ConnectionPool {
 		return connection;
 	}
 
+	/**
+	 * Putback.
+	 *
+	 * @param connection the connection
+	 */
 	void putback(Connection connection) {
 		try {
 			connections.put(connection);
@@ -88,6 +124,9 @@ public class ConnectionPool {
 		}
 	}
 
+	/**
+	 * Close pool.
+	 */
 	public void closePool() {
 		while (connections != null && connections.size() > 0) {
 			try {
@@ -101,6 +140,11 @@ public class ConnectionPool {
 		}
 	}
 
+	/**
+	 * Gets the size.
+	 *
+	 * @return the size
+	 */
 	public int getSize() {
 		return connections.size();
 	}

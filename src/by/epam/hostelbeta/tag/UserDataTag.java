@@ -10,8 +10,16 @@ import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserDataTag.
+ */
 @SuppressWarnings("serial")
 public class UserDataTag extends TagSupport {
+	
+	/* (non-Javadoc)
+	 * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
+	 */
 	@Override
 	public int doStartTag() throws JspException {
 		HttpSession session = pageContext.getSession();

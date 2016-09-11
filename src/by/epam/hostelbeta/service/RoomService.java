@@ -10,7 +10,19 @@ import by.epam.hostelbeta.dao.impl.RoomDAO;
 import by.epam.hostelbeta.domain.dto.RoomDTO;
 import by.epam.hostelbeta.domain.entity.Room;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RoomService.
+ */
 public class RoomService {
+	
+	/**
+	 * Gets the rooms by hostel id.
+	 *
+	 * @param hostelId the hostel id
+	 * @return the rooms by hostel id
+	 * @throws ServiceException the service exception
+	 */
 	public static List<RoomDTO> getRoomsByHostelId(long hostelId) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
 		List<RoomDTO> rooms = new ArrayList<RoomDTO>();
@@ -22,6 +34,12 @@ public class RoomService {
 		return rooms;
 	}
 
+	/**
+	 * Gets the all rooms.
+	 *
+	 * @return the all rooms
+	 * @throws ServiceException the service exception
+	 */
 	public static List<RoomDTO> getAllRooms() throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
 		List<RoomDTO> rooms = new ArrayList<RoomDTO>();
@@ -33,6 +51,13 @@ public class RoomService {
 		return rooms;
 	}
 
+	/**
+	 * Delete room.
+	 *
+	 * @param hostelId the hostel id
+	 * @param roomId the room id
+	 * @throws ServiceException the service exception
+	 */
 	public static void deleteRoom(long hostelId, long roomId) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
 		try {
@@ -42,6 +67,13 @@ public class RoomService {
 		}
 	}
 
+	/**
+	 * Adds the room.
+	 *
+	 * @param room the room
+	 * @return true, if successful
+	 * @throws ServiceException the service exception
+	 */
 	public static boolean addRoom(Room room) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
 		try {
@@ -56,6 +88,14 @@ public class RoomService {
 		}
 	}
 
+	/**
+	 * Gets the room by id.
+	 *
+	 * @param hostelId the hostel id
+	 * @param roomId the room id
+	 * @return the room by id
+	 * @throws ServiceException the service exception
+	 */
 	public static Room getRoomById(long hostelId, long roomId) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
 		try {
@@ -65,6 +105,12 @@ public class RoomService {
 		}
 	}
 
+	/**
+	 * Edits the room.
+	 *
+	 * @param room the room
+	 * @throws ServiceException the service exception
+	 */
 	public static void editRoom(Room room) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
 		try {
@@ -74,6 +120,15 @@ public class RoomService {
 		}
 	}
 
+	/**
+	 * Gets the free rooms.
+	 *
+	 * @param hostelId the hostel id
+	 * @param inDate the in date
+	 * @param outDate the out date
+	 * @return the free rooms
+	 * @throws ServiceException the service exception
+	 */
 	public static List<RoomDTO> getFreeRooms(long hostelId, LocalDate inDate, LocalDate outDate)
 			throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();

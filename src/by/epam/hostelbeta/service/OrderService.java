@@ -11,7 +11,19 @@ import by.epam.hostelbeta.domain.dto.OrderDTO;
 import by.epam.hostelbeta.domain.dto.RoomDTO;
 import by.epam.hostelbeta.domain.entity.Order;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class OrderService.
+ */
 public class OrderService {
+	
+	/**
+	 * Gets the orders by user id.
+	 *
+	 * @param userId the user id
+	 * @return the orders by user id
+	 * @throws ServiceException the service exception
+	 */
 	public static List<OrderDTO> getOrdersByUserId(long userId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
@@ -21,6 +33,12 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Gets the all orders.
+	 *
+	 * @return the all orders
+	 * @throws ServiceException the service exception
+	 */
 	public static List<OrderDTO> getAllOrders() throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
@@ -30,6 +48,12 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Reject order.
+	 *
+	 * @param orderId the order id
+	 * @throws ServiceException the service exception
+	 */
 	public static void rejectOrder(long orderId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
@@ -39,6 +63,12 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Accept order.
+	 *
+	 * @param orderId the order id
+	 * @throws ServiceException the service exception
+	 */
 	public static void acceptOrder(long orderId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
@@ -48,6 +78,13 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Cancel order.
+	 *
+	 * @param orderId the order id
+	 * @return true, if successful
+	 * @throws ServiceException the service exception
+	 */
 	public static boolean cancelOrder(long orderId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
@@ -63,6 +100,14 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Book room.
+	 *
+	 * @param order the order
+	 * @param discount the discount
+	 * @return true, if successful
+	 * @throws ServiceException the service exception
+	 */
 	public static boolean bookRoom(Order order, boolean discount) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		RoomDAO roomDAO = new RoomDAO();
@@ -85,6 +130,13 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Gets the order by id.
+	 *
+	 * @param orderId the order id
+	 * @return the order by id
+	 * @throws ServiceException the service exception
+	 */
 	public static OrderDTO getOrderById(long orderId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
@@ -94,6 +146,13 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Gets the orders by hostel id.
+	 *
+	 * @param hostelId the hostel id
+	 * @return the orders by hostel id
+	 * @throws ServiceException the service exception
+	 */
 	public static List<OrderDTO> getOrdersByHostelId(long hostelId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {
@@ -103,6 +162,14 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * Gets the orders by room id.
+	 *
+	 * @param hostelId the hostel id
+	 * @param roomId the room id
+	 * @return the orders by room id
+	 * @throws ServiceException the service exception
+	 */
 	public static List<OrderDTO> getOrdersByRoomId(long hostelId, long roomId) throws ServiceException {
 		OrderDAO orderDAO = new OrderDAO();
 		try {

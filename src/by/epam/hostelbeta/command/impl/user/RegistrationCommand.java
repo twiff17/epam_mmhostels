@@ -19,12 +19,27 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.UserValidator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RegistrationCommand.
+ */
 public class RegistrationCommand extends AbstractCommand {
+	
+	/** The Constant ROLE_CLIENT. */
 	private static final String ROLE_CLIENT = "client";
+	
+	/** The Constant REGISTRATION_PATH. */
 	private static final String REGISTRATION_PATH = "path.page.registration";
+	
+	/** The Constant HOME. */
 	private static final String HOME = "home";
+	
+	/** The Constant HOME_PATH. */
 	private static final String HOME_PATH = "path.page.home";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String page = null;

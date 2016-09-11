@@ -16,10 +16,21 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetRoomAddCommand.
+ */
 public class GetRoomAddCommand extends AbstractCommand {
+	
+	/** The Constant ROOM_ADD_PAGE. */
 	private static final String ROOM_ADD_PAGE = "path.page.room-add";
+	
+	/** The Constant ADMIN. */
 	private static final String ADMIN = "admin";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {

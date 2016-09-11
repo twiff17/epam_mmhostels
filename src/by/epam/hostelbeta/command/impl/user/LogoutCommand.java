@@ -15,10 +15,21 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LogoutCommand.
+ */
 public class LogoutCommand extends AbstractCommand {
+	
+	/** The Constant HOME. */
 	private static final String HOME = "home";
+	
+	/** The Constant HOME_PATH. */
 	private static final String HOME_PATH = "path.page.home";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String locale = (String) request.getSession().getAttribute(Parameters.LOCALE);

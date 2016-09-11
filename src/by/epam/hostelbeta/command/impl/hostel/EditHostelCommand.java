@@ -20,11 +20,24 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.HostelValidator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EditHostelCommand.
+ */
 public class EditHostelCommand extends AbstractCommand {
+	
+	/** The Constant HOSTEL_ADD_PATH. */
 	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
+	
+	/** The Constant HOSTEL_PATH. */
 	private static final String HOSTEL_PATH = "path.page.hostel";
+	
+	/** The Constant ADMIN. */
 	private static final String ADMIN = "admin";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String page = null;

@@ -28,15 +28,36 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.HostelValidator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AddHostelCommand.
+ */
 public class AddHostelCommand extends AbstractCommand {
+	
+	/** The Constant HOSTEL_ADD_PATH. */
 	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
+	
+	/** The Constant HOSTEL_PATH. */
 	private static final String HOSTEL_PATH = "path.page.hostel";
+	
+	/** The Constant ENCODING. */
 	private static final String ENCODING = "UTF-8";
+	
+	/** The Constant PNG_FORMAT. */
 	private static final String PNG_FORMAT = ".png";
+	
+	/** The Constant JPG_FORMAT. */
 	private static final String JPG_FORMAT = ".jpg";
+	
+	/** The Constant GIF_FORMAT. */
 	private static final String GIF_FORMAT = ".gif";
+	
+	/** The Constant HOSTELS_IMAGES_PATH. */
 	private static final String HOSTELS_IMAGES_PATH = "/images/hostels";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
@@ -86,6 +107,14 @@ public class AddHostelCommand extends AbstractCommand {
 		return page;
 	}
 
+	/**
+	 * Process uploaded file.
+	 *
+	 * @param item the item
+	 * @param request the request
+	 * @param hostel the hostel
+	 * @throws CommandException the command exception
+	 */
 	private void processUploadedFile(FileItem item, HttpServletRequest request, Hostel hostel) throws CommandException {
 		File uploadedFile = null;
 		String path = request.getServletContext().getRealPath(HOSTELS_IMAGES_PATH);
@@ -102,6 +131,13 @@ public class AddHostelCommand extends AbstractCommand {
 		}
 	}
 
+	/**
+	 * Process form field.
+	 *
+	 * @param item the item
+	 * @param hostel the hostel
+	 * @throws CommandException the command exception
+	 */
 	private void processFormField(FileItem item, Hostel hostel) throws CommandException {
 		if (item.isFormField()) {
 			try {

@@ -15,10 +15,21 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetCabinetCommand.
+ */
 public class GetCabinetCommand extends AbstractCommand {
+	
+	/** The Constant CABINET. */
 	private static final String CABINET = "cabinet";
+	
+	/** The Constant CABINET_PATH. */
 	private static final String CABINET_PATH = "path.page.cabinet";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();

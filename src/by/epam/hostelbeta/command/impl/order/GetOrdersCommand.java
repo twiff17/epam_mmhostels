@@ -15,11 +15,21 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetOrdersCommand.
+ */
 public class GetOrdersCommand extends AbstractCommand {
 
+	/** The Constant ORDERS_PATH. */
 	private static final String ORDERS_PATH = "path.page.order";
+	
+	/** The Constant ADMIN. */
 	private static final String ADMIN = "admin";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();

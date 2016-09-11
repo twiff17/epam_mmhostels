@@ -5,13 +5,32 @@ import java.util.Properties;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MailSessionCreator.
+ */
 public class MailSessionCreator {
+	
+	/** The smtp host. */
 	private String smtpHost;
+	
+	/** The smtp port. */
 	private String smtpPort;
+	
+	/** The user name. */
 	private String userName;
+	
+	/** The user password. */
 	private String userPassword;
+	
+	/** The session properties. */
 	private Properties sessionProperties;
 
+	/**
+	 * Instantiates a new mail session creator.
+	 *
+	 * @param configProperties the config properties
+	 */
 	public MailSessionCreator(Properties configProperties) {
 		smtpHost = configProperties.getProperty("mail.smtp.host");
 		smtpPort = configProperties.getProperty("mail.smtp.port");
@@ -31,6 +50,11 @@ public class MailSessionCreator {
 		sessionProperties.setProperty("mail.smtp.quitwait", "false");
 	}
 
+	/**
+	 * Creates the session.
+	 *
+	 * @return the session
+	 */
 	public Session createSession() {
 		return Session.getDefaultInstance(sessionProperties, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {

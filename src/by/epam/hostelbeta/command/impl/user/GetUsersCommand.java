@@ -14,10 +14,21 @@ import by.epam.hostelbeta.service.UserService;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetUsersCommand.
+ */
 public class GetUsersCommand extends AbstractCommand {
+	
+	/** The Constant USER_PATH. */
 	private static final String USER_PATH = "path.page.user";
+	
+	/** The Constant ADMIN. */
 	private static final String ADMIN = "admin";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {

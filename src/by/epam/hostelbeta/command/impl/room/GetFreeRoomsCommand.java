@@ -21,11 +21,24 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.OrderValidator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetFreeRoomsCommand.
+ */
 public class GetFreeRoomsCommand extends AbstractCommand {
+	
+	/** The Constant ROOMS_PATH. */
 	private static final String ROOMS_PATH = "path.page.rooms";
+	
+	/** The Constant HOSTELS. */
 	private static final String HOSTELS = "hostels";
+	
+	/** The Constant HOSTELS_PATH. */
 	private static final String HOSTELS_PATH = "path.page.hostels";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String page = null;

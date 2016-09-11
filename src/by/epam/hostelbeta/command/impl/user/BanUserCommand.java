@@ -12,9 +12,18 @@ import by.epam.hostelbeta.service.UserService;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BanUserCommand.
+ */
 public class BanUserCommand extends AbstractCommand {
+	
+	/** The Constant PROPERTY_NO_FOUND. */
 	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
+	/* (non-Javadoc)
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
