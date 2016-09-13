@@ -5,31 +5,32 @@ import java.util.Properties;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class MailSessionCreator.
+ * The Class MailSessionCreator. Creates a new mail session for sending messages
+ * to the client
  */
 public class MailSessionCreator {
-	
+
 	/** The smtp host. */
 	private String smtpHost;
-	
+
 	/** The smtp port. */
 	private String smtpPort;
-	
+
 	/** The user name. */
 	private String userName;
-	
+
 	/** The user password. */
 	private String userPassword;
-	
+
 	/** The session properties. */
 	private Properties sessionProperties;
 
 	/**
 	 * Instantiates a new mail session creator.
 	 *
-	 * @param configProperties the config properties
+	 * @param configProperties
+	 *            the config properties
 	 */
 	public MailSessionCreator(Properties configProperties) {
 		smtpHost = configProperties.getProperty("mail.smtp.host");
@@ -51,9 +52,9 @@ public class MailSessionCreator {
 	}
 
 	/**
-	 * Creates the session.
+	 * Creates a new mail session.
 	 *
-	 * @return the session
+	 * @return created session
 	 */
 	public Session createSession() {
 		return Session.getDefaultInstance(sessionProperties, new javax.mail.Authenticator() {

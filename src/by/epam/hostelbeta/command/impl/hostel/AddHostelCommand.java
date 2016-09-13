@@ -28,35 +28,38 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.HostelValidator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AddHostelCommand.
+ * The Class AddHostelCommand. Fills the object Hostel and saves it to the
+ * database
  */
 public class AddHostelCommand extends AbstractCommand {
-	
-	/** The Constant HOSTEL_ADD_PATH. */
+
+	/** The Constant HOSTEL_ADD_PATH. The path to the adding hostel page */
 	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
-	
-	/** The Constant HOSTEL_PATH. */
+
+	/** The Constant HOSTEL_PATH. The path to the hostel management page */
 	private static final String HOSTEL_PATH = "path.page.hostel";
-	
+
 	/** The Constant ENCODING. */
 	private static final String ENCODING = "UTF-8";
-	
+
 	/** The Constant PNG_FORMAT. */
 	private static final String PNG_FORMAT = ".png";
-	
+
 	/** The Constant JPG_FORMAT. */
 	private static final String JPG_FORMAT = ".jpg";
-	
+
 	/** The Constant GIF_FORMAT. */
 	private static final String GIF_FORMAT = ".gif";
-	
-	/** The Constant HOSTELS_IMAGES_PATH. */
+
+	/** The Constant HOSTELS_IMAGES_PATH. The path to the images of hostels */
 	private static final String HOSTELS_IMAGES_PATH = "/images/hostels";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -77,7 +80,7 @@ public class AddHostelCommand extends AbstractCommand {
 			}
 			if (request.getSession().getAttribute(Parameters.FORM_HASH) == null
 					|| !request.getSession().getAttribute(Parameters.FORM_HASH).equals(hostel.getHash())) {
-				if (HostelValidator.addValidate(hostel)) {
+				if (HostelValidator.addingValidate(hostel)) {
 					request.getSession().setAttribute(Parameters.FORM_HASH, hostel.getHash());
 					HostelService.addHostel(hostel);
 
@@ -108,12 +111,16 @@ public class AddHostelCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Process uploaded file.
+	 * Process uploaded the image of hostel.
 	 *
-	 * @param item the item
-	 * @param request the request
-	 * @param hostel the hostel
-	 * @throws CommandException the command exception
+	 * @param item
+	 *            - uploadable file
+	 * @param request
+	 *            - the request
+	 * @param hostel
+	 *            - the hostel
+	 * @throws CommandException
+	 *             the command exception
 	 */
 	private void processUploadedFile(FileItem item, HttpServletRequest request, Hostel hostel) throws CommandException {
 		File uploadedFile = null;
@@ -132,11 +139,14 @@ public class AddHostelCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Process form field.
+	 * Process simple form field.
 	 *
-	 * @param item the item
-	 * @param hostel the hostel
-	 * @throws CommandException the command exception
+	 * @param item
+	 *            - the field of the form
+	 * @param hostel
+	 *            - the hostel
+	 * @throws CommandException
+	 *             the command exception
 	 */
 	private void processFormField(FileItem item, Hostel hostel) throws CommandException {
 		if (item.isFormField()) {

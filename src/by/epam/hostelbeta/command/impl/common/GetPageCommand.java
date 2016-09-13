@@ -11,26 +11,29 @@ import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GetPageCommand.
+ * The Class GetPageCommand. Returns the page which is specified in request
+ * parameter "page".
  */
 public class GetPageCommand extends AbstractCommand {
-	
-	/** The Constant SHORT_PATH. */
+
+	/** The Constant SHORT_PATH. The prefix to the all pages */
 	private static final String SHORT_PATH = "path.page.";
-	
-	/** The Constant NO_ACCESS_PATH. */
+
+	/** The Constant NO_ACCESS_PATH. The path to the no_access page */
 	private static final String NO_ACCESS_PATH = "path.page.noaccess";
-	
+
 	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "admin";
-	
-	/** The Constant ADMIN_PAGE. */
+
+	/** The Constant ADMIN_PAGE. The name of admin page */
 	private static final String ADMIN_PAGE = "admin";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

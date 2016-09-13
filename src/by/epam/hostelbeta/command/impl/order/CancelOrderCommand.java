@@ -12,17 +12,19 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CancelOrderCommand.
+ * The Class CancelOrderCommand. Sets the "canceled" status to the order.
  */
 public class CancelOrderCommand extends AbstractCommand {
-	
+
 	/** The Constant PROPERTY_NO_FOUND. */
 	private static final String PROPERTY_NO_FOUND = "???not_found???";
-	
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -32,12 +34,12 @@ public class CancelOrderCommand extends AbstractCommand {
 			long orderId = Long.parseLong(request.getParameter(Parameters.ORDER_ID));
 			if (OrderService.cancelOrder(orderId)) {
 				message = locManager.getResourceBundle().getString(Parameters.OPERATION_SUCCESS);
-			}else{
+			} else {
 				message = locManager.getResourceBundle().getString(Parameters.CANT_CANCEL_ORDER);
 			}
 		} catch (ServiceException | NumberFormatException e) {
 			throw new CommandException(e);
-		} catch(MissingResourceException e){
+		} catch (MissingResourceException e) {
 			message = PROPERTY_NO_FOUND;
 		}
 		return message;

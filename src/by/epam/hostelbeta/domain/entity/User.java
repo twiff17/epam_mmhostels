@@ -1,38 +1,37 @@
 package by.epam.hostelbeta.domain.entity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class User.
+ * The Class User. POJO for user
  */
 public class User {
-	
+
 	/** The user id. */
 	private long userId;
-	
+
 	/** The login. */
 	private String login;
-	
+
 	/** The password. */
 	private String password;
-	
+
 	/** The role. */
 	private String role;
-	
+
 	/** The fullname. */
 	private String fullname;
-	
+
 	/** The passport. */
 	private String passport;
-	
+
 	/** The email. */
 	private String email;
-	
+
 	/** The phone. */
 	private String phone;
-	
+
 	/** The ban. */
 	private boolean ban;
-	
+
 	/** The discount. */
 	private boolean discount;
 
@@ -48,7 +47,8 @@ public class User {
 	/**
 	 * Sets the user id.
 	 *
-	 * @param userId the new user id
+	 * @param userId
+	 *            the new user id
 	 */
 	public void setUserId(long userId) {
 		this.userId = userId;
@@ -66,7 +66,8 @@ public class User {
 	/**
 	 * Sets the login.
 	 *
-	 * @param login the new login
+	 * @param login
+	 *            the new login
 	 */
 	public void setLogin(String login) {
 		this.login = login;
@@ -84,7 +85,8 @@ public class User {
 	/**
 	 * Sets the password.
 	 *
-	 * @param password the new password
+	 * @param password
+	 *            the new password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -102,7 +104,8 @@ public class User {
 	/**
 	 * Sets the role.
 	 *
-	 * @param role the new role
+	 * @param role
+	 *            the new role
 	 */
 	public void setRole(String role) {
 		this.role = role;
@@ -120,7 +123,8 @@ public class User {
 	/**
 	 * Sets the fullname.
 	 *
-	 * @param fullname the new fullname
+	 * @param fullname
+	 *            the new fullname
 	 */
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
@@ -138,7 +142,8 @@ public class User {
 	/**
 	 * Sets the passport.
 	 *
-	 * @param passport the new passport
+	 * @param passport
+	 *            the new passport
 	 */
 	public void setPassport(String passport) {
 		this.passport = passport;
@@ -156,7 +161,8 @@ public class User {
 	/**
 	 * Sets the email.
 	 *
-	 * @param email the new email
+	 * @param email
+	 *            the new email
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -174,7 +180,8 @@ public class User {
 	/**
 	 * Sets the phone.
 	 *
-	 * @param phone the new phone
+	 * @param phone
+	 *            the new phone
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
@@ -192,7 +199,8 @@ public class User {
 	/**
 	 * Sets the ban.
 	 *
-	 * @param ban the new ban
+	 * @param ban
+	 *            the new ban
 	 */
 	public void setBan(boolean ban) {
 		this.ban = ban;
@@ -210,13 +218,16 @@ public class User {
 	/**
 	 * Sets the discount.
 	 *
-	 * @param discount the new discount
+	 * @param discount
+	 *            the new discount
 	 */
 	public void setDiscount(boolean discount) {
 		this.discount = discount;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -236,7 +247,9 @@ public class User {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

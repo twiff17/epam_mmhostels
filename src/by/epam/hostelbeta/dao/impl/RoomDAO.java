@@ -15,55 +15,56 @@ import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.util.DoubleRoundUtil;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RoomDAO.
+ * The Class RoomDAO. Class to access the data about rooms
  */
 public class RoomDAO implements IRoomDAO {
-	
+
 	/** The Constant SELECT_ROOMS_BY_HOSTEL_ID. */
 	private static final String SELECT_ROOMS_BY_HOSTEL_ID = "SELECT `HostelId`, `RoomId`, `Name` as `HostelName`, `RoomType`, `BYNPrice` as `Price`, `BedsNumber` FROM `v_room_information` WHERE `HostelId` = ?";
-	
+
 	/** The Constant SELECT_ALL_ROOMS. */
 	private static final String SELECT_ALL_ROOMS = "SELECT `HostelId`, `RoomId`, `Name` as `HostelName`, `RoomType`, `BYNPrice` as `Price`, `BedsNumber` FROM `v_room_information`";
-	
+
 	/** The Constant DELETE_ROOM. */
 	private static final String DELETE_ROOM = "UPDATE `room` SET `IsDeleted` = 1 WHERE `HostelId` = ? AND `RoomId` = ?";
-	
+
 	/** The Constant ADD_ROOM. */
 	private static final String ADD_ROOM = "INSERT INTO `room` (`HostelId`, `RoomId`, `RoomType`, `BedsNumber`) VALUES(?, ?, ?, ?)";
-	
+
 	/** The Constant SELECT_ROOM_BY_ID. */
 	private static final String SELECT_ROOM_BY_ID = "SELECT * FROM `room` WHERE `HostelId` = ? AND `RoomId` = ? AND `IsDeleted` = 0";
-	
+
 	/** The Constant EDIT_ROOM. */
 	private static final String EDIT_ROOM = "UPDATE `room` SET `RoomType` = ?, `BedsNumber` = ? WHERE `HostelId` = ? AND `RoomId` = ?";
-	
+
 	/** The Constant SELECT_ROOM_DTO_BY_ID. */
 	private static final String SELECT_ROOM_DTO_BY_ID = "SELECT `HostelId`, `RoomId`, `Name` as `HostelName`, `RoomType`, `BYNPrice` as `Price`, `BedsNumber` FROM `v_room_information` WHERE `HostelId` = ? AND `RoomId` = ?";
-	
+
 	/** The Constant DELETE_ROOMS_BY_HOSTEL_ID. */
 	private static final String DELETE_ROOMS_BY_HOSTEL_ID = "UPDATE `room` SET `IsDeleted` = 1 WHERE `HostelId` = ?";
 
 	/** The Constant HOSTEL_ID. */
 	private static final String HOSTEL_ID = "HostelId";
-	
+
 	/** The Constant ROOM_ID. */
 	private static final String ROOM_ID = "RoomId";
-	
+
 	/** The Constant ROOM_TYPE. */
 	private static final String ROOM_TYPE = "RoomType";
-	
+
 	/** The Constant PRICE. */
 	private static final String PRICE = "Price";
-	
+
 	/** The Constant BEDS_NUMBER. */
 	private static final String BEDS_NUMBER = "BedsNumber";
-	
+
 	/** The Constant HOSTEL_NAME. */
 	private static final String HOSTEL_NAME = "HostelName";
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IRoomDAO#findRoomsByHostelId(long)
 	 */
 	@Override
@@ -90,7 +91,9 @@ public class RoomDAO implements IRoomDAO {
 		return rooms;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IRoomDAO#findAllRooms()
 	 */
 	public List<RoomDTO> findAllRooms() throws DAOException {
@@ -114,7 +117,9 @@ public class RoomDAO implements IRoomDAO {
 		return rooms;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IRoomDAO#deleteRoom(long, long)
 	 */
 	public void deleteRoom(long hostelId, long roomId) throws DAOException {
@@ -132,8 +137,12 @@ public class RoomDAO implements IRoomDAO {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.dao.IRoomDAO#addRoom(by.epam.hostelbeta.domain.entity.Room)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * by.epam.hostelbeta.dao.IRoomDAO#addRoom(by.epam.hostelbeta.domain.entity.
+	 * Room)
 	 */
 	public void addRoom(Room room) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -152,7 +161,9 @@ public class RoomDAO implements IRoomDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IRoomDAO#findRoomById(long, long)
 	 */
 	public Room findRoomById(long hostelId, long roomId) throws DAOException {
@@ -177,8 +188,12 @@ public class RoomDAO implements IRoomDAO {
 		return room;
 	}
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.dao.IRoomDAO#editRoom(by.epam.hostelbeta.domain.entity.Room)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * by.epam.hostelbeta.dao.IRoomDAO#editRoom(by.epam.hostelbeta.domain.entity
+	 * .Room)
 	 */
 	public void editRoom(Room room) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -197,7 +212,9 @@ public class RoomDAO implements IRoomDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IRoomDAO#checkRoomId(long, long)
 	 */
 	public boolean checkRoomId(long hostelId, long roomId) throws DAOException {
@@ -220,7 +237,9 @@ public class RoomDAO implements IRoomDAO {
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IRoomDAO#findRoomDTOById(long, long)
 	 */
 	public RoomDTO findRoomDTOById(long hostelId, long roomId) throws DAOException {
@@ -248,8 +267,10 @@ public class RoomDAO implements IRoomDAO {
 	/**
 	 * Delete rooms by hostel id.
 	 *
-	 * @param hostelId the hostel id
-	 * @throws DAOException the DAO exception
+	 * @param hostelId
+	 *            the hostel id
+	 * @throws DAOException
+	 *             the DAO exception
 	 */
 	public void deleteRoomsByHostelId(long hostelId) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -268,9 +289,12 @@ public class RoomDAO implements IRoomDAO {
 	/**
 	 * Fill room DTO.
 	 *
-	 * @param rs the rs
-	 * @param room the room
-	 * @throws SQLException the SQL exception
+	 * @param rs
+	 *            the ResultSet with data
+	 * @param room
+	 *            the room
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	private void fillRoomDTO(ResultSet rs, RoomDTO room) throws SQLException {
 		room.setHostelName(rs.getString(HOSTEL_NAME));
@@ -284,9 +308,12 @@ public class RoomDAO implements IRoomDAO {
 	/**
 	 * Fill room.
 	 *
-	 * @param rs the rs
-	 * @param room the room
-	 * @throws SQLException the SQL exception
+	 * @param rs
+	 *            the ResultSet with data
+	 * @param room
+	 *            the room
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	private void fillRoom(ResultSet rs, Room room) throws SQLException {
 		room.setBedsNumber(rs.getInt(BEDS_NUMBER));

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import by.epam.hostelbeta.domain.entity.Hostel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HostelValidatorTest.
  */
@@ -37,8 +36,8 @@ public class HostelValidatorTest {
 	 */
 	@Test
 	public void addValidateTest() {
-		assertTrue(HostelValidator.addValidate(hostel));
+		assertTrue(HostelValidator.addingValidate(hostel));
 		hostel.setImageName("image.exe");
-		assertFalse(HostelValidator.addValidate(hostel));
+		assertFalse(HostelValidator.addingValidate(hostel));
 	}
 }

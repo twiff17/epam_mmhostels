@@ -13,28 +13,27 @@ import org.apache.logging.log4j.Logger;
 
 import by.epam.hostelbeta.config.DBConfig;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ConnectionPool.
+ * The Class ConnectionPool. The pool for connection storage and management
  */
 public class ConnectionPool {
-	
+
 	/** The Constant LOGGER. */
 	static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
 	/** The Constant POOL_SIZE. */
 	private static final int POOL_SIZE = 20;
 
-	/** The is created. */
+	/** A flag indicating created pool or not */
 	private static AtomicBoolean isCreated = new AtomicBoolean();
-	
+
 	/** The lock. */
 	private static Lock lock = new ReentrantLock();
-	
-	/** The instance. */
+
+	/** The instance of connection pool. */
 	private static ConnectionPool instance;
 
-	/** The connections. */
+	/** A queue for connection storage. */
 	private ArrayBlockingQueue<Connection> connections;
 
 	/**
@@ -95,7 +94,8 @@ public class ConnectionPool {
 	}
 
 	/**
-	 * Retrieve.
+	 * Retrieves the connection from the queue, creates a new connection
+	 * decorator and returns
 	 *
 	 * @return the connection decorator
 	 */
@@ -111,21 +111,22 @@ public class ConnectionPool {
 	}
 
 	/**
-	 * Putback.
+	 * Puts connection back to the pool.
 	 *
-	 * @param connection the connection
+	 * @param connection
+	 *            the connection
 	 */
 	void putback(Connection connection) {
 		try {
 			connections.put(connection);
-			LOGGER.debug("Connection putback");
+			LOGGER.debug("Connection is put back");
 		} catch (InterruptedException e) {
-			LOGGER.error("Error trying putback connection to pool", e);
+			LOGGER.error("Error trying put back connection to pool", e);
 		}
 	}
 
 	/**
-	 * Close pool.
+	 * Really closes all connections
 	 */
 	public void closePool() {
 		while (connections != null && connections.size() > 0) {
@@ -141,7 +142,7 @@ public class ConnectionPool {
 	}
 
 	/**
-	 * Gets the size.
+	 * Gets the size of the connections queue.
 	 *
 	 * @return the size
 	 */

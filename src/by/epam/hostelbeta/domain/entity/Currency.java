@@ -1,8 +1,7 @@
 package by.epam.hostelbeta.domain.entity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Currency.
+ * The Class Currency. POJO for currency
  */
 public class Currency {
 	

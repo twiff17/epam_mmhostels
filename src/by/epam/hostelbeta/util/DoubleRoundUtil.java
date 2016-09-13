@@ -3,18 +3,19 @@ package by.epam.hostelbeta.util;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DoubleRoundUtil.
+ * The Class DoubleRoundUtil. Class for rounding double values
  */
 public class DoubleRoundUtil {
-	
+
 	/**
 	 * Round.
 	 *
-	 * @param value the value
-	 * @param places the places
-	 * @return the double
+	 * @param value
+	 *            the value
+	 * @param places
+	 *            scale of the BigDecimal value to be returned.
+	 * @return a double whose scale is the specified value
 	 */
 	public static double round(double value, int places) {
 		if (places < 0)

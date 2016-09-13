@@ -3,9 +3,8 @@ package by.epam.hostelbeta.domain.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Order.
+ * The Class Order. POJO for order
  */
 public class Order {
 	

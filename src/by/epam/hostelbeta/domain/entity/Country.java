@@ -1,8 +1,7 @@
 package by.epam.hostelbeta.domain.entity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Country.
+ * The Class Country. POJO for country
  */
 public class Country {
 	

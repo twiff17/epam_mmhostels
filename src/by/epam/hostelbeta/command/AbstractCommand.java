@@ -9,14 +9,17 @@ import by.epam.hostelbeta.service.CountryService;
 import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AbstractCommand.
+ * The Class AbstractCommand. The top of the commands hierarchy
  */
 public abstract class AbstractCommand implements ICommand {
-	
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#fillCountryList(javax.servlet.http.HttpServletRequest)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * by.epam.hostelbeta.command.ICommand#fillCountryList(javax.servlet.http.
+	 * HttpServletRequest)
 	 */
 	public void fillCountryList(HttpServletRequest request) throws CommandException {
 		try {

@@ -14,20 +14,22 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class EmptyCommand.
+ * The Class EmptyCommand. Uses when the request parameter "command" is empty.
  */
 public class EmptyCommand extends AbstractCommand {
-	
-	/** The Constant HOME. */
+
+	/** The Constant HOME. The name of current page. */
 	private static final String HOME = "home";
-	
-	/** The Constant HOME_PATH. */
+
+	/** The Constant HOME_PATH. Path to the home page. */
 	private static final String HOME_PATH = "path.page.home";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

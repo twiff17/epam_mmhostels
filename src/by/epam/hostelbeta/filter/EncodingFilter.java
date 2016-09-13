@@ -9,13 +9,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class EncodingFilter.
+ * The Class EncodingFilter. Filter for encoding request and response
  */
 @WebFilter(urlPatterns = { "/Controller", "/AjaxController" })
 public class EncodingFilter implements Filter {
-	
+
 	/** The Constant ENCODING. */
 	private static final String ENCODING = "UTF-8";
 
@@ -25,14 +24,19 @@ public class EncodingFilter implements Filter {
 	public EncodingFilter() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#destroy()
 	 */
 	public void destroy() {
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -41,7 +45,9 @@ public class EncodingFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {

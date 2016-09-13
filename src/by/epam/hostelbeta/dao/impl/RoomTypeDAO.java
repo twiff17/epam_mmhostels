@@ -11,21 +11,20 @@ import by.epam.hostelbeta.domain.entity.RoomType;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RoomTypeDAO.
+ * The Class RoomTypeDAO. Class to access the data about room types
  */
 public class RoomTypeDAO {
-	
+
 	/** The Constant SELECT_ALL. */
 	private static final String SELECT_ALL = "SELECT * FROM `room_type`";
 
 	/** The Constant NAME. */
 	private static final String NAME = "Name";
-	
+
 	/** The Constant COEFF. */
 	private static final String COEFF = "Coeff";
-	
+
 	/** The Constant ROOM_TYPE_ID. */
 	private static final String ROOM_TYPE_ID = "RoomTypeId";
 
@@ -33,7 +32,8 @@ public class RoomTypeDAO {
 	 * Find all room types.
 	 *
 	 * @return the list
-	 * @throws DAOException the DAO exception
+	 * @throws DAOException
+	 *             the DAO exception
 	 */
 	public List<RoomType> findAllRoomTypes() throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -59,9 +59,12 @@ public class RoomTypeDAO {
 	/**
 	 * Fill type.
 	 *
-	 * @param rs the rs
-	 * @param roomType the room type
-	 * @throws SQLException the SQL exception
+	 * @param rs
+	 *            the ResultSet with data
+	 * @param roomType
+	 *            the room type
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	private void fillType(ResultSet rs, RoomType roomType) throws SQLException {
 		roomType.setCoeff(rs.getDouble(COEFF));

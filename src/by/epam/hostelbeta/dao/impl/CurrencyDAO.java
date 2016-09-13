@@ -14,29 +14,30 @@ import by.epam.hostelbeta.domain.entity.Currency;
 import by.epam.hostelbeta.domain.entity.CurrencyRate;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
-// TODO: Auto-generated Javadoc
 
 /**
- * The Class CurrencyDAO.
+ * The Class CurrencyDAO. Class to access the data about currencies
  */
 public class CurrencyDAO implements ICurrencyDAO {
-	
+
 	/** The Constant SELECT_ALL. */
 	private static final String SELECT_ALL = "SELECT `Code`, `CurrencyId` , `Name` FROM `currency`";
-	
+
 	/** The Constant INSERT_CURRENCY_RATE. */
 	private static final String INSERT_CURRENCY_RATE = "INSERT INTO `currency_rate` (`Currency`,`RateDate`, `Rate`) VALUES(?, ?, ?)";
 
 	/** The Constant CODE. */
 	private static final String CODE = "Code";
-	
+
 	/** The Constant NAME. */
 	private static final String NAME = "Name";
-	
+
 	/** The Constant CURRENCY_ID. */
 	private static final String CURRENCY_ID = "CurrencyId";
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.ICurrencyDAO#findAll()
 	 */
 	public List<Currency> findAll() throws DAOException {
@@ -60,8 +61,12 @@ public class CurrencyDAO implements ICurrencyDAO {
 		return currencyList;
 	}
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.dao.ICurrencyDAO#insertCurrencyRate(by.epam.hostelbeta.domain.entity.CurrencyRate)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * by.epam.hostelbeta.dao.ICurrencyDAO#insertCurrencyRate(by.epam.hostelbeta
+	 * .domain.entity.CurrencyRate)
 	 */
 	public void insertCurrencyRate(CurrencyRate rate) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -82,9 +87,12 @@ public class CurrencyDAO implements ICurrencyDAO {
 	/**
 	 * Fill currency.
 	 *
-	 * @param rs the rs
-	 * @param currency the currency
-	 * @throws SQLException the SQL exception
+	 * @param rs
+	 *            the ResultSet with data
+	 * @param currency
+	 *            the currency
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	private void fillCurrency(ResultSet rs, Currency currency) throws SQLException {
 		currency.setCode(rs.getString(CODE));

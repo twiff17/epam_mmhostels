@@ -21,16 +21,16 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RejectOrderCommand.
+ * The Class RejectOrderCommand. Sets the "rejected" status to the order and
+ * sends message to the client with the cause of rejection.
  */
 public class RejectOrderCommand extends AbstractCommand {
-	
-	/** The Constant ORDERS_PATH. */
+
+	/** The Constant ORDERS_PATH. The path of the orders page */
 	private static final String ORDERS_PATH = "path.page.order";
-	
-	/** The Constant ADMIN. */
+
+	/** The Constant ADMIN. The name of the current page */
 	private static final String ADMIN = "admin";
 
 	/** The Constant STATUS_ACCEPTED. */
@@ -38,24 +38,27 @@ public class RejectOrderCommand extends AbstractCommand {
 
 	/** The Constant HOSTEL. */
 	private static final String HOSTEL = "hostel";
-	
+
 	/** The Constant IN_DATE. */
 	private static final String IN_DATE = "inDate";
-	
+
 	/** The Constant OUT_DATE. */
 	private static final String OUT_DATE = "outDate";
-	
+
 	/** The Constant LOGIN. */
 	private static final String LOGIN = "login";
-	
+
 	/** The Constant MESSAGE_SUBJECT. */
 	private static final String MESSAGE_SUBJECT = "Заявка на бронирование отклонена";
-	
+
 	/** The Constant CAUSE. */
 	private static final String CAUSE = "cause";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -79,12 +82,16 @@ public class RejectOrderCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Send mail.
+	 * Sends mail to the client with the cause of rejection.
 	 *
-	 * @param request the request
-	 * @param order the order
-	 * @param cause the cause
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @param request
+	 *            the request
+	 * @param order
+	 *            the order
+	 * @param cause
+	 *            the cause of rejection the order
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	private void sendMail(HttpServletRequest request, OrderDTO order, String cause) throws IOException {
 		Properties properties = new Properties();

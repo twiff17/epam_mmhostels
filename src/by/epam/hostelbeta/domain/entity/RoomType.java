@@ -1,17 +1,16 @@
 package by.epam.hostelbeta.domain.entity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RoomType.
+ * The Class RoomType. POJO for room type
  */
 public class RoomType {
-	
+
 	/** The room type id. */
 	private int roomTypeId;
-	
+
 	/** The name. */
 	private String name;
-	
+
 	/** The coeff. */
 	private double coeff;
 
@@ -27,7 +26,8 @@ public class RoomType {
 	/**
 	 * Sets the room type id.
 	 *
-	 * @param roomTypeId the new room type id
+	 * @param roomTypeId
+	 *            the new room type id
 	 */
 	public void setRoomTypeId(int roomTypeId) {
 		this.roomTypeId = roomTypeId;
@@ -45,7 +45,8 @@ public class RoomType {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the new name
+	 * @param name
+	 *            the new name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -63,13 +64,16 @@ public class RoomType {
 	/**
 	 * Sets the coeff.
 	 *
-	 * @param coeff the new coeff
+	 * @param coeff
+	 *            the new coeff
 	 */
 	public void setCoeff(double coeff) {
 		this.coeff = coeff;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -84,7 +88,9 @@ public class RoomType {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

@@ -2,31 +2,31 @@ package by.epam.hostelbeta.validator;
 
 import by.epam.hostelbeta.domain.entity.User;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UserValidator.
+ * The Class UserValidator. Validates User object
  */
 public class UserValidator {
-	
+
 	/** The Constant LOGIN_PASSWORD_REGEXP. */
 	private static final String LOGIN_PASSWORD_REGEXP = "[A-Za-z0-9]{5,25}";
-	
+
 	/** The Constant FULLNAME_REGEXP. */
 	private static final String FULLNAME_REGEXP = "[Р-пр-џ ]+|[a-zA-z ]+";
-	
+
 	/** The Constant PASSPORT_REGEXP. */
 	private static final String PASSPORT_REGEXP = "[A-Z]{2}[0-9]{7}";
-	
+
 	/** The Constant EMAIL_REGEXP. */
 	private static final String EMAIL_REGEXP = "^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$";
-	
+
 	/** The Constant PHONE_REGEXP. */
 	private static final String PHONE_REGEXP = "^\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}$";
 
 	/**
-	 * Validate.
+	 * Validates user.
 	 *
-	 * @param user the user
+	 * @param user
+	 *            the user
 	 * @return true, if successful
 	 */
 	public static boolean validate(User user) {

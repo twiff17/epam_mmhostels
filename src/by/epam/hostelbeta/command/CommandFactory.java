@@ -5,12 +5,11 @@ import org.apache.logging.log4j.Logger;
 
 import by.epam.hostelbeta.command.impl.common.EmptyCommand;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating Command objects.
  */
 public class CommandFactory {
-	
+
 	/** The Constant LOGGER. */
 	static final Logger LOGGER = LogManager.getLogger(CommandFactory.class);
 
@@ -36,11 +35,14 @@ public class CommandFactory {
 	}
 
 	/**
-	 * Gets the command.
+	 * Creates and gets the Command object.
 	 *
-	 * @param command the command
-	 * @return the command
-	 * @throws CommandException the command exception
+	 * @param command
+	 *            - the name of the command
+	 * @return the command object
+	 * @throws CommandException
+	 *             the command exception, throws when the command with given
+	 *             name doesn't exist
 	 */
 	public ICommand getCommand(String command) throws CommandException {
 		ICommand current = new EmptyCommand();

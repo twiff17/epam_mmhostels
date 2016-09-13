@@ -7,12 +7,11 @@ import java.util.ResourceBundle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ConfigurationManager.
+ * The Class ConfigurationManager. Manager for getting jsp paths
  */
 public class ConfigurationManager {
-	
+
 	/** The Constant LOGGER. */
 	static final Logger LOGGER = LogManager.getLogger(ConfigurationManager.class);
 
@@ -27,10 +26,11 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Gets the property.
+	 * Gets the path to the jsp by key.
 	 *
-	 * @param key the key
-	 * @return the property
+	 * @param key
+	 *            the key
+	 * @return the path
 	 */
 	public static String getProperty(String key) {
 		if (resourceBundle == null) {

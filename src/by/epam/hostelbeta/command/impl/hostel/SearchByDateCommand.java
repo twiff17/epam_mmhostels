@@ -19,20 +19,22 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.OrderValidator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SearchByDateCommand.
+ * The Class SearchByDateCommand. Searches available hostels for given date
  */
 public class SearchByDateCommand extends AbstractCommand {
-	
-	/** The Constant HOSTELS_PATH. */
+
+	/** The Constant HOSTELS_PATH. The path to the hostels page */
 	private static final String HOSTELS_PATH = "path.page.hostels";
-	
-	/** The Constant HOSTELS. */
+
+	/** The Constant HOSTELS. The name of current page */
 	private static final String HOSTELS = "hostels";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

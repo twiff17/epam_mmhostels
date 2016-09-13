@@ -73,7 +73,7 @@
 											<td><fmt:message key="label.no" /></td>
 										</c:if>
 										<td><c:if
-												test="${(order.status eq 'В обработке' or order.status eq 'Принят') and !LocalDateCompareUtil.isAfterCurrentDate(order.getInDate())}">
+												test="${(order.status eq 'В обработке' or order.status eq 'Принят') and !LocalDateCompareUtil.isBeforeOrEqualsCurrentDate(order.getInDate())}">
 												<input type="button" class="icon-btn cancel-btn"
 													onClick="cancelOrder(${order.orderId})" value="">
 											</c:if></td>

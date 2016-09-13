@@ -6,7 +6,6 @@ import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.impl.CurrencyDAO;
 import by.epam.hostelbeta.domain.entity.Currency;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CurrencyService.
  */
@@ -15,8 +14,9 @@ public class CurrencyService {
 	/**
 	 * Gets the all currency.
 	 *
-	 * @return the all currency
-	 * @throws ServiceException the service exception
+	 * @return the list of all currency
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static List<Currency> getAllCurrency() throws ServiceException {
 		CurrencyDAO currencyDAO = new CurrencyDAO();

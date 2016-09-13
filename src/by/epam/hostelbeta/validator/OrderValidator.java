@@ -2,18 +2,20 @@ package by.epam.hostelbeta.validator;
 
 import java.time.LocalDate;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class OrderValidator.
+ * The Class OrderValidator. Validates object Order
  */
 public class OrderValidator {
-	
+
 	/**
-	 * Date validate.
+	 * Validates in date and out date
 	 *
-	 * @param inDate the in date
-	 * @param outDate the out date
-	 * @return the int
+	 * @param inDate
+	 *            the in date
+	 * @param outDate
+	 *            the out date
+	 * @return 0 if OK, 1 if out date isn't after in date, 2 if in date isn't
+	 *         after current date
 	 */
 	public static int dateValidate(LocalDate inDate, LocalDate outDate) {
 		if (!outDate.isAfter(inDate)) {

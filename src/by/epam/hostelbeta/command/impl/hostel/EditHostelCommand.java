@@ -20,23 +20,25 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.HostelValidator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class EditHostelCommand.
+ * The Class EditHostelCommand. Edits hostel in the database.
  */
 public class EditHostelCommand extends AbstractCommand {
-	
-	/** The Constant HOSTEL_ADD_PATH. */
+
+	/** The Constant HOSTEL_ADD_PATH. The path to the adding hostel page */
 	private static final String HOSTEL_ADD_PATH = "path.page.hostel-add";
-	
-	/** The Constant HOSTEL_PATH. */
+
+	/** The Constant HOSTEL_PATH. The path to the hostel management page */
 	private static final String HOSTEL_PATH = "path.page.hostel";
-	
-	/** The Constant ADMIN. */
+
+	/** The Constant ADMIN. The name of the current page */
 	private static final String ADMIN = "admin";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -56,7 +58,7 @@ public class EditHostelCommand extends AbstractCommand {
 			hostel.setPhone(request.getParameter(Parameters.PHONE));
 			hostel.setStandartPrice(Integer.parseInt(request.getParameter(Parameters.STANDART_PRICE)));
 
-			if (HostelValidator.editValidate(hostel)) {
+			if (HostelValidator.editingValidate(hostel)) {
 				HostelService.editHostel(hostel);
 				List<Hostel> hostels = HostelService.getAllHostels();
 				request.setAttribute(Parameters.HOSTEL_LIST, hostels);

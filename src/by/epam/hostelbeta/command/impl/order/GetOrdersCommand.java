@@ -15,20 +15,22 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GetOrdersCommand.
+ * The Class GetOrdersCommand. Returns the orders page
  */
 public class GetOrdersCommand extends AbstractCommand {
 
-	/** The Constant ORDERS_PATH. */
+	/** The Constant ORDERS_PATH. The path to the orders page */
 	private static final String ORDERS_PATH = "path.page.order";
-	
-	/** The Constant ADMIN. */
+
+	/** The Constant ADMIN. The name of the current page */
 	private static final String ADMIN = "admin";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

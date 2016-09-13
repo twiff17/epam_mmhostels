@@ -13,37 +13,40 @@ import javax.mail.internet.MimeMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class MailThread.
+ * The Class MailThread. Thread for sending mail to the client
  */
 public class MailThread extends Thread {
-	
+
 	/** The Constant LOGGER. */
 	static final Logger LOGGER = LogManager.getLogger(MailThread.class);
 
 	/** The message. */
 	private MimeMessage message;
-	
+
 	/** The send to email. */
 	private String sendToEmail;
-	
+
 	/** The mail subject. */
 	private String mailSubject;
-	
+
 	/** The mail text. */
 	private String mailText;
-	
+
 	/** The properties. */
 	private Properties properties;
 
 	/**
 	 * Instantiates a new mail thread.
 	 *
-	 * @param sendToEmail the send to email
-	 * @param mailSubject the mail subject
-	 * @param mailText the mail text
-	 * @param properties the properties
+	 * @param sendToEmail
+	 *            receiver of the message
+	 * @param mailSubject
+	 *            the mail subject
+	 * @param mailText
+	 *            the mail text
+	 * @param properties
+	 *            the properties
 	 */
 	public MailThread(String sendToEmail, String mailSubject, String mailText, Properties properties) {
 		this.sendToEmail = sendToEmail;
@@ -53,7 +56,7 @@ public class MailThread extends Thread {
 	}
 
 	/**
-	 * Inits the.
+	 * Inits the message.
 	 */
 	private void init() {
 		Session mailSession = (new MailSessionCreator(properties)).createSession();
@@ -71,7 +74,9 @@ public class MailThread extends Thread {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Thread#run()
 	 */
 	public void run() {

@@ -4,17 +4,17 @@ import java.util.List;
 
 import by.epam.hostelbeta.domain.entity.RoomType;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IRoomTypeDAO.
  */
 public interface IRoomTypeDAO {
-	
+
 	/**
 	 * Find all room types.
 	 *
-	 * @return the list
-	 * @throws DAOException the DAO exception
+	 * @return the list of all types
+	 * @throws DAOException
+	 *             the DAO exception, throws when SQLException is thrown
 	 */
 	List<RoomType> findAllRoomTypes() throws DAOException;
 }

@@ -1,26 +1,25 @@
 package by.epam.hostelbeta.domain.dto;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RoomDTO.
+ * The Class RoomDTO. For Room's view
  */
 public class RoomDTO {
-	
+
 	/** The room id. */
 	private int roomId;
-	
+
 	/** The hostel id. */
 	private long hostelId;
-	
+
 	/** The hostel name. */
 	private String hostelName;
-	
+
 	/** The room type. */
 	private String roomType;
-	
+
 	/** The price. */
 	private double price;
-	
+
 	/** The beds number. */
 	private int bedsNumber;
 
@@ -36,7 +35,8 @@ public class RoomDTO {
 	/**
 	 * Sets the room id.
 	 *
-	 * @param roomId the new room id
+	 * @param roomId
+	 *            the new room id
 	 */
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
@@ -54,7 +54,8 @@ public class RoomDTO {
 	/**
 	 * Sets the hostel id.
 	 *
-	 * @param hostelId the new hostel id
+	 * @param hostelId
+	 *            the new hostel id
 	 */
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
@@ -72,7 +73,8 @@ public class RoomDTO {
 	/**
 	 * Sets the hostel name.
 	 *
-	 * @param hostelName the new hostel name
+	 * @param hostelName
+	 *            the new hostel name
 	 */
 	public void setHostelName(String hostelName) {
 		this.hostelName = hostelName;
@@ -90,7 +92,8 @@ public class RoomDTO {
 	/**
 	 * Sets the room type.
 	 *
-	 * @param roomType the new room type
+	 * @param roomType
+	 *            the new room type
 	 */
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
@@ -108,7 +111,8 @@ public class RoomDTO {
 	/**
 	 * Sets the price.
 	 *
-	 * @param price the new price
+	 * @param price
+	 *            the new price
 	 */
 	public void setPrice(double price) {
 		this.price = price;
@@ -126,13 +130,16 @@ public class RoomDTO {
 	/**
 	 * Sets the beds number.
 	 *
-	 * @param bedsNumber the new beds number
+	 * @param bedsNumber
+	 *            the new beds number
 	 */
 	public void setBedsNumber(int bedsNumber) {
 		this.bedsNumber = bedsNumber;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -150,7 +157,9 @@ public class RoomDTO {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

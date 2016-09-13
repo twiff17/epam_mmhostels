@@ -3,57 +3,56 @@ package by.epam.hostelbeta.domain.dto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class OrderDTO.
+ * The Class OrderDTO. For Order's view
  */
 public class OrderDTO {
-	
+
 	/** The order id. */
 	private long orderId;
-	
+
 	/** The user id. */
 	private long userId;
-	
+
 	/** The user login. */
 	private String userLogin;
-	
+
 	/** The user email. */
 	private String userEmail;
-	
+
 	/** The hostel id. */
 	private long hostelId;
-	
+
 	/** The hostel name. */
 	private String hostelName;
-	
+
 	/** The country. */
 	private String country;
-	
+
 	/** The city. */
 	private String city;
-	
+
 	/** The room id. */
 	private int roomId;
-	
+
 	/** The room type. */
 	private String roomType;
-	
+
 	/** The status. */
 	private String status;
-	
+
 	/** The booking. */
 	private boolean booking;
-	
+
 	/** The price. */
 	private double price;
-	
+
 	/** The in date. */
 	private LocalDate inDate;
-	
+
 	/** The out date. */
 	private LocalDate outDate;
-	
+
 	/** The order time. */
 	private LocalDateTime orderTime;
 
@@ -69,7 +68,8 @@ public class OrderDTO {
 	/**
 	 * Sets the order id.
 	 *
-	 * @param orderId the new order id
+	 * @param orderId
+	 *            the new order id
 	 */
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
@@ -87,7 +87,8 @@ public class OrderDTO {
 	/**
 	 * Sets the user id.
 	 *
-	 * @param userId the new user id
+	 * @param userId
+	 *            the new user id
 	 */
 	public void setUserId(long userId) {
 		this.userId = userId;
@@ -105,7 +106,8 @@ public class OrderDTO {
 	/**
 	 * Sets the user login.
 	 *
-	 * @param userLogin the new user login
+	 * @param userLogin
+	 *            the new user login
 	 */
 	public void setUserLogin(String userLogin) {
 		this.userLogin = userLogin;
@@ -123,7 +125,8 @@ public class OrderDTO {
 	/**
 	 * Sets the user email.
 	 *
-	 * @param userEmail the new user email
+	 * @param userEmail
+	 *            the new user email
 	 */
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
@@ -141,7 +144,8 @@ public class OrderDTO {
 	/**
 	 * Sets the hostel id.
 	 *
-	 * @param hostelId the new hostel id
+	 * @param hostelId
+	 *            the new hostel id
 	 */
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
@@ -159,7 +163,8 @@ public class OrderDTO {
 	/**
 	 * Sets the hostel name.
 	 *
-	 * @param hostelName the new hostel name
+	 * @param hostelName
+	 *            the new hostel name
 	 */
 	public void setHostelName(String hostelName) {
 		this.hostelName = hostelName;
@@ -177,7 +182,8 @@ public class OrderDTO {
 	/**
 	 * Sets the country.
 	 *
-	 * @param country the new country
+	 * @param country
+	 *            the new country
 	 */
 	public void setCountry(String country) {
 		this.country = country;
@@ -195,7 +201,8 @@ public class OrderDTO {
 	/**
 	 * Sets the city.
 	 *
-	 * @param city the new city
+	 * @param city
+	 *            the new city
 	 */
 	public void setCity(String city) {
 		this.city = city;
@@ -213,7 +220,8 @@ public class OrderDTO {
 	/**
 	 * Sets the room id.
 	 *
-	 * @param roomId the new room id
+	 * @param roomId
+	 *            the new room id
 	 */
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
@@ -231,7 +239,8 @@ public class OrderDTO {
 	/**
 	 * Sets the room type.
 	 *
-	 * @param roomType the new room type
+	 * @param roomType
+	 *            the new room type
 	 */
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
@@ -249,7 +258,8 @@ public class OrderDTO {
 	/**
 	 * Sets the status.
 	 *
-	 * @param status the new status
+	 * @param status
+	 *            the new status
 	 */
 	public void setStatus(String status) {
 		this.status = status;
@@ -267,7 +277,8 @@ public class OrderDTO {
 	/**
 	 * Sets the booking.
 	 *
-	 * @param booking the new booking
+	 * @param booking
+	 *            the new booking
 	 */
 	public void setBooking(boolean booking) {
 		this.booking = booking;
@@ -285,7 +296,8 @@ public class OrderDTO {
 	/**
 	 * Sets the price.
 	 *
-	 * @param price the new price
+	 * @param price
+	 *            the new price
 	 */
 	public void setPrice(double price) {
 		this.price = price;
@@ -303,7 +315,8 @@ public class OrderDTO {
 	/**
 	 * Sets the in date.
 	 *
-	 * @param inDate the new in date
+	 * @param inDate
+	 *            the new in date
 	 */
 	public void setInDate(LocalDate inDate) {
 		this.inDate = inDate;
@@ -321,7 +334,8 @@ public class OrderDTO {
 	/**
 	 * Sets the out date.
 	 *
-	 * @param outDate the new out date
+	 * @param outDate
+	 *            the new out date
 	 */
 	public void setOutDate(LocalDate outDate) {
 		this.outDate = outDate;
@@ -339,13 +353,16 @@ public class OrderDTO {
 	/**
 	 * Sets the order time.
 	 *
-	 * @param orderTime the new order time
+	 * @param orderTime
+	 *            the new order time
 	 */
 	public void setOrderTime(LocalDateTime orderTime) {
 		this.orderTime = orderTime;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -373,7 +390,9 @@ public class OrderDTO {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

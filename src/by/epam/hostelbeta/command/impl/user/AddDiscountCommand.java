@@ -12,17 +12,19 @@ import by.epam.hostelbeta.service.UserService;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AddDiscountCommand.
+ * The Class AddDiscountCommand. Adds discount to the given user
  */
 public class AddDiscountCommand extends AbstractCommand {
-	
+
 	/** The Constant PROPERTY_NO_FOUND. */
 	private static final String PROPERTY_NO_FOUND = "???not_found???";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

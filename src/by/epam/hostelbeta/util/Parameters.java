@@ -1,6 +1,5 @@
 package by.epam.hostelbeta.util;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Parameters.
  */

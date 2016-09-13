@@ -17,23 +17,27 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class LoginCommand.
+ * The Class LoginCommand. Checks user's login and password. Then creates the
+ * session and returns home page if the user exists, else returns login page
+ * with error message
  */
 public class LoginCommand extends AbstractCommand {
-	
-	/** The Constant LOGIN_PATH. */
+
+	/** The Constant LOGIN_PATH. The path to the login page */
 	private static final String LOGIN_PATH = "path.page.login";
-	
+
 	/** The Constant HOME. */
 	private static final String HOME = "home";
-	
-	/** The Constant HOME_PATH. */
+
+	/** The Constant HOME_PATH. The path to the home page */
 	private static final String HOME_PATH = "path.page.home";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

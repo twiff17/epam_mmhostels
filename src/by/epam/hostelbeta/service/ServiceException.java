@@ -1,6 +1,5 @@
 package by.epam.hostelbeta.service;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ServiceException.
  */

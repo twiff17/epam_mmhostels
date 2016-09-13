@@ -1,6 +1,5 @@
 package by.epam.hostelbeta.command;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CommandException.
  */

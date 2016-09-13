@@ -10,14 +10,15 @@ import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UserDataTag.
+ * The Class UserDataTag. The tag for displaying user's role and login
  */
 @SuppressWarnings("serial")
 public class UserDataTag extends TagSupport {
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
 	 */
 	@Override

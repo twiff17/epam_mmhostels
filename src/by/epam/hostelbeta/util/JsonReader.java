@@ -11,21 +11,22 @@ import java.nio.charset.Charset;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class JsonReader.
+ * The Class JsonReader. Class for reading json object from url
  */
 public class JsonReader {
-	
+
 	/** The Constant ENCODING. */
 	private static final String ENCODING = "UTF-8";
 
 	/**
-	 * Read all.
+	 * Reads a string from a stream.
 	 *
-	 * @param rd the rd
-	 * @return the string
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @param rd
+	 *            the reader
+	 * @return the read string
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	private static String readAll(Reader rd) throws IOException {
 		StringBuilder sb = new StringBuilder();
@@ -37,12 +38,15 @@ public class JsonReader {
 	}
 
 	/**
-	 * Read json from url.
+	 * Reads json object from url.
 	 *
-	 * @param url the url
+	 * @param url
+	 *            the url
 	 * @return the JSON object
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws JSONException the JSON exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws JSONException
+	 *             the JSON exception
 	 */
 	public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
 		InputStream is = new URL(url).openStream();

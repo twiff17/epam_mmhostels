@@ -1,6 +1,5 @@
 package by.epam.hostelbeta.dao;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DAOException.
  */

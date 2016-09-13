@@ -7,26 +7,28 @@ import by.epam.hostelbeta.dao.DAOException;
 import by.epam.hostelbeta.dao.impl.UserDAO;
 import by.epam.hostelbeta.domain.entity.User;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserService.
  */
 public class UserService {
-	
+
 	/**
 	 * Check login password.
 	 *
-	 * @param enterLogin the enter login
-	 * @param enterPassword the enter password
-	 * @return the user
-	 * @throws ServiceException the service exception
+	 * @param enteredLogin
+	 *            the entered login
+	 * @param enteredPassword
+	 *            the entered password
+	 * @return the user, or null if wasn't found
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
-	public static User checkLoginPassword(String enterLogin, String enterPassword) throws ServiceException {
+	public static User checkLoginPassword(String enteredLogin, String enteredPassword) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		User user = null;
-		String encryptedPassword = DigestUtils.md5Hex(enterPassword);
+		String encryptedPassword = DigestUtils.md5Hex(enteredPassword);
 		try {
-			user = userDAO.findByLoginAndPassword(enterLogin, encryptedPassword);
+			user = userDAO.findByLoginAndPassword(enteredLogin, encryptedPassword);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
@@ -34,11 +36,13 @@ public class UserService {
 	}
 
 	/**
-	 * Check login.
+	 * Check login availability.
 	 *
-	 * @param login the login
+	 * @param login
+	 *            the login
 	 * @return true, if successful
-	 * @throws ServiceException the service exception
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static boolean checkLogin(String login) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
@@ -54,9 +58,11 @@ public class UserService {
 	/**
 	 * Sign up.
 	 *
-	 * @param user the user
+	 * @param user
+	 *            the user
 	 * @return the user
-	 * @throws ServiceException the service exception
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static User signUp(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
@@ -75,8 +81,9 @@ public class UserService {
 	/**
 	 * Gets the all users.
 	 *
-	 * @return the all users
-	 * @throws ServiceException the service exception
+	 * @return the list of all users
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static List<User> getAllUsers() throws ServiceException {
 		UserDAO userDAO = new UserDAO();
@@ -90,8 +97,10 @@ public class UserService {
 	/**
 	 * Ban user.
 	 *
-	 * @param userId the user id
-	 * @throws ServiceException the service exception
+	 * @param userId
+	 *            the user id
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static void banUser(long userId) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
@@ -105,8 +114,10 @@ public class UserService {
 	/**
 	 * Unban user.
 	 *
-	 * @param userId the user id
-	 * @throws ServiceException the service exception
+	 * @param userId
+	 *            the user id
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static void unbanUser(long userId) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
@@ -120,8 +131,10 @@ public class UserService {
 	/**
 	 * Adds the discount.
 	 *
-	 * @param userId the user id
-	 * @throws ServiceException the service exception
+	 * @param userId
+	 *            the user id
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static void addDiscount(long userId) throws ServiceException {
 		UserDAO userDAO = new UserDAO();

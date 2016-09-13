@@ -5,25 +5,27 @@ import java.util.List;
 import by.epam.hostelbeta.domain.entity.Currency;
 import by.epam.hostelbeta.domain.entity.CurrencyRate;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ICurrencyDAO.
  */
 public interface ICurrencyDAO {
-	
+
 	/**
-	 * Find all.
+	 * Finds all currencies.
 	 *
-	 * @return the list
-	 * @throws DAOException the DAO exception
+	 * @return the list of all currencies
+	 * @throws DAOException
+	 *             the DAO exception, throws when SQLException is thrown
 	 */
 	List<Currency> findAll() throws DAOException;
 
 	/**
-	 * Insert currency rate.
+	 * Inserts currency rate.
 	 *
-	 * @param rate the rate
-	 * @throws DAOException the DAO exception
+	 * @param rate
+	 *            - the rate
+	 * @throws DAOException
+	 *             the DAO exception, throws when SQLException is thrown
 	 */
 	void insertCurrencyRate(CurrencyRate rate) throws DAOException;
 }

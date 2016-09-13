@@ -18,25 +18,25 @@ import by.epam.hostelbeta.domain.entity.User;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SecurityFilter.
+ * The Class SecurityFilter. Filter for authentication user and prohibition of
+ * unauthorized commands ñall
  */
 @WebFilter(urlPatterns = { "/AjaxController", "/Controller" })
 public class SecurityFilter implements Filter {
-	
+
 	/** The admin commands. */
 	private ArrayList<String> adminCommands;
-	
+
 	/** The client commands. */
 	private ArrayList<String> clientCommands;
 
 	/** The Constant NO_ACCESS_PATH. */
 	private static final String NO_ACCESS_PATH = "path.page.noaccess";
-	
+
 	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "admin";
-	
+
 	/** The Constant ROLE_CLIENT. */
 	private static final String ROLE_CLIENT = "client";
 
@@ -46,14 +46,19 @@ public class SecurityFilter implements Filter {
 	public SecurityFilter() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#destroy()
 	 */
 	public void destroy() {
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -79,7 +84,9 @@ public class SecurityFilter implements Filter {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {

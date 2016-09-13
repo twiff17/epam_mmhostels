@@ -4,17 +4,17 @@ import java.util.List;
 
 import by.epam.hostelbeta.domain.entity.Country;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ICountryDAO.
  */
 public interface ICountryDAO {
-	
+
 	/**
-	 * Find all.
+	 * Finds all countries.
 	 *
-	 * @return the list
-	 * @throws DAOException the DAO exception
+	 * @return the list of all countries
+	 * @throws DAOException
+	 *             the DAO exception, throws when SQLException is thrown
 	 */
 	List<Country> findAll() throws DAOException;
 }

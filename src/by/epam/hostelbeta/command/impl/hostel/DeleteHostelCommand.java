@@ -15,9 +15,9 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DeleteHostelCommand.
+ * Deletes hostel.
  */
 public class DeleteHostelCommand extends AbstractCommand {
 	

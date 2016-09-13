@@ -14,30 +14,35 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.hostelbeta.util.ConfigurationManager;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PageRedirectSecurityFilter.
+ * The Class PageRedirectSecurityFilter. Filter for protection jsp against
+ * direct access
  */
 @WebFilter("/jsp/*")
 public class PageRedirectSecurityFilter implements Filter {
-	
+
 	/** The Constant INDEX_PATH. */
 	private static final String INDEX_PATH = "path.page.index";
-	
+
 	/**
 	 * Instantiates a new page redirect security filter.
 	 */
 	public PageRedirectSecurityFilter() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#destroy()
 	 */
 	public void destroy() {
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -47,7 +52,9 @@ public class PageRedirectSecurityFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {

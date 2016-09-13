@@ -15,88 +15,89 @@ import by.epam.hostelbeta.domain.entity.Order;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class OrderDAO.
+ * The Class OrderDAO. Class to access the data about orders
  */
 public class OrderDAO implements IOrderDAO {
-	
+
 	/** The Constant SELECT_ORDERS_BY_USER_ID. */
 	private static final String SELECT_ORDERS_BY_USER_ID = "SELECT * FROM `v_order_information` WHERE `UserId` = ? ORDER BY `OrderTime` DESC";
-	
+
 	/** The Constant SELECT_ALL_ORDERS. */
 	private static final String SELECT_ALL_ORDERS = "SELECT * FROM `v_order_information` ORDER BY `OrderTime` DESC";
-	
+
 	/** The Constant REJECT_ORDER. */
 	private static final String REJECT_ORDER = "UPDATE `order` SET `Status` = 'Отклонен' WHERE `OrderId` = ?";
-	
+
 	/** The Constant ACCEPT_ORDER. */
 	private static final String ACCEPT_ORDER = "UPDATE `order` SET `Status` = 'Принят' WHERE `OrderId` = ?";
-	
+
 	/** The Constant CANCEL_ORDER. */
 	private static final String CANCEL_ORDER = "UPDATE `order` SET `Status` = 'Отказ' WHERE `OrderId` = ?";
-	
+
 	/** The Constant CHECK_ROOM_AVAILABILITY. */
 	private static final String CHECK_ROOM_AVAILABILITY = "SELECT `OrderId` FROM `order` WHERE `HostelId` = ? AND `RoomId` = ? AND (`InDate` <= ? AND `OutDate` >= ?) AND (`Status` = 'Принят' OR `Status` = 'В обработке')";
-	
+
 	/** The Constant ADD_ORDER. */
 	private static final String ADD_ORDER = "INSERT INTO `order` (`UserId`, `HostelId`, `RoomId`, `InDate`, `OutDate`, `Booking`, `Price`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	
+
 	/** The Constant SELECT_ORDER_BY_ID. */
 	private static final String SELECT_ORDER_BY_ID = "SELECT * FROM `v_order_information` WHERE `OrderId` = ?";
-	
+
 	/** The Constant SELECT_ORDERS_BY_HOSTEL_ID. */
 	private static final String SELECT_ORDERS_BY_HOSTEL_ID = "SELECT * FROM `v_order_information` WHERE `HostelId` = ?";
-	
+
 	/** The Constant SELECT_ORDERS_BY_ROOM_ID. */
 	private static final String SELECT_ORDERS_BY_ROOM_ID = "SELECT * FROM `v_order_information` WHERE `HostelId` = ? AND `RoomId` = ?";
 
 	/** The Constant USER_ID. */
 	private static final String USER_ID = "UserId";
-	
+
 	/** The Constant HOSTEL_NAME. */
 	private static final String HOSTEL_NAME = "HostelName";
-	
+
 	/** The Constant COUNTRY. */
 	private static final String COUNTRY = "Country";
-	
+
 	/** The Constant CITY. */
 	private static final String CITY = "City";
-	
+
 	/** The Constant ROOM_TYPE. */
 	private static final String ROOM_TYPE = "RoomType";
-	
+
 	/** The Constant ORDER_TIME. */
 	private static final String ORDER_TIME = "OrderTime";
-	
+
 	/** The Constant STATUS. */
 	private static final String STATUS = "Status";
-	
+
 	/** The Constant IN_DATE. */
 	private static final String IN_DATE = "InDate";
-	
+
 	/** The Constant OUT_DATE. */
 	private static final String OUT_DATE = "OutDate";
-	
+
 	/** The Constant BOOKING. */
 	private static final String BOOKING = "Booking";
-	
+
 	/** The Constant PRICE. */
 	private static final String PRICE = "Price";
-	
+
 	/** The Constant ROOM_ID. */
 	private static final String ROOM_ID = "RoomId";
-	
+
 	/** The Constant ORDER_ID. */
 	private static final String ORDER_ID = "OrderId";
-	
+
 	/** The Constant USER_LOGIN. */
 	private static final String USER_LOGIN = "UserLogin";
-	
+
 	/** The Constant USER_EMAIL. */
 	private static final String USER_EMAIL = "UserEmail";
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#findOrdersByUserId(long)
 	 */
 	public List<OrderDTO> findOrdersByUserId(long userId) throws DAOException {
@@ -122,7 +123,9 @@ public class OrderDAO implements IOrderDAO {
 		return orders;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#findAllOrders()
 	 */
 	public List<OrderDTO> findAllOrders() throws DAOException {
@@ -146,7 +149,9 @@ public class OrderDAO implements IOrderDAO {
 		return orders;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#rejectOrder(long)
 	 */
 	public void rejectOrder(long orderId) throws DAOException {
@@ -162,7 +167,9 @@ public class OrderDAO implements IOrderDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#acceptOrder(long)
 	 */
 	public void acceptOrder(long orderId) throws DAOException {
@@ -178,7 +185,9 @@ public class OrderDAO implements IOrderDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#cancelOrder(long)
 	 */
 	public void cancelOrder(long orderId) throws DAOException {
@@ -194,8 +203,12 @@ public class OrderDAO implements IOrderDAO {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.dao.IOrderDAO#checkRoom(by.epam.hostelbeta.domain.dto.RoomDTO, java.time.LocalDate, java.time.LocalDate)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * by.epam.hostelbeta.dao.IOrderDAO#checkRoom(by.epam.hostelbeta.domain.dto.
+	 * RoomDTO, java.time.LocalDate, java.time.LocalDate)
 	 */
 	public boolean checkRoom(RoomDTO room, LocalDate inDate, LocalDate outDate) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -220,8 +233,11 @@ public class OrderDAO implements IOrderDAO {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.dao.IOrderDAO#bookRoom(by.epam.hostelbeta.domain.entity.Order)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.dao.IOrderDAO#bookRoom(by.epam.hostelbeta.domain.
+	 * entity.Order)
 	 */
 	public void bookRoom(Order order) throws DAOException {
 		ConnectionDecorator connection = ConnectionPool.getInstance().retrieve();
@@ -242,7 +258,9 @@ public class OrderDAO implements IOrderDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#findOrderById(long)
 	 */
 	public OrderDTO findOrderById(long orderId) throws DAOException {
@@ -266,7 +284,9 @@ public class OrderDAO implements IOrderDAO {
 		return order;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#findOrdersByHostelId(long)
 	 */
 	public List<OrderDTO> findOrdersByHostelId(long hostelId) throws DAOException {
@@ -292,7 +312,9 @@ public class OrderDAO implements IOrderDAO {
 		return orders;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.IOrderDAO#findOrdersByRoomId(long, long)
 	 */
 	public List<OrderDTO> findOrdersByRoomId(long hostelId, long roomId) throws DAOException {
@@ -322,9 +344,12 @@ public class OrderDAO implements IOrderDAO {
 	/**
 	 * Fill order DTO.
 	 *
-	 * @param rs the rs
-	 * @param order the order
-	 * @throws SQLException the SQL exception
+	 * @param rs
+	 *            the ResultSet with data
+	 * @param order
+	 *            the order
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	private void fillOrderDTO(ResultSet rs, OrderDTO order) throws SQLException {
 		order.setOrderId(rs.getLong(ORDER_ID));

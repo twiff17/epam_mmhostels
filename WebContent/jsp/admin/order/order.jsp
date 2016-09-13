@@ -72,12 +72,12 @@
 											<td><fmt:message key="label.no" /></td>
 										</c:if>
 										<td><c:if
-												test="${(order.status eq 'В обработке' or order.status eq 'Принят') and !LocalDateCompareUtil.isAfterCurrentDate(order.getInDate())}">
+												test="${(order.status eq 'В обработке' or order.status eq 'Принят') and !LocalDateCompareUtil.isBeforeOrEqualsCurrentDate(order.getInDate())}">
 												<input type="button" class="icon-btn delete-btn"
 													onClick="PopUpRejectShow(${order.orderId})" value="">
 											</c:if></td>
 										<td><c:if
-												test="${order.status eq 'В обработке' and !LocalDateCompareUtil.isAfterCurrentDate(order.getInDate())}">
+												test="${order.status eq 'В обработке' and !LocalDateCompareUtil.isBeforeOrEqualsCurrentDate(order.getInDate())}">
 												<input type="button" class="icon-btn accept-btn"
 													onClick="acceptOrder(${order.orderId})" value="">
 											</c:if></td>

@@ -10,18 +10,19 @@ import by.epam.hostelbeta.dao.impl.RoomDAO;
 import by.epam.hostelbeta.domain.dto.RoomDTO;
 import by.epam.hostelbeta.domain.entity.Room;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RoomService.
  */
 public class RoomService {
-	
+
 	/**
 	 * Gets the rooms by hostel id.
 	 *
-	 * @param hostelId the hostel id
-	 * @return the rooms by hostel id
-	 * @throws ServiceException the service exception
+	 * @param hostelId
+	 *            the hostel id
+	 * @return the list of rooms in hostel
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static List<RoomDTO> getRoomsByHostelId(long hostelId) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
@@ -37,8 +38,9 @@ public class RoomService {
 	/**
 	 * Gets the all rooms.
 	 *
-	 * @return the all rooms
-	 * @throws ServiceException the service exception
+	 * @return the list of all rooms
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static List<RoomDTO> getAllRooms() throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
@@ -54,9 +56,12 @@ public class RoomService {
 	/**
 	 * Delete room.
 	 *
-	 * @param hostelId the hostel id
-	 * @param roomId the room id
-	 * @throws ServiceException the service exception
+	 * @param hostelId
+	 *            the hostel id
+	 * @param roomId
+	 *            the room id
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static void deleteRoom(long hostelId, long roomId) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
@@ -70,9 +75,11 @@ public class RoomService {
 	/**
 	 * Adds the room.
 	 *
-	 * @param room the room
+	 * @param room
+	 *            the room
 	 * @return true, if successful
-	 * @throws ServiceException the service exception
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static boolean addRoom(Room room) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
@@ -91,10 +98,13 @@ public class RoomService {
 	/**
 	 * Gets the room by id.
 	 *
-	 * @param hostelId the hostel id
-	 * @param roomId the room id
-	 * @return the room by id
-	 * @throws ServiceException the service exception
+	 * @param hostelId
+	 *            the hostel id
+	 * @param roomId
+	 *            the room id
+	 * @return the room by id, or null if wasn't found
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static Room getRoomById(long hostelId, long roomId) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
@@ -108,8 +118,10 @@ public class RoomService {
 	/**
 	 * Edits the room.
 	 *
-	 * @param room the room
-	 * @throws ServiceException the service exception
+	 * @param room
+	 *            the room
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static void editRoom(Room room) throws ServiceException {
 		RoomDAO roomDAO = new RoomDAO();
@@ -121,13 +133,17 @@ public class RoomService {
 	}
 
 	/**
-	 * Gets the free rooms.
+	 * Gets the free rooms for a given date.
 	 *
-	 * @param hostelId the hostel id
-	 * @param inDate the in date
-	 * @param outDate the out date
-	 * @return the free rooms
-	 * @throws ServiceException the service exception
+	 * @param hostelId
+	 *            the hostel id
+	 * @param inDate
+	 *            the in date
+	 * @param outDate
+	 *            the out date
+	 * @return the list of free rooms
+	 * @throws ServiceException
+	 *             the service exception, if DAOException was thrown
 	 */
 	public static List<RoomDTO> getFreeRooms(long hostelId, LocalDate inDate, LocalDate outDate)
 			throws ServiceException {

@@ -21,20 +21,22 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.RoomValidator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class EditRoomCommand.
+ * The Class EditRoomCommand. Edits room
  */
 public class EditRoomCommand extends AbstractCommand {
-	
-	/** The Constant ROOM_PATH. */
+
+	/** The Constant ROOM_PATH. The path to the rooms management page */
 	private static final String ROOM_PATH = "path.page.room";
-	
-	/** The Constant ROOM_ADD_PATH. */
+
+	/** The Constant ROOM_ADD_PATH. The path to the adding room page */
 	private static final String ROOM_ADD_PATH = "path.page.room-add";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

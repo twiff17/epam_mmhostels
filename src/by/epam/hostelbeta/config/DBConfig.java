@@ -7,27 +7,29 @@ import java.util.ResourceBundle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DBConfig.
+ * The Class DBConfig. Class for database configuration
  */
 public class DBConfig {
-	
+
 	/** The Constant LOGGER. */
 	static final Logger LOGGER = LogManager.getLogger(DBConfig.class);
 
 	/** The Constant URL. */
 	public static final String URL = "url";
-	
+
 	/** The Constant USER. */
 	public static final String USER = "user";
-	
+
 	/** The Constant PASSWORD. */
 	public static final String PASSWORD = "password";
 
-	/** The Constant DB_BOUNDLE_NAME. */
+	/**
+	 * The Constant DB_BOUNDLE_NAME. The name of properties file with DB
+	 * configuration
+	 */
 	private static final String DB_BOUNDLE_NAME = "jdbc";
-	
+
 	/** The bundle. */
 	private static ResourceBundle bundle;
 
@@ -39,9 +41,10 @@ public class DBConfig {
 	}
 
 	/**
-	 * Gets the property.
+	 * Gets the property from jdbc.properties.
 	 *
-	 * @param key the key
+	 * @param key
+	 *            the key of the property
 	 * @return the property
 	 */
 	public static String getProperty(String key) {

@@ -21,23 +21,26 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.OrderValidator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GetFreeRoomsCommand.
+ * The Class GetFreeRoomsCommand. Creates the list of available rooms on the
+ * given date. And returns the page with this list
  */
 public class GetFreeRoomsCommand extends AbstractCommand {
-	
-	/** The Constant ROOMS_PATH. */
+
+	/** The Constant ROOMS_PATH. The path to the rooms page */
 	private static final String ROOMS_PATH = "path.page.rooms";
-	
-	/** The Constant HOSTELS. */
+
+	/** The Constant HOSTELS. The name of the current page */
 	private static final String HOSTELS = "hostels";
-	
-	/** The Constant HOSTELS_PATH. */
+
+	/** The Constant HOSTELS_PATH. The path to the hostels page */
 	private static final String HOSTELS_PATH = "path.page.hostels";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

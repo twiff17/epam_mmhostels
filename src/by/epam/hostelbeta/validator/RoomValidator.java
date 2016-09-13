@@ -2,16 +2,16 @@ package by.epam.hostelbeta.validator;
 
 import by.epam.hostelbeta.domain.entity.Room;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RoomValidator.
+ * The Class RoomValidator. Validates Room object
  */
 public class RoomValidator {
-	
+
 	/**
-	 * Validate.
+	 * Validates room.
 	 *
-	 * @param room the room
+	 * @param room
+	 *            the room
 	 * @return true, if successful
 	 */
 	public static boolean validate(Room room) {

@@ -3,19 +3,18 @@ package by.epam.hostelbeta.util;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RandomHashGenerator.
+ * The Class RandomHashGenerator. Class for generating random hash
  */
 public class RandomHashGenerator {
-	
+
 	/** The random. */
 	private static SecureRandom random = new SecureRandom();
 
 	/**
-	 * Next hash.
+	 * Creates a new random hash.
 	 *
-	 * @return the string
+	 * @return a new random hash
 	 */
 	public static String nextHash() {
 		return new BigInteger(130, random).toString(32);

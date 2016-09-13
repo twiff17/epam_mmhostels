@@ -14,20 +14,23 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GetHostelsAdminCommand.
+ * The Class GetHostelsAdminCommand. Fills hostels list and returns hostels
+ * management page
  */
 public class GetHostelsAdminCommand extends AbstractCommand {
-	
-	/** The Constant HOSTEL_PATH. */
+
+	/** The Constant HOSTEL_PATH. The path to the hostel management page */
 	private static final String HOSTEL_PATH = "path.page.hostel";
-	
-	/** The Constant ADMIN. */
+
+	/** The Constant ADMIN. The name of the current page */
 	private static final String ADMIN = "admin";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

@@ -12,19 +12,20 @@ import by.epam.hostelbeta.domain.entity.Country;
 import by.epam.hostelbeta.pool.ConnectionPool;
 import by.epam.hostelbeta.pool.ConnectionDecorator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CountryDAO.
+ * The Class CountryDAO. Class to access the data about countries
  */
 public class CountryDAO implements ICountryDAO {
-	
+
 	/** The Constant SELECT_ALL. */
 	private static final String SELECT_ALL = "SELECT `Name` FROM `country`";
 
 	/** The Constant NAME. */
 	private static final String NAME = "Name";
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see by.epam.hostelbeta.dao.ICountryDAO#findAll()
 	 */
 	public List<Country> findAll() throws DAOException {
@@ -51,9 +52,12 @@ public class CountryDAO implements ICountryDAO {
 	/**
 	 * Fill country.
 	 *
-	 * @param rs the rs
-	 * @param country the country
-	 * @throws SQLException the SQL exception
+	 * @param rs
+	 *            the ResultSet with data
+	 * @param country
+	 *            the country
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	private void fillCountry(ResultSet rs, Country country) throws SQLException {
 		country.setName(rs.getString(NAME));

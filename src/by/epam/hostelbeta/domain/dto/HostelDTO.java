@@ -1,44 +1,43 @@
 package by.epam.hostelbeta.domain.dto;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class HostelDTO.
+ * The Class HostelDTO. For Hostel's view
  */
 public class HostelDTO {
-	
+
 	/** The hostel id. */
 	private long hostelId;
-	
+
 	/** The name. */
 	private String name;
-	
+
 	/** The country. */
 	private String country;
-	
+
 	/** The currency. */
 	private String currency;
-	
+
 	/** The city. */
 	private String city;
-	
+
 	/** The phone. */
 	private String phone;
-	
+
 	/** The description. */
 	private String description;
-	
+
 	/** The address. */
 	private String address;
-	
+
 	/** The min price. */
 	private int minPrice;
-	
+
 	/** The max price. */
 	private int maxPrice;
-	
+
 	/** The room types. */
 	private String roomTypes;
-	
+
 	/** The image name. */
 	private String imageName;
 
@@ -54,7 +53,8 @@ public class HostelDTO {
 	/**
 	 * Sets the hostel id.
 	 *
-	 * @param hostelId the new hostel id
+	 * @param hostelId
+	 *            the new hostel id
 	 */
 	public void setHostelId(long hostelId) {
 		this.hostelId = hostelId;
@@ -72,7 +72,8 @@ public class HostelDTO {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the new name
+	 * @param name
+	 *            the new name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -90,7 +91,8 @@ public class HostelDTO {
 	/**
 	 * Sets the country.
 	 *
-	 * @param country the new country
+	 * @param country
+	 *            the new country
 	 */
 	public void setCountry(String country) {
 		this.country = country;
@@ -108,7 +110,8 @@ public class HostelDTO {
 	/**
 	 * Sets the currency.
 	 *
-	 * @param currency the new currency
+	 * @param currency
+	 *            the new currency
 	 */
 	public void setCurrency(String currency) {
 		this.currency = currency;
@@ -126,7 +129,8 @@ public class HostelDTO {
 	/**
 	 * Sets the city.
 	 *
-	 * @param city the new city
+	 * @param city
+	 *            the new city
 	 */
 	public void setCity(String city) {
 		this.city = city;
@@ -144,7 +148,8 @@ public class HostelDTO {
 	/**
 	 * Sets the phone.
 	 *
-	 * @param phone the new phone
+	 * @param phone
+	 *            the new phone
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
@@ -162,7 +167,8 @@ public class HostelDTO {
 	/**
 	 * Sets the description.
 	 *
-	 * @param description the new description
+	 * @param description
+	 *            the new description
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -180,7 +186,8 @@ public class HostelDTO {
 	/**
 	 * Sets the address.
 	 *
-	 * @param address the new address
+	 * @param address
+	 *            the new address
 	 */
 	public void setAddress(String address) {
 		this.address = address;
@@ -198,7 +205,8 @@ public class HostelDTO {
 	/**
 	 * Sets the min price.
 	 *
-	 * @param minPrice the new min price
+	 * @param minPrice
+	 *            the new min price
 	 */
 	public void setMinPrice(int minPrice) {
 		this.minPrice = minPrice;
@@ -216,7 +224,8 @@ public class HostelDTO {
 	/**
 	 * Sets the max price.
 	 *
-	 * @param maxPrice the new max price
+	 * @param maxPrice
+	 *            the new max price
 	 */
 	public void setMaxPrice(int maxPrice) {
 		this.maxPrice = maxPrice;
@@ -234,7 +243,8 @@ public class HostelDTO {
 	/**
 	 * Sets the room types.
 	 *
-	 * @param roomTypes the new room types
+	 * @param roomTypes
+	 *            the new room types
 	 */
 	public void setRoomTypes(String roomTypes) {
 		this.roomTypes = roomTypes;
@@ -252,13 +262,16 @@ public class HostelDTO {
 	/**
 	 * Sets the image name.
 	 *
-	 * @param imageName the new image name
+	 * @param imageName
+	 *            the new image name
 	 */
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -280,7 +293,9 @@ public class HostelDTO {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

@@ -1,8 +1,7 @@
 package by.epam.hostelbeta.domain.entity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Room.
+ * The Class Room. POJO for room
  */
 public class Room {
 	

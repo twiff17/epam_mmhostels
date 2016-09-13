@@ -15,20 +15,23 @@ import by.epam.hostelbeta.service.ServiceException;
 import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GetCabinetCommand.
+ * The Class GetCabinetCommand. Fills user's order list and returns the page
+ * with this list.
  */
 public class GetCabinetCommand extends AbstractCommand {
-	
-	/** The Constant CABINET. */
+
+	/** The Constant CABINET. The name of current page */
 	private static final String CABINET = "cabinet";
-	
-	/** The Constant CABINET_PATH. */
+
+	/** The Constant CABINET_PATH. The path to the cabinet page */
 	private static final String CABINET_PATH = "path.page.cabinet";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

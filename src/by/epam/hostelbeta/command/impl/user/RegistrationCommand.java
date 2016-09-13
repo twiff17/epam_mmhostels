@@ -19,26 +19,29 @@ import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 import by.epam.hostelbeta.validator.UserValidator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RegistrationCommand.
+ * The Class RegistrationCommand. Creates the object User and save it to the
+ * database. Than creates a session and returns home page
  */
 public class RegistrationCommand extends AbstractCommand {
-	
+
 	/** The Constant ROLE_CLIENT. */
 	private static final String ROLE_CLIENT = "client";
-	
-	/** The Constant REGISTRATION_PATH. */
+
+	/** The Constant REGISTRATION_PATH. The path to the registration page */
 	private static final String REGISTRATION_PATH = "path.page.registration";
-	
-	/** The Constant HOME. */
+
+	/** The Constant HOME. The name of the current page */
 	private static final String HOME = "home";
-	
-	/** The Constant HOME_PATH. */
+
+	/** The Constant HOME_PATH. The path to the home page */
 	private static final String HOME_PATH = "path.page.home";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

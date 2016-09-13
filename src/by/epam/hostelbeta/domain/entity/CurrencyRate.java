@@ -2,9 +2,8 @@ package by.epam.hostelbeta.domain.entity;
 
 import java.time.LocalDate;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CurrencyRate.
+ * The Class CurrencyRate. POJO for currency rate
  */
 public class CurrencyRate {
 	

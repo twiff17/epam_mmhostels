@@ -15,20 +15,22 @@ import by.epam.hostelbeta.util.ConfigurationManager;
 import by.epam.hostelbeta.util.LocaleManager;
 import by.epam.hostelbeta.util.Parameters;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class LogoutCommand.
+ * The Class LogoutCommand. Invalidates the session and returns home page
  */
 public class LogoutCommand extends AbstractCommand {
-	
-	/** The Constant HOME. */
+
+	/** The Constant HOME. The name of the current page */
 	private static final String HOME = "home";
-	
-	/** The Constant HOME_PATH. */
+
+	/** The Constant HOME_PATH. The path to the home page */
 	private static final String HOME_PATH = "path.page.home";
 
-	/* (non-Javadoc)
-	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see by.epam.hostelbeta.command.ICommand#execute(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
