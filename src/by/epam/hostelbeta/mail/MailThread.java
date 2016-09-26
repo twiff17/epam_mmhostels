@@ -85,7 +85,7 @@ public class MailThread extends Thread {
 			Transport.send(message);
 			LOGGER.info("Message is sent successfully");
 		} catch (MessagingException e) {
-			LOGGER.error("Error sending message " + e);
+			LOGGER.info("Couldn't send message to the client - " + sendToEmail);
 		}
 	}
 }

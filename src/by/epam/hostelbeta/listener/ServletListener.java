@@ -46,8 +46,8 @@ public class ServletListener implements ServletContextListener {
 	 * ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent ev) {
-		Timer time = new Timer();
-		CurrencyRateUpdater st = new CurrencyRateUpdater();
-		time.schedule(st, 0, TimeUnit.DAYS.toMillis(1));
+		Timer timer = new Timer();
+		CurrencyRateUpdater currencyRateUpdater = new CurrencyRateUpdater();
+		timer.schedule(currencyRateUpdater, 0, TimeUnit.DAYS.toMillis(1));
 	}
 }

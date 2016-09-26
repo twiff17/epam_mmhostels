@@ -63,7 +63,7 @@ public class AddHostelCommand extends AbstractCommand {
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		LocaleManager locManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
+		LocaleManager localeManager = (LocaleManager) request.getSession().getAttribute(Parameters.LOCALE_MANAGER);
 		String page = null;
 		Hostel hostel = new Hostel();
 		try {
@@ -94,7 +94,7 @@ public class AddHostelCommand extends AbstractCommand {
 					request.setAttribute(Parameters.COUNTRY_LIST, countries);
 					request.setAttribute(Parameters.CURRENCY_LIST, currencyList);
 					request.setAttribute(Parameters.ERROR_ADD_HOSTEL_MESSAGE,
-							locManager.getResourceBundle().getString(Parameters.INVALID_DATA));
+							localeManager.getResourceBundle().getString(Parameters.INVALID_DATA));
 					page = ConfigurationManager.getProperty(HOSTEL_ADD_PATH);
 				}
 			} else {

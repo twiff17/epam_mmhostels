@@ -34,8 +34,8 @@ public class EmptyCommand extends AbstractCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		try {
-			List<Hostel> hostels = HostelService.getPopularHostels();
-			request.setAttribute(Parameters.HOSTEL_LIST, hostels);
+			List<Hostel> popularHostels = HostelService.getPopularHostels();
+			request.setAttribute(Parameters.HOSTEL_LIST, popularHostels);
 			request.getSession().setAttribute(Parameters.PAGE, HOME);
 			return ConfigurationManager.getProperty(HOME_PATH);
 		} catch (ServiceException e) {

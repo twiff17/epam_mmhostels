@@ -110,7 +110,7 @@
 					value="<fmt:message
 					key="label.send" />"> <br />
 			</form>
-			<br> <a href="javascript:PopUpRejectHide(true)"><fmt:message
+			<br> <a href="javascript:PopUpRejectHide(false)"><fmt:message
 					key="menu.close_window" /></a>
 		</div>
 	</div>
